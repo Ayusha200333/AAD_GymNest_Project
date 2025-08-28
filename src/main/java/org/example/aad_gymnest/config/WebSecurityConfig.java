@@ -48,6 +48,7 @@ public class WebSecurityConfig {
                                 "/api/v1/auth/authenticate",
                                 "/api/v1/guide/**",
                                 "/api/v1/location/**",
+                                "/api/v1/membership/**",
                                 "/api/v1/dashboard/**").permitAll()
                         .anyRequest().authenticated()
                 )
