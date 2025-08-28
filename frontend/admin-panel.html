@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GymNest Admin Panel</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap + Icons + Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- jQuery + ChartJS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root{
+            --accent: #ff6a00;
+            --accent-2: #ff8c2b;
+            --black-900: #0c0f14;
+            --black-800: #11151b;
+            --black-700: #171b22;
+            --white: #ffffff;
+            --text-strong: #0f172a;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --surface: #ffffff;
+            --surface-2: #f7f8fb;
+        }
+
+        * { box-sizing: border-box; }
+
+        /* Keep page flexible; don't lock height */
+        html, body { height: auto; min-height: 100vh; }
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            color: var(--text);
+            background: radial-gradient(1200px 600px at 10% -10%, #fff 0%, #fafbff 50%, #f5f6fb 100%);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            /* FIX: use dynamic viewport height and allow scroll so bottom items are visible */
+            height: 100dvh;
+            position: fixed;
+            top: 0; left: 0;
+            background: linear-gradient(180deg, var(--black-900) 0%, var(--black-800) 60%, var(--black-700) 100%);
+            color: var(--white);
+            padding: 22px 18px;
+            border-right: 1px solid rgba(255,255,255,0.06);
+
+            overflow-y: auto;              /* enables internal scrolling */
+            -webkit-overflow-scrolling: touch;
+            scrollbar-gutter: stable;      /* avoids layout jump when scrollbar appears */
+            padding-bottom: 16px;          /* breathing room for the bottom block */
+        }
+        /* Fallback for browsers without dvh */
+        @supports not (height: 100dvh) {
+            .sidebar { height: 100vh; }
+        }
+
+        .sidebar h2 {
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: var(--white);
+        }
+        .sidebar h2::after{
+            content:"";
+            display:block;
+            height:3px;
+            width:60px;
+            margin:10px auto 0;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        }
+
+        .sidebar a {
+            color: #d1d5db;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            margin: 6px 6px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all .2s ease;
+            position: relative;
+            font-weight: 500;
+        }
+        .sidebar a i { width: 20px; text-align: center; }
+        .sidebar a:hover {
+            color: #f3f4f6;
+            background: rgba(255,255,255,0.06);
+            transform: translateX(2px);
+        }
+        .sidebar a.active {
+            color: #ffffff;
+            background: rgba(255, 106, 0, 0.15);
+            box-shadow: inset 0 0 0 1px rgba(255,106,0,0.35);
+        }
+        .sidebar a.active::before {
+            content:"";
+            position: absolute;
+            left: -6px; top: 8px; bottom: 8px;
+            width: 4px;
+            border-radius: 8px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+            box-shadow: 0 0 12px rgba(255,106,0,0.6);
+        }
+        .sidebar .mt-auto {
+            margin-top: auto;
+            padding: 8px 10px 0;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .sidebar .btn-danger {
+            background: linear-gradient(180deg, #ff3b30, #d42a21);
+            border: none;
+            font-weight: 600;
+            letter-spacing: .2px;
+        }
+        .sidebar .btn-danger:hover { filter: brightness(1.03); }
+
+        /* Content */
+        .content {
+            flex-grow: 1;
+            padding: 26px;
+            margin-left: 260px;
+            transition: margin-left 0.3s ease;
+            width: calc(100% - 260px);
+        }
+
+        /* Cards */
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--surface);
+            box-shadow: 0 6px 20px rgba(16, 24, 40, 0.06);
+        }
+        .card .card-icon i {
+            background: linear-gradient(135deg, rgba(255,106,0,0.12), rgba(255,140,43,0.2));
+            color: var(--accent);
+            border-radius: 12px;
+            width: 56px; height: 56px;
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            box-shadow: 0 2px 10px rgba(255,106,0,0.15) inset;
+        }
+        h2, h5, h6 { color: var(--text-strong); }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+            border: none;
+            font-weight: 600;
+            letter-spacing: .2px;
+            box-shadow: 0 8px 20px rgba(255,106,0,0.25);
+        }
+        .btn-primary:hover { filter: brightness(1.03); }
+        .btn-outline-primary {
+            color: var(--accent);
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+        .btn-outline-primary:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Forms */
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 .2rem rgba(255,106,0,.2);
+        }
+
+        /* Tables */
+        .table {
+            border-color: var(--border);
+            background: var(--surface);
+        }
+        .table thead.table-dark th {
+            background: var(--black-900) !important;
+            color: #eef2ff !important;
+            border-color: #1f2937 !important;
+            position: relative;
+        }
+        .table thead.table-dark th:first-child::before {
+            content:"";
+            position:absolute;
+            left:0; top:0; height:100%; width:4px;
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+        }
+        .table tbody tr:hover {
+            background: #fff7f1;
+        }
+
+        /* Badges override hint (kept Bootstrap colors for statuses) */
+        .badge { font-weight: 600; }
+
+        /* Charts wrappers */
+        .chart-card {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        /* Utilities */
+        .hidden { display: none; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .content { margin-left: 0; width: 100%; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+    </style>
+</head>
+<body>
+<!-- Sidebar -->
+<div class="sidebar d-flex flex-column">
+    <h2 class="text-center mb-3">GymNest Admin</h2>
+
+    <a class="active" onclick="showPanel('dashboard')"><i class="fas fa-gauge"></i> Dashboard</a>
+    <a onclick="showPanel('members')"><i class="fas fa-users"></i> Members</a>
+    <a onclick="showPanel('trainers')"><i class="fas fa-user-tie"></i> Trainers</a>
+    <a onclick="showPanel('classes')"><i class="fas fa-dumbbell"></i> Classes</a>
+    <a onclick="showPanel('memberships')"><i class="fas fa-id-card"></i> Memberships</a>
+    <a onclick="showPanel('payments')"><i class="fas fa-credit-card"></i> Payments</a>
+    <!-- <a onclick="showPanel('equipment')"><i class="fas fa-toolbox"></i> Equipment</a> -->
+    <a onclick="showPanel('attendance')"><i class="fas fa-calendar-check"></i> Attendance</a>
+
+    <div class="mt-auto">
+        <h6 class="mb-2 text-white-50">Welcome back</h6>
+        <h5 class="mb-3 text-white">Hi, <span id="adminName">admin</span></h5>
+        <button class="btn btn-danger w-100" onclick="logout()">Log Out</button>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="content">
+    <!-- Dashboard -->
+    <div class="container mt-2" id="dashboard">
+        <h2 class="mb-4">Welcome to GymNest Dashboard</h2>
+        <div class="row g-4">
+            <!-- Total Members -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 bg-light h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-icon me-3"><i class="fas fa-users"></i></div>
+                        <div>
+                            <h6 class="text-muted mb-1">Total Members</h6>
+                            <h3 class="mb-0" id="totalMembers">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Active Memberships -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 bg-light h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-icon me-3"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <h6 class="text-muted mb-1">Active Memberships</h6>
+                            <h3 class="mb-0" id="activeMemberships">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Total Trainers -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 bg-light h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-icon me-3"><i class="fas fa-user-tie"></i></div>
+                        <div>
+                            <h6 class="text-muted mb-1">Total Trainers</h6>
+                            <h3 class="mb-0" id="totalTrainers">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="col-md-6 mt-2">
+                <div class="card chart-card shadow p-3 bg-white rounded">
+                    <h5 class="text-center">Signups Per Day</h5>
+                    <canvas id="signupsPerDayChart" height="350"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6 mt-2">
+                <div class="card chart-card shadow p-3 bg-white rounded">
+                    <h5 class="text-center">Revenue Per Month</h5>
+                    <canvas id="revenuePerMonthChart" height="350"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Members -->
+    <div id="members" class="hidden">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Member Management</h2>
+            <div class="d-flex gap-2">
+                <input type="text" id="searchMember" class="form-control" placeholder="Search by Name or Email" style="min-width: 260px;">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMemberModal"><i class="fas fa-user-plus me-2"></i>Add Member</button>
+            </div>
+        </div>
+        <div class="card p-3">
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Join Date</th>
+                        <th>Membership</th>
+                        <th>Status</th>
+                        <th style="width: 160px;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="memberTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trainers -->
+    <div id="trainers" class="hidden">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Trainer Management</h2>
+            <div class="d-flex gap-2">
+                <input type="text" id="searchTrainer" class="form-control" placeholder="Search Trainers by Name or Email" style="min-width: 260px;">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTrainerModal"><i class="fas fa-user-tie me-2"></i>Add Trainer</button>
+            </div>
+        </div>
+        <div class="card p-3">
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Image</th>
+                        <th>Specialty</th>
+                        <th>Payment per hour</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Booked</th>
+                        <th style="width: 180px;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="trainerTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Classes -->
+    <div id="classes" class="hidden">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Class Management</h2>
+            <div class="d-flex gap-2">
+                <input type="text" id="searchClass" class="form-control" placeholder="Search by Name or Trainer" style="min-width: 260px;">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClassModal"><i class="fas fa-dumbbell me-2"></i>Add Class</button>
+            </div>
+        </div>
+        <div class="card p-3">
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Trainer</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Capacity</th>
+                        <th>Enrolled</th>
+                        <th>Status</th>
+                        <th style="width: 180px;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="classTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memberships -->
+    <div id="memberships" class="hidden">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Membership Plans</h2>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMembershipModal"><i class="fas fa-id-card me-2"></i>Add Plan</button>
+        </div>
+        <div class="card p-3">
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Duration (months)</th>
+                        <th>Price (LKR)</th>
+                        <th>Benefits</th>
+                        <th style="width: 160px;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="membershipTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payments -->
+    <div id="payments" class="hidden">
+        <h2>Payment Management</h2>
+        <div class="card p-3">
+            <input type="text" id="searchPaymentEmail" class="form-control mb-3" placeholder="Search by member email...">
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Member Email</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody id="paymentTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance -->
+    <div id="attendance" class="hidden">
+        <h2>Attendance</h2>
+        <div class="card p-3 mb-3">
+            <div class="row g-2">
+                <div class="col-md-4">
+                    <input type="date" id="attendanceDate" class="form-control"/>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="attendanceSearch" class="form-control" placeholder="Search by email or name"/>
+                </div>
+                <div class="col-md-4 d-grid">
+                    <button class="btn btn-outline-primary" onclick="loadAttendance()">Filter</button>
+                </div>
+            </div>
+        </div>
+        <div class="card p-3">
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Member</th>
+                        <th>Email</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="attendanceTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modals -->
+
+<!-- Add Member Modal -->
+<div class="modal fade" id="addMemberModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addMemberForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Member</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control" id="memberName" required></div>
+                    <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" id="memberEmail" required></div>
+                    <div class="mb-3"><label class="form-label">Phone</label><input type="text" class="form-control" id="memberPhone" required></div>
+                    <div class="mb-3">
+                        <label class="form-label">Membership Plan</label>
+                        <select id="memberPlan" class="form-control" required></select>
+                    </div>
+                    <div class="mb-3"><label class="form-label">Start Date</label><input type="date" class="form-control" id="memberStartDate" required></div>
+                </div>
+                <div class="modal-footer"><button type="submit" class="btn btn-success">Create Member</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Trainer Modal -->
+<div class="modal fade" id="addTrainerModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addTrainerForm" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Trainer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control" id="trainerName" required></div>
+                    <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" id="trainerEmail" required></div>
+                    <div class="mb-3"><label class="form-label">Phone</label><input type="text" class="form-control" id="trainerPhone" required></div>
+                    <div class="mb-3"><label class="form-label">Specialty</label><input type="text" class="form-control" id="trainerSpecialty" required></div>
+                    <div class="mb-3"><label class="form-label">Rate per Hour</label><input type="number" class="form-control" id="trainerRate" required></div>
+                    <div class="mb-3">
+                        <label class="form-label">Image</label>
+                        <input type="file" class="form-control" id="trainerImage" accept="image/*">
+                        <img id="trainerImagePreview" class="mt-2" style="width: 80px; height: 80px; display: none; border-radius: 8px;">
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="submit" class="btn btn-success">Save Trainer</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Trainer Modal -->
+<div class="modal fade" id="editTrainerModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="editTrainerForm" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Trainer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editTrainerId">
+                    <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control" id="editTrainerName"></div>
+                    <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" id="editTrainerEmail" disabled></div>
+                    <div class="mb-3"><label class="form-label">Phone</label><input type="text" class="form-control" id="editTrainerPhone"></div>
+                    <div class="mb-3"><label class="form-label">Specialty</label><input type="text" class="form-control" id="editTrainerSpecialty"></div>
+                    <div class="mb-3"><label class="form-label">Rate per Hour</label><input type="number" class="form-control" id="editTrainerRate"></div>
+                    <div class="mb-3">
+                        <label class="form-label">Image</label>
+                        <input type="file" class="form-control" id="editTrainerImage" accept="image/*">
+                        <img id="editTrainerImgPreview" class="mt-2" style="width: 80px; height: 80px; display: none; border-radius: 8px;">
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="submit" class="btn btn-success">Update Trainer</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Class Modal -->
+<div class="modal fade" id="addClassModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addClassForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3"><label class="form-label">Class Name</label><input type="text" class="form-control" id="className" required></div>
+                    <div class="mb-3">
+                        <label class="form-label">Trainer</label>
+                        <select id="classTrainer" class="form-control" required></select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Day of Week</label>
+                        <select id="classDay" class="form-control" required>
+                            <option value="Monday">Monday</option><option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="mb-3"><label class="form-label">Start Time</label><input type="time" class="form-control" id="classStart" required></div>
+                    <div class="mb-3"><label class="form-label">End Time</label><input type="time" class="form-control" id="classEnd" required></div>
+                    <div class="mb-3"><label class="form-label">Capacity</label><input type="number" class="form-control" id="classCapacity" required></div>
+                </div>
+                <div class="modal-footer"><button type="submit" class="btn btn-success">Create Class</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Membership Modal -->
+<div class="modal fade" id="addMembershipModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addMembershipForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Membership Plan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3"><label class="form-label">Plan Name</label><input type="text" class="form-control" id="planName" required></div>
+                    <div class="mb-3"><label class="form-label">Duration (months)</label><input type="number" class="form-control" id="planDuration" min="1" required></div>
+                    <div class="mb-3"><label class="form-label">Price (LKR)</label><input type="number" class="form-control" id="planPrice" min="0" required></div>
+                    <div class="mb-3"><label class="form-label">Benefits</label><textarea id="planBenefits" class="form-control" placeholder="e.g., 24/7 access, pool, sauna"></textarea></div>
+                </div>
+                <div class="modal-footer"><button type="submit" class="btn btn-success">Create Plan</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+    // Chart.js defaults (nicer grid + fonts)
+    Chart.defaults.font.family = "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+    Chart.defaults.color = "#6b7280";
+
+    // Optional: add auth header if you store token in localStorage
+    function authHeaders() {
+        const token = localStorage.getItem("token");
+        return token ? { "Authorization": "Bearer " + token } : {};
+    }
+
+    // Sidebar routing
+    function showPanel(panelId) {
+        $('.sidebar a').removeClass('active');
+        $('.sidebar a').filter(function(){ return $(this).attr('onclick')?.includes(panelId); }).addClass('active');
+
+        $('.content > div').addClass('hidden');
+        $('#' + panelId).removeClass('hidden');
+
+        switch (panelId) {
+            case 'dashboard': loadDashboardCounts(); loadSignupsChart(); loadRevenueChart(); break;
+            case 'members': loadAllMembershipPlansSelect(); loadAllMembers(); break;
+            case 'trainers': loadAllTrainers(); break;
+            case 'classes': loadTrainerOptions(); loadAllClasses(); break;
+            case 'memberships': loadAllMembershipPlans(); break;
+            case 'payments': loadAllPayments(); break;
+            case 'equipment': loadAllEquipment(); break;
+            case 'attendance': loadAttendance(); break;
+        }
+    }
+
+    // Logout
+    function logout() {
+        localStorage.removeItem("name");
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("role");
+        window.location.href = "index.html";
+    }
+
+    // On Ready
+    $(document).ready(function(){
+        const adminStoredName = localStorage.getItem("name");
+        if (adminStoredName) $("#adminName").text(adminStoredName);
+
+        showPanel('dashboard');
+
+        // Image previews
+        $("#trainerImage").on("change", function(){
+            const file = this.files[0];
+            if (!file) return;
+            $("#trainerImagePreview").attr("src", URL.createObjectURL(file)).show();
+        });
+        $("#editTrainerImage").on("change", function(){
+            const file = this.files[0];
+            if (!file) return;
+            $("#editTrainerImgPreview").attr("src", URL.createObjectURL(file)).show();
+        });
+
+        // Live searches
+        $("#searchMember").on("input", function(){
+            const q = $(this).val().toLowerCase();
+            const filtered = (window.allMembers || []).filter(m => (m.name||"").toLowerCase().includes(q) || (m.email||"").toLowerCase().includes(q));
+            renderMembers(filtered);
+        });
+        $("#searchTrainer").on("input", function(){
+            const q = $(this).val().toLowerCase();
+            const filtered = (window.allTrainers || []).filter(t => (t.name||"").toLowerCase().includes(q) || (t.email||"").toLowerCase().includes(q));
+            renderTrainers(filtered);
+        });
+        $("#searchClass").on("input", function(){
+            const q = $(this).val().toLowerCase();
+            const filtered = (window.allClasses || []).filter(c => (c.name||"").toLowerCase().includes(q) || (c.trainerName||"").toLowerCase().includes(q));
+            renderClasses(filtered);
+        });
+        $("#searchPaymentEmail").on("input", function () {
+            const q = $(this).val().toLowerCase();
+            const filtered = (window.allPayments || []).filter(p => (p.memberEmail || "").toLowerCase().includes(q));
+            renderPayments(filtered);
+        });
+
+        // Forms submit
+        $("#addMemberForm").on("submit", createMember);
+        $("#addTrainerForm").on("submit", createTrainer);
+        $("#editTrainerForm").on("submit", updateTrainer);
+        $("#addClassForm").on("submit", createClass);
+        $("#addMembershipForm").on("submit", createMembershipPlan);
+        $("#addEquipmentForm").on("submit", createEquipment);
+    });
+
+    // DASHBOARD
+    function loadDashboardCounts() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/dashboard/counts",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                $("#totalMembers").text(res.data?.totalMembers || 0);
+                $("#activeMemberships").text(res.data?.activeMemberships || 0);
+                $("#totalTrainers").text(res.data?.totalTrainers || 0);
+            },
+            error: function () { console.warn("Failed to load dashboard counts."); }
+        });
+    }
+
+    function loadSignupsChart() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/dashboard/chart/signups-per-day",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                const labels = (res.data || []).map(i => i.date);
+                const data = (res.data || []).map(i => i.count);
+                new Chart(document.getElementById('signupsPerDayChart'), {
+                    type: 'bar',
+                    data: { labels, datasets: [{ label: 'Signups', data, backgroundColor: 'rgba(255, 106, 0, 0.65)' }] },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        scales: {
+                            x: { grid: { color: 'rgba(0,0,0,0.05)' } },
+                            y: { grid: { color: 'rgba(0,0,0,0.05)' } }
+                        },
+                        plugins: { legend: { labels: { color: '#111827' } } }
+                    }
+                });
+            },
+            error: function(){ console.warn("Failed to load signups chart."); }
+        });
+    }
+
+    function loadRevenueChart() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/dashboard/chart/revenue-per-month",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                const labels = (res.data || []).map(i => i.month);
+                const data = (res.data || []).map(i => i.total);
+                new Chart(document.getElementById('revenuePerMonthChart'), {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [{
+                            label: 'Revenue (LKR)',
+                            data,
+                            fill: false,
+                            borderColor: 'rgba(255, 106, 0, 0.9)',
+                            backgroundColor: 'rgba(255, 106, 0, 0.9)',
+                            pointBackgroundColor: '#ff6a00',
+                            pointBorderColor: '#fff',
+                            pointRadius: 4,
+                            tension: 0.25
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        scales: {
+                            x: { grid: { color: 'rgba(0,0,0,0.05)' } },
+                            y: { grid: { color: 'rgba(0,0,0,0.05)' } }
+                        },
+                        plugins: { legend: { labels: { color: '#111827' } } }
+                    }
+                });
+            },
+            error: function(){ console.warn("Failed to load revenue chart."); }
+        });
+    }
+
+    // MEMBERS
+    function loadAllMembers() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/members",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                window.allMembers = res.data || [];
+                renderMembers(window.allMembers);
+            },
+            error: function () { alert("Failed to load members."); }
+        });
+    }
+
+    function renderMembers(members) {
+        const tbody = $("#memberTableBody");
+        tbody.empty();
+        members.forEach(m => {
+            tbody.append(`
+        <tr>
+          <td>${m.name || "-"}</td>
+          <td>${m.email || "-"}</td>
+          <td>${m.phone || "-"}</td>
+          <td>${m.joinDate || "-"}</td>
+          <td>${m.membershipName || "-"}</td>
+          <td><span class="badge bg-${m.status === 'Active' ? 'success' : 'secondary'}">${m.status || "-"}</span></td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick="deleteMember('${m.id}')">Delete</button>
+          </td>
+        </tr>
+      `);
+        });
+    }
+
+    function loadAllMembershipPlansSelect() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/memberships",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                const plans = res.data || [];
+                const select = $("#memberPlan");
+                select.empty();
+                plans.forEach(p => {
+                    select.append(`<option value="${p.id}">${p.name} - LKR ${Number(p.price||0).toFixed(2)} / ${p.durationMonths}m</option>`);
+                });
+            }
+        });
+    }
+
+    function createMember(e) {
+        e.preventDefault();
+        const payload = {
+            name: $("#memberName").val(),
+            email: $("#memberEmail").val(),
+            phone: $("#memberPhone").val(),
+            membershipId: $("#memberPlan").val(),
+            startDate: $("#memberStartDate").val()
+        };
+        $.ajax({
+            url: "http://localhost:8080/api/v1/members",
+            method: "POST",
+            headers: { "Content-Type": "application/json", ...authHeaders() },
+            data: JSON.stringify(payload),
+            success: function () {
+                $("#addMemberModal").modal("hide");
+                $("#addMemberForm")[0].reset();
+                loadAllMembers();
+            },
+            error: function () { alert("Failed to create member."); }
+        });
+    }
+
+    function deleteMember(memberId) {
+        if (!confirm("Delete this member?")) return;
+        $.ajax({
+            url: `http://localhost:8080/api/v1/members/${memberId}`,
+            method: "DELETE",
+            headers: authHeaders(),
+            success: function () { loadAllMembers(); },
+            error: function () { alert("Failed to delete member."); }
+        });
+    }
+
+    // TRAINERS
+    function loadAllTrainers() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/trainers",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                window.allTrainers = res.data || [];
+                renderTrainers(window.allTrainers);
+            },
+            error: function(){ alert("Failed to load trainers."); }
+        });
+    }
+
+    function renderTrainers(trainers) {
+        const tbody = $("#trainerTableBody");
+        tbody.empty();
+        trainers.forEach(t => {
+            const img = t.imageUrl ? `<img src="${t.imageUrl}" style="width:60px;height:60px;border-radius:10px;object-fit:cover; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">` : "-";
+            tbody.append(`
+        <tr>
+          <td>${t.name || "-"}</td>
+          <td>${t.email || "-"}</td>
+          <td>${img}</td>
+          <td>${t.specialty || "-"}</td>
+          <td>LKR ${Number(t.ratePerHour || 0).toFixed(2)}</td>
+          <td>${t.phone || "-"}</td>
+          <td><span class="badge bg-${t.status === 'Active' ? 'success' : 'secondary'}">${t.status || "-"}</span></td>
+          <td>
+            <button class="btn btn-sm btn-outline-secondary me-1" onclick='openEditTrainer(${JSON.stringify(t).replace(/'/g,"&#39;")})'>Edit</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteTrainer('${t.id}')">Delete</button>
+          </td>
+        </tr>
+      `);
+        });
+    }
+
+    function openEditTrainer(trainer) {
+        $("#editTrainerId").val(trainer.id);
+        $("#editTrainerName").val(trainer.name || "");
+        $("#editTrainerEmail").val(trainer.email || "");
+        $("#editTrainerPhone").val(trainer.phone || "");
+        $("#editTrainerSpecialty").val(trainer.specialty || "");
+        $("#editTrainerRate").val(trainer.ratePerHour || "");
+        if (trainer.imageUrl) {
+            $("#editTrainerImgPreview").attr("src", trainer.imageUrl).show();
+        } else {
+            $("#editTrainerImgPreview").hide();
+        }
+        const modal = new bootstrap.Modal(document.getElementById('editTrainerModal'));
+        modal.show();
+    }
+
+    function createTrainer(e) {
+        e.preventDefault();
+        const fd = new FormData();
+        fd.append("name", $("#trainerName").val());
+        fd.append("email", $("#trainerEmail").val());
+        fd.append("phone", $("#trainerPhone").val());
+        fd.append("specialty", $("#trainerSpecialty").val());
+        fd.append("ratePerHour", $("#trainerRate").val());
+        if ($("#trainerImage")[0].files[0]) fd.append("image", $("#trainerImage")[0].files[0]);
+
+        $.ajax({
+            url: "http://localhost:8080/api/v1/trainers",
+            method: "POST",
+            headers: authHeaders(),
+            processData: false, contentType: false, data: fd,
+            success: function(){
+                $("#addTrainerModal").modal("hide");
+                $("#addTrainerForm")[0].reset();
+                $("#trainerImagePreview").hide();
+                loadAllTrainers();
+            },
+            error: function(){ alert("Failed to create trainer."); }
+        });
+    }
+
+    function updateTrainer(e) {
+        e.preventDefault();
+        const id = $("#editTrainerId").val();
+        const fd = new FormData();
+        fd.append("name", $("#editTrainerName").val());
+        fd.append("phone", $("#editTrainerPhone").val());
+        fd.append("specialty", $("#editTrainerSpecialty").val());
+        fd.append("ratePerHour", $("#editTrainerRate").val());
+        if ($("#editTrainerImage")[0].files[0]) fd.append("image", $("#editTrainerImage")[0].files[0]);
+
+        $.ajax({
+            url: `http://localhost:8080/api/v1/trainers/${id}`,
+            method: "PUT",
+            headers: authHeaders(),
+            processData: false, contentType: false, data: fd,
+            success: function(){
+                $("#editTrainerModal").modal("hide");
+                loadAllTrainers();
+            },
+            error: function(){ alert("Failed to update trainer."); }
+        });
+    }
+
+    function deleteTrainer(id) {
+        if (!confirm("Delete this trainer?")) return;
+        $.ajax({
+            url: `http://localhost:8080/api/v1/trainers/${id}`,
+            method: "DELETE",
+            headers: authHeaders(),
+            success: function(){ loadAllTrainers(); },
+            error: function(){ alert("Failed to delete trainer."); }
+        });
+    }
+
+    // CLASSES
+    function loadTrainerOptions() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/trainers",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                const trainers = res.data || [];
+                const sel = $("#classTrainer");
+                sel.empty();
+                trainers.forEach(t => sel.append(`<option value="${t.id}">${t.name}</option>`));
+            }
+        });
+    }
+
+    function loadAllClasses() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/classes",
+            method: "GET",
+            headers: authHeaders(),
+            success: function(res) {
+                window.allClasses = res.data || [];
+                renderClasses(window.allClasses);
+            },
+            error: function(){ alert("Failed to load classes."); }
+        });
+    }
+
+    function renderClasses(classes) {
+        const tbody = $("#classTableBody");
+        tbody.empty();
+        classes.forEach(c => {
+            tbody.append(`
+        <tr>
+          <td>${c.name || "-"}</td>
+          <td>${c.trainerName || "-"}</td>
+          <td>${c.dayOfWeek || "-"}</td>
+          <td>${(c.startTime || "-") + " - " + (c.endTime || "-")}</td>
+          <td>${c.capacity || 0}</td>
+          <td>${c.enrolled || 0}</td>
+          <td><span class="badge bg-${c.status === 'Active' ? 'success' : 'secondary'}">${c.status || "-"}</span></td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick="deleteClass('${c.id}')">Delete</button>
+          </td>
+        </tr>
+      `);
+        });
+    }
+
+    function createClass(e) {
+        e.preventDefault();
+        const payload = {
+            name: $("#className").val(),
+            trainerId: $("#classTrainer").val(),
+            dayOfWeek: $("#classDay").val(),
+            startTime: $("#classStart").val(),
+            endTime: $("#classEnd").val(),
+            capacity: $("#classCapacity").val()
+        };
+        $.ajax({
+            url: "http://localhost:8080/api/v1/classes",
+            method: "POST",
+            headers: { "Content-Type": "application/json", ...authHeaders() },
+            data: JSON.stringify(payload),
+            success: function(){
+                $("#addClassModal").modal("hide");
+                $("#addClassForm")[0].reset();
+                loadAllClasses();
+            },
+            error: function(){ alert("Failed to create class."); }
+        });
+    }
+
+    function deleteClass(id) {
+        if (!confirm("Delete this class?")) return;
+        $.ajax({
+            url: `http://localhost:8080/api/v1/classes/${id}`,
+            method: "DELETE",
+            headers: authHeaders(),
+            success: function(){ loadAllClasses(); },
+            error: function(){ alert("Failed to delete class."); }
+        });
+    }
+
+    // MEMBERSHIPS
+    function loadAllMembershipPlans() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/memberships",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                window.allPlans = res.data || [];
+                renderMembershipPlans(window.allPlans);
+            },
+            error: function(){ alert("Failed to load membership plans."); }
+        });
+    }
+
+    function renderMembershipPlans(plans) {
+        const tbody = $("#membershipTableBody");
+        tbody.empty();
+        plans.forEach(p => {
+            tbody.append(`
+        <tr>
+          <td>${p.id}</td>
+          <td>${p.name}</td>
+          <td>${p.durationMonths}</td>
+          <td>LKR ${Number(p.price||0).toFixed(2)}</td>
+          <td>${p.benefits || "-"}</td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick="deleteMembershipPlan('${p.id}')">Delete</button>
+          </td>
+        </tr>
+      `);
+        });
+    }
+
+    function createMembershipPlan(e) {
+        e.preventDefault();
+        const payload = {
+            name: $("#planName").val(),
+            durationMonths: Number($("#planDuration").val()),
+            price: Number($("#planPrice").val()),
+            benefits: $("#planBenefits").val()
+        };
+        $.ajax({
+            url: "http://localhost:8080/api/v1/memberships",
+            method: "POST",
+            headers: { "Content-Type": "application/json", ...authHeaders() },
+            data: JSON.stringify(payload),
+            success: function(){
+                $("#addMembershipModal").modal("hide");
+                $("#addMembershipForm")[0].reset();
+                loadAllMembershipPlans();
+            },
+            error: function(){ alert("Failed to create membership plan."); }
+        });
+    }
+
+    function deleteMembershipPlan(id) {
+        if (!confirm("Delete this plan?")) return;
+        $.ajax({
+            url: `http://localhost:8080/api/v1/memberships/${id}`,
+            method: "DELETE",
+            headers: authHeaders(),
+            success: function(){ loadAllMembershipPlans(); },
+            error: function(){ alert("Failed to delete plan."); }
+        });
+    }
+
+    // PAYMENTS
+    function loadAllPayments() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/payments",
+            method: "GET",
+            headers: authHeaders(),
+            success: function (res) {
+                window.allPayments = res.data || [];
+                renderPayments(window.allPayments);
+            },
+            error: function(){ alert("Failed to load payments."); }
+        });
+    }
+
+    function renderPayments(payments) {
+        const tbody = $("#paymentTableBody");
+        tbody.empty();
+        payments.forEach(p => {
+            tbody.append(`
+        <tr>
+          <td>${p.id}</td>
+          <td>${p.memberEmail}</td>
+          <td>LKR ${Number(p.amount||0).toFixed(2)}</td>
+          <td>${p.method || "-"}</td>
+          <td><span class="badge bg-${p.status === 'Completed' ? 'success' : 'warning'}">${p.status || "-"}</span></td>
+          <td>${p.paymentDate || "-"}</td>
+        </tr>
+      `);
+        });
+    }
+
+    // EQUIPMENT
+    function loadAllEquipment() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/equipment",
+            method: "GET",
+            headers: authHeaders(),
+            success: function(res) {
+                window.allEquipment = res.data || [];
+                renderEquipment(window.allEquipment);
+            },
+            error: function(){ alert("Failed to load equipment."); }
+        });
+    }
+
+    function renderEquipment(items) {
+        const tbody = $("#equipmentTableBody");
+        tbody.empty();
+        items.forEach(eq => {
+            tbody.append(`
+        <tr>
+          <td>${eq.id}</td>
+          <td>${eq.name}</td>
+          <td>${eq.category || "-"}</td>
+          <td>${eq.quantity || 0}</td>
+          <td>${eq.lastMaintenance || "-"}</td>
+          <td><span class="badge bg-${eq.status === 'Available' ? 'success' : eq.status === 'Maintenance' ? 'warning' : 'secondary'}">${eq.status || "-"}</span></td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick="deleteEquipment('${eq.id}')">Delete</button>
+          </td>
+        </tr>
+      `);
+        });
+    }
+
+    function createEquipment(e) {
+        e.preventDefault();
+        const payload = {
+            name: $("#equipmentName").val(),
+            category: $("#equipmentCategory").val(),
+            quantity: Number($("#equipmentQty").val()),
+            lastMaintenance: $("#equipmentMaintenance").val(),
+            status: $("#equipmentStatus").val()
+        };
+        $.ajax({
+            url: "http://localhost:8080/api/v1/equipment",
+            method: "POST",
+            headers: { "Content-Type": "application/json", ...authHeaders() },
+            data: JSON.stringify(payload),
+            success: function(){
+                $("#addEquipmentModal").modal("hide");
+                $("#addEquipmentForm")[0].reset();
+                loadAllEquipment();
+            },
+            error: function(){ alert("Failed to add equipment."); }
+        });
+    }
+
+    function deleteEquipment(id) {
+        if (!confirm("Delete this equipment item?")) return;
+        $.ajax({
+            url: `http://localhost:8080/api/v1/equipment/${id}`,
+            method: "DELETE",
+            headers: authHeaders(),
+            success: function(){ loadAllEquipment(); },
+            error: function(){ alert("Failed to delete equipment."); }
+        });
+    }
+
+    // ATTENDANCE
+    function loadAttendance() {
+        const date = $("#attendanceDate").val() || "";
+        const q = $("#attendanceSearch").val() || "";
+        $.ajax({
+            url: "http://localhost:8080/api/v1/attendance",
+            method: "GET",
+            headers: authHeaders(),
+            data: { date, q },
+            success: function (res) {
+                renderAttendance(res.data || []);
+            },
+            error: function(){ alert("Failed to load attendance."); }
+        });
+    }
+
+    function renderAttendance(rows) {
+        const tbody = $("#attendanceTableBody");
+        tbody.empty();
+        rows.forEach(a => {
+            tbody.append(`
+        <tr>
+          <td>${a.date || "-"}</td>
+          <td>${a.memberName || "-"}</td>
+          <td>${a.memberEmail || "-"}</td>
+          <td>${a.checkIn || "-"}</td>
+          <td>${a.checkOut || "-"}</td>
+          <td><span class="badge bg-${a.status === 'Present' ? 'success' : 'secondary'}">${a.status || "-"}</span></td>
+        </tr>
+      `);
+        });
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
