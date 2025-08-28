@@ -42,15 +42,17 @@ public class MembershipServiceImpl implements MembershipService {
 
         // convert DTO string addresses → Location entities
         List<Location> locationList = membershipDTO.getAddress().stream()
-                .map(addr -> locationRepository.findById(Long.parseLong(String.valueOf(addr)))
-                        .orElseGet(() -> {
-                            Location newLoc = new Location();
-                            newLoc.setAddress(addr);
-                            return locationRepository.save(newLoc);
-                        }))
+                .map(addr -> {
+                    Location loc = new Location();
+                    loc.setName(addr);       // <<< MUST set name
+                    loc.setAddress(addr);    // optional: physical address or same as name
+                    loc.setOpenHours(membershipDTO.getOpenHours()); // optional
+                    return locationRepository.save(loc);
+                })
                 .collect(Collectors.toList());
 
         membership.setAddress(locationList);
+
 
         membershipRepository.save(membership);
         return VarList.Created;
@@ -63,24 +65,30 @@ public class MembershipServiceImpl implements MembershipService {
         if (existingOpt.isPresent()) {
             Membership existing = existingOpt.get();
 
-            // map new values
-            modelMapper.map(membershipDTO, existing);
+            // manually map fields instead of full ModelMapper
+            existing.setName(membershipDTO.getName());
+            existing.setDescription(membershipDTO.getDescription());
+            existing.setPrice(membershipDTO.getPrice());
+            existing.setOpenHours(membershipDTO.getOpenHours());
+            existing.setImageUrl(membershipDTO.getImageUrl());
 
-            // update locations mapping
+            // update locations
             List<Location> locationList = membershipDTO.getAddress().stream()
-                    .map(addr -> locationRepository.findById(addr)
-                            .orElseGet(() -> {
-                                Location newLoc = new Location();
-                                newLoc.setAddress(addr);
-                                return locationRepository.save(newLoc);
-                            }))
+                    .map(addr -> {
+                        Location loc = new Location();
+                        loc.setName(addr);
+                        loc.setAddress(addr);
+                        loc.setOpenHours(membershipDTO.getOpenHours());
+                        return locationRepository.save(loc);
+                    })
                     .collect(Collectors.toList());
             existing.setAddress(locationList);
 
             membershipRepository.save(existing);
-            return VarList.Created;
+            return VarList.Success;
         }
         return VarList.Not_Found;
+
     }
 
     @Override
