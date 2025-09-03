@@ -1,12 +1,12 @@
 package org.example.aad_gymnest.service.impl;
 
 import jakarta.transaction.Transactional;
-import org.example.aad_gymnest.dto.MembershipDTO;
+import org.example.aad_gymnest.dto.PackageDTO;
 import org.example.aad_gymnest.entity.LocationEntity;
-import org.example.aad_gymnest.entity.MembershipEntity;
+import org.example.aad_gymnest.entity.PackageEntity;
 import org.example.aad_gymnest.repo.LocationRepository;
-import org.example.aad_gymnest.repo.MembershipRepository;
-import org.example.aad_gymnest.service.MembershipService;
+import org.example.aad_gymnest.repo.PackageRepository;
+import org.example.aad_gymnest.service.PackageService;
 import org.example.aad_gymnest.util.VarList;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class MembershipServiceImpl implements MembershipService {
+public class PackageServiceImpl implements PackageService {
 
     @Autowired
-    private  MembershipRepository membershipRepository;
+    private PackageRepository packageRepository;
 
     @Autowired
     private  LocationRepository locationRepository;
@@ -30,60 +30,60 @@ public class MembershipServiceImpl implements MembershipService {
 
     @Override
     @Transactional
-    public int saveMembership(MembershipDTO membershipDTO) {
-        // check duplicate membership by name
-        if (membershipRepository.existsByName(membershipDTO.getName())) {
+    public int savePackage(PackageDTO packageDTO) {
+        // check duplicate package by name
+        if (packageRepository.existsByName(packageDTO.getName())) {
             return VarList.Not_Acceptable;
         }
 
 
-        MembershipEntity membership = modelMapper.map(membershipDTO, MembershipEntity.class);
+        PackageEntity packageEntity = modelMapper.map(packageDTO, PackageEntity.class);
 
         // convert DTO string addresses to Location entities
-        List<LocationEntity> locationList = membershipDTO.getAddress().stream()
+        List<LocationEntity> locationList = packageDTO.getAddress().stream()
                 .map(addr -> {
                     LocationEntity loc = new LocationEntity();
                     loc.setName(addr);
                     loc.setAddress(addr);
-                    loc.setOpenHours(membershipDTO.getOpenHours());
+                    loc.setOpenHours(packageDTO.getOpenHours());
                     return locationRepository.save(loc);
                 })
                 .collect(Collectors.toList());
 
-        membership.setAddress(locationList);
+        packageEntity.setAddress(locationList);
 
-        membershipRepository.save(membership);
+        packageRepository.save(packageEntity);
         return VarList.Created;
     }
 
     @Override
     @Transactional
-    public int updateMembership(Long id, MembershipDTO membershipDTO) {
-        Optional<MembershipEntity> existingOpt = membershipRepository.findById(id);
+    public int updatePackage(Long id, PackageDTO packageDTO) {
+        Optional<PackageEntity> existingOpt = packageRepository.findById(id);
         if (existingOpt.isPresent()) {
-            MembershipEntity existing = existingOpt.get();
+            PackageEntity existing = existingOpt.get();
 
             // manually map fields instead of full ModelMapper
-            existing.setName(membershipDTO.getName());
-            existing.setDescription(membershipDTO.getDescription());
-            existing.setPrice(membershipDTO.getPrice());
-            existing.setOpenHours(membershipDTO.getOpenHours());
-            existing.setImageUrl(membershipDTO.getImageUrl());
+            existing.setName(packageDTO.getName());
+            existing.setDescription(packageDTO.getDescription());
+            existing.setPrice(packageDTO.getPrice());
+            existing.setOpenHours(packageDTO.getOpenHours());
+            existing.setImageUrl(packageDTO.getImageUrl());
 
             // update locations
-            List<LocationEntity> locationList = membershipDTO.getAddress().stream()
+            List<LocationEntity> locationList = packageDTO.getAddress().stream()
                     .map(addr -> {
                         LocationEntity loc = new LocationEntity();
                         loc.setName(addr);
                         loc.setAddress(addr);
-                        loc.setOpenHours(membershipDTO.getOpenHours());
+                        loc.setOpenHours(packageDTO.getOpenHours());
                         return locationRepository.save(loc);
                     })
                     .collect(Collectors.toList());
             existing.setAddress(locationList);
 
-            membershipRepository.save(existing);
-            return VarList.Success;
+            packageRepository.save(existing);
+            return VarList.Created;
         }
         return VarList.Not_Found;
 
@@ -91,24 +91,24 @@ public class MembershipServiceImpl implements MembershipService {
 
     @Override
     @Transactional
-    public int deleteMembership(Long id) {
-        Optional<MembershipEntity> existingOpt = membershipRepository.findById(id);
+    public int deletePackage(Long id) {
+        Optional<PackageEntity> existingOpt = packageRepository.findById(id);
         if (existingOpt.isPresent()) {
-            membershipRepository.deleteById(id);
+            packageRepository.deleteById(id);
             return VarList.Created;
         }
         return VarList.Not_Found;
     }
 
     @Override
-    public List<MembershipDTO> getAllMemberships() {
-        List<MembershipEntity> memberships = membershipRepository.findAll();
+    public List<PackageDTO> getAllPackages() {
+        List<PackageEntity> packageEntities = packageRepository.findAll();
 
-        return memberships.stream().map(membership -> {
-            MembershipDTO dto = modelMapper.map(membership, MembershipDTO.class);
+        return packageEntities.stream().map(packages -> {
+            PackageDTO dto = modelMapper.map(packages, PackageDTO.class);
 
             // map Location entities → String addresses
-            List<String> addresses = membership.getAddress().stream()
+            List<String> addresses = packages.getAddress().stream()
                     .map(LocationEntity::getAddress)
                     .collect(Collectors.toList());
             dto.setAddress(addresses);

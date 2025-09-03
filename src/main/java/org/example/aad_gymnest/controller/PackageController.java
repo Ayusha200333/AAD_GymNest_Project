@@ -1,8 +1,8 @@
 package org.example.aad_gymnest.controller;
 
-import org.example.aad_gymnest.dto.MembershipDTO;
+import org.example.aad_gymnest.dto.PackageDTO;
 import org.example.aad_gymnest.dto.ResponseDTO;
-import org.example.aad_gymnest.service.MembershipService;
+import org.example.aad_gymnest.service.PackageService;
 import org.example.aad_gymnest.util.VarList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,16 +20,16 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:63342")
 @RestController
-@RequestMapping("api/v1/membership")
-public class MembershipController {
+@RequestMapping("api/v1/package")
+public class PackageController {
 
     @Autowired
-    private MembershipService membershipService;
+    private PackageService packageService;
 
     private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
 
     @PostMapping("/save")
-    public ResponseEntity<ResponseDTO> saveMembership(
+    public ResponseEntity<ResponseDTO> savePackage(
             @RequestParam("name") String name,
             @RequestParam("description") String description,
             @RequestParam("price") Double price,
@@ -38,27 +38,27 @@ public class MembershipController {
             @RequestParam(value = "imageUrl", required = false) MultipartFile image
     ) {
         try {
-            MembershipDTO membershipDTO = new MembershipDTO();
-            membershipDTO.setName(name);
-            membershipDTO.setDescription(description);
-            membershipDTO.setPrice(price);
-            membershipDTO.setAddress(address);
-            membershipDTO.setOpenHours(openHours);
+            PackageDTO packageDTO = new PackageDTO();
+            packageDTO.setName(name);
+            packageDTO.setDescription(description);
+            packageDTO.setPrice(price);
+            packageDTO.setAddress(address);
+            packageDTO.setOpenHours(openHours);
 
             if (image != null && !image.isEmpty()) {
                 String imagePath = saveFile(image);
-                membershipDTO.setImageUrl(imagePath);
+                packageDTO.setImageUrl(imagePath);
             }
 
-            int res = membershipService.saveMembership(membershipDTO);
+            int res = packageService.savePackage(packageDTO);
 
             switch (res) {
                 case VarList.Created:
                     return ResponseEntity.status(HttpStatus.CREATED)
-                            .body(new ResponseDTO(VarList.Created, "Membership Saved Successfully", membershipDTO));
+                            .body(new ResponseDTO(VarList.Created, "Package Saved Successfully", packageDTO));
                 case VarList.Not_Acceptable:
                     return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
-                            .body(new ResponseDTO(VarList.Not_Acceptable, "Membership Already Exists", null));
+                            .body(new ResponseDTO(VarList.Not_Acceptable, "Package Already Exists", null));
                 default:
                     return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
                             .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
@@ -84,7 +84,7 @@ public class MembershipController {
 
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<ResponseDTO> updateMembership(
+    public ResponseEntity<ResponseDTO> updatePackage(
             @PathVariable Long id,
             @RequestParam("editMembershipName") String name,
             @RequestParam("editMembershipDescription") String description,
@@ -95,27 +95,27 @@ public class MembershipController {
 
         try {
 
-            MembershipDTO membershipDTO = new MembershipDTO();
-            membershipDTO.setName(name);
-            membershipDTO.setDescription(description);
-            membershipDTO.setPrice(price);
-            membershipDTO.setAddress(address);
-            membershipDTO.setOpenHours(openHours);
+            PackageDTO packageDTO = new PackageDTO();
+            packageDTO.setName(name);
+            packageDTO.setDescription(description);
+            packageDTO.setPrice(price);
+            packageDTO.setAddress(address);
+            packageDTO.setOpenHours(openHours);
 
             if (image != null && !image.isEmpty()) {
                 String imagePath = saveFile(image);
-                membershipDTO.setImageUrl(imagePath);
+                packageDTO.setImageUrl(imagePath);
             }
 
-            int res = membershipService.updateMembership(id, membershipDTO);
+            int res = packageService.updatePackage(id, packageDTO);
 
             switch (res) {
-                case VarList.Success:
+                case VarList.Created:
                     return ResponseEntity.status(HttpStatus.OK)
-                            .body(new ResponseDTO(VarList.Success, "Membership Updated Successfully", membershipDTO));
+                            .body(new ResponseDTO(VarList.Created, "Package Updated Successfully", packageDTO));
                 case VarList.Not_Found:
                     return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                            .body(new ResponseDTO(VarList.Not_Found, "Membership Not Found", null));
+                            .body(new ResponseDTO(VarList.Not_Found, "Package Not Found", null));
                 default:
                     return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
                             .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
@@ -129,17 +129,17 @@ public class MembershipController {
 
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ResponseDTO> deleteMembership(@PathVariable Long id) {
+    public ResponseEntity<ResponseDTO> deletePackage(@PathVariable Long id) {
         try {
-            int res = membershipService.deleteMembership(id);
+            int res = packageService.deletePackage(id);
 
             switch (res) {
-                case VarList.Success:
+                case VarList.Created:
                     return ResponseEntity.ok(
-                            new ResponseDTO(VarList.Success, "Membership Deleted Successfully", null));
+                            new ResponseDTO(VarList.Created, "Package Deleted Successfully", null));
                 case VarList.Not_Found:
                     return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                            .body(new ResponseDTO(VarList.Not_Found, "Membership Not Found", null));
+                            .body(new ResponseDTO(VarList.Not_Found, "Package Not Found", null));
                 default:
                     return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
                             .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
@@ -151,11 +151,11 @@ public class MembershipController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<ResponseDTO> getAllMemberships() {
+    public ResponseEntity<ResponseDTO> getAllPackages() {
         try {
-            List<MembershipDTO> allMemberships = membershipService.getAllMemberships();
+            List<PackageDTO> allPackages = packageService.getAllPackages();
             return ResponseEntity.ok(
-                    new ResponseDTO(VarList.Success, "Memberships Retrieved Successfully", allMemberships));
+                    new ResponseDTO(VarList.Created, "Memberships Retrieved Successfully", allPackages));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));

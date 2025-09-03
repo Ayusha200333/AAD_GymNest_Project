@@ -3,13 +3,15 @@ package org.example.aad_gymnest.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
-public class AuthDTO {
+@Data
+public class UserDTO {
+    private String name;
     private String email;
-    private String token;
+    private String contact;
+    private String password;
+    private String role;
+
 }

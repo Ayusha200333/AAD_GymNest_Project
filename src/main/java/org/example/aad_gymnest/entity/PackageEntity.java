@@ -11,8 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "memberships")
-public class MembershipEntity {
+@Table(name = "packages")
+public class PackageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +22,8 @@ public class MembershipEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "membership_locations",
-            joinColumns = @JoinColumn(name = "membership_id"),
+            name = "package_locations",
+            joinColumns = @JoinColumn(name = "package_id"),
             inverseJoinColumns = @JoinColumn(name = "location_id")
     )
     private List<LocationEntity> address;

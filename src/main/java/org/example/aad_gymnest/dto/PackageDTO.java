@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class MembershipDTO {
+public class PackageDTO {
     private Long id;
     private String name;
     private String description;

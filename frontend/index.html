@@ -171,6 +171,763 @@
 
 
 
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>GymNest — Fitness & Training</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1" />-->
+<!--    <meta name="description" content="GymNest — Train smarter with modern facilities, motivating classes, and expert coaches." />-->
+<!--    <meta name="theme-color" content="#6C5CE7" />-->
+
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />-->
+<!--    &lt;!&ndash; Font Awesome + Bootstrap Icons &ndash;&gt;-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />-->
+
+<!--    &lt;!&ndash; Preconnect to the image host &ndash;&gt;-->
+<!--    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>-->
+
+<!--    &lt;!&ndash; Preload hero images &ndash;&gt;-->
+<!--    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80" crossorigin referrerpolicy="no-referrer">-->
+<!--    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1920&q=80" crossorigin referrerpolicy="no-referrer">-->
+<!--    <link rel="preload" as="image" href="assets/images/sam-moghadam-W8CyjblrF8U-unsplash.jpg" type="image/jpeg">-->
+
+<!--    <style>-->
+<!--        :root{-->
+<!--            /* Brand system */-->
+<!--            &#45;&#45;brand:#6C5CE7;         /* primary */-->
+<!--            &#45;&#45;brand-600:#5949D9;     /* hover */-->
+<!--            &#45;&#45;brand-700:#4E3FD0;     /* active */-->
+<!--            &#45;&#45;brand-rgb:108,92,231;-->
+
+<!--            &#45;&#45;brand-2:#00CEC9;       /* accent */-->
+<!--            &#45;&#45;accent-600:#00B3AE;-->
+<!--            &#45;&#45;brand2-rgb:0,206,201;-->
+
+<!--            /* Neutrals */-->
+<!--            &#45;&#45;ink:#121212;-->
+<!--            &#45;&#45;muted:#6c757d;-->
+<!--            &#45;&#45;card-bg:#ffffff;-->
+<!--            &#45;&#45;bg:#f7f7fb;-->
+
+<!--            /* Layout */-->
+<!--            &#45;&#45;section-pad:4.5rem;-->
+
+<!--            /* Shadows */-->
+<!--            &#45;&#45;shadow-1: 0 10px 25px rgba(0,0,0,.08);-->
+<!--            &#45;&#45;shadow-2: 0 16px 40px rgba(0,0,0,.12);-->
+<!--        }-->
+
+<!--        html{ scroll-behavior:smooth; }-->
+<!--        body{ color:var(&#45;&#45;ink); background:var(&#45;&#45;bg); }-->
+
+<!--        /* Utilities */-->
+<!--        .text-brand{ color:var(&#45;&#45;brand)!important; }-->
+<!--        .text-accent{ color:var(&#45;&#45;brand-2)!important; }-->
+<!--        .badge-brand-subtle{ background:rgba(var(&#45;&#45;brand-rgb),.12); color:var(&#45;&#45;brand); }-->
+<!--        .object-fit-cover{ object-fit:cover; }-->
+<!--        .letter-spaced{ letter-spacing:.12em; }-->
+<!--        .section{ padding:var(&#45;&#45;section-pad) 0; }-->
+<!--        .section-title span{ color:var(&#45;&#45;brand); }-->
+
+<!--        /* Links */-->
+<!--        a:not(.btn){ color:var(&#45;&#45;brand); text-decoration:none; }-->
+<!--        a:not(.btn):hover{ color:var(&#45;&#45;brand-700); text-decoration:underline; }-->
+
+<!--        /* Navbar */-->
+<!--        .navbar-dark.bg-dark{ background-color:#0f1114!important; }-->
+<!--        .navbar-dark .navbar-brand i{ color:var(&#45;&#45;brand); }-->
+<!--        .navbar-dark .navbar-nav .nav-link{ color:#e7eaee; transition:color .15s ease; }-->
+<!--        .navbar-dark .navbar-nav .nav-link.active,-->
+<!--        .navbar-dark .navbar-nav .nav-link:hover{ color:#fff; }-->
+
+<!--        /* Buttons */-->
+<!--        .btn-brand{-->
+<!--            &#45;&#45;bs-btn-color:#fff;-->
+<!--            &#45;&#45;bs-btn-bg:var(&#45;&#45;brand);-->
+<!--            &#45;&#45;bs-btn-border-color:var(&#45;&#45;brand);-->
+<!--            &#45;&#45;bs-btn-hover-color:#fff;-->
+<!--            &#45;&#45;bs-btn-hover-bg:var(&#45;&#45;brand-600);-->
+<!--            &#45;&#45;bs-btn-hover-border-color:var(&#45;&#45;brand-600);-->
+<!--            &#45;&#45;bs-btn-active-bg:var(&#45;&#45;brand-700);-->
+<!--            &#45;&#45;bs-btn-active-border-color:var(&#45;&#45;brand-700);-->
+<!--            &#45;&#45;bs-btn-focus-shadow-rgb:var(&#45;&#45;brand-rgb);-->
+<!--        }-->
+<!--        .btn-outline-brand{-->
+<!--            &#45;&#45;bs-btn-color:var(&#45;&#45;brand);-->
+<!--            &#45;&#45;bs-btn-border-color:var(&#45;&#45;brand);-->
+<!--            &#45;&#45;bs-btn-hover-color:#fff;-->
+<!--            &#45;&#45;bs-btn-hover-bg:var(&#45;&#45;brand);-->
+<!--            &#45;&#45;bs-btn-hover-border-color:var(&#45;&#45;brand);-->
+<!--            &#45;&#45;bs-btn-focus-shadow-rgb:var(&#45;&#45;brand-rgb);-->
+<!--        }-->
+<!--        .btn-accent{-->
+<!--            &#45;&#45;bs-btn-color:#0b2a2a;-->
+<!--            &#45;&#45;bs-btn-bg:var(&#45;&#45;brand-2);-->
+<!--            &#45;&#45;bs-btn-border-color:var(&#45;&#45;brand-2);-->
+<!--            &#45;&#45;bs-btn-hover-color:#062020;-->
+<!--            &#45;&#45;bs-btn-hover-bg:var(&#45;&#45;accent-600);-->
+<!--            &#45;&#45;bs-btn-hover-border-color:var(&#45;&#45;accent-600);-->
+<!--            &#45;&#45;bs-btn-focus-shadow-rgb:var(&#45;&#45;brand2-rgb);-->
+<!--        }-->
+<!--        .btn-icon{ padding:.4rem .6rem; line-height:1; }-->
+
+<!--        /* Accessible focus rings */-->
+<!--        .form-control:focus, .form-select:focus, .btn:focus, .btn:focus-visible {-->
+<!--            border-color: rgba(var(&#45;&#45;brand-rgb),.5)!important;-->
+<!--            box-shadow: 0 0 0 .2rem rgba(var(&#45;&#45;brand-rgb), .25)!important;-->
+<!--            outline: none!important;-->
+<!--        }-->
+
+<!--        /* Cards (shared) */-->
+<!--        .card{ &#45;&#45;bs-card-bg: var(&#45;&#45;card-bg); }-->
+<!--        .card-lift{-->
+<!--            transition: transform .2s ease, box-shadow .2s ease;-->
+<!--            box-shadow: var(&#45;&#45;shadow-1);-->
+<!--            border:0; border-radius:1.25rem; overflow:hidden;-->
+<!--            background:var(&#45;&#45;card-bg);-->
+<!--        }-->
+<!--        .card-lift:hover{ transform:translateY(-4px); box-shadow: var(&#45;&#45;shadow-2); }-->
+
+<!--        /* Feature icon */-->
+<!--        .feature .icon-wrap{-->
+<!--            width:56px; height:56px; display:grid; place-items:center;-->
+<!--            border-radius:16px;-->
+<!--            background:linear-gradient(135deg, var(&#45;&#45;brand), var(&#45;&#45;brand-2));-->
+<!--            color:#fff; font-size:22px;-->
+<!--        }-->
+
+<!--        /* HERO CAROUSEL */-->
+<!--        .hero-carousel{ position:relative; }-->
+<!--        .hero-carousel .carousel{ position:relative; }-->
+<!--        .hero-carousel .carousel-item{-->
+<!--            position:relative;-->
+<!--            height:min(92vh, 860px);-->
+<!--            min-height:540px;-->
+<!--            display:flex;-->
+<!--            align-items:center;-->
+<!--            overflow:hidden;-->
+<!--        }-->
+<!--        .hero-carousel .hero-bg-img{-->
+<!--            position:absolute; inset:0;-->
+<!--            width:100%; height:100%;-->
+<!--            object-fit:cover;-->
+<!--            z-index:0;-->
+<!--            transform:scale(1.02);-->
+<!--        }-->
+<!--        .hero-carousel .carousel-item::before{-->
+<!--            content:"";-->
+<!--            position:absolute; inset:0;-->
+<!--            background:-->
+<!--                    radial-gradient(60% 80% at 10% 10%, rgba(var(&#45;&#45;brand-rgb), .22) 0%, transparent 60%),-->
+<!--                    linear-gradient(180deg, rgba(12,14,20,.55), rgba(12,14,20,.35));-->
+<!--            z-index:1;-->
+<!--        }-->
+<!--        .hero-carousel .hero-content{ position:relative; z-index:2; color:#fff; }-->
+<!--        .hero-carousel h1{ text-shadow:0 4px 24px rgba(0,0,0,.35); }-->
+<!--        .hero-carousel .lead{ color:#e7eaee; }-->
+<!--        .carousel-indicators [data-bs-target]{-->
+<!--            width:12px; height:12px; border-radius:50%; background:rgba(255,255,255,.55);-->
+<!--        }-->
+<!--        .carousel-indicators .active{ background:var(&#45;&#45;brand); }-->
+<!--        .carousel-control-prev-icon, .carousel-control-next-icon{-->
+<!--            filter: drop-shadow(0 2px 6px rgba(0,0,0,.45));-->
+<!--        }-->
+
+<!--        /* Classes */-->
+<!--        .class-card{-->
+<!--            border:0; border-radius:1.25rem; overflow:hidden;-->
+<!--            background:var(&#45;&#45;card-bg);-->
+<!--            box-shadow:var(&#45;&#45;shadow-1);-->
+<!--            transition:transform .2s ease, box-shadow .2s ease;-->
+<!--        }-->
+<!--        .class-card:hover{ transform:translateY(-4px); box-shadow:var(&#45;&#45;shadow-2); }-->
+<!--        .class-icon{-->
+<!--            width:64px; height:64px; display:grid; place-items:center;-->
+<!--            border-radius:16px;-->
+<!--            background:linear-gradient(135deg, var(&#45;&#45;brand), var(&#45;&#45;brand-2));-->
+<!--            color:#fff; font-size:28px;-->
+<!--        }-->
+<!--        .badge-soft{ background:rgba(var(&#45;&#45;brand-rgb), .12); color:var(&#45;&#45;brand); }-->
+<!--        .level{ font-size:.9rem; }-->
+<!--        .meta i{ font-size:1rem; }-->
+<!--        .meta .dot{ width:6px; height:6px; background:var(&#45;&#45;muted); border-radius:50%; display:inline-block; margin:0 .5rem; }-->
+<!--        .cta-btn{ background:var(&#45;&#45;brand); border-color:var(&#45;&#45;brand); }-->
+<!--        .cta-btn:hover{ background:var(&#45;&#45;brand-600); border-color:var(&#45;&#45;brand-600); }-->
+<!--        .card-img-top{ height:220px; object-fit:cover; }-->
+
+<!--        /* Page header with subtle brand glow */-->
+<!--        .page-header{-->
+<!--            padding:3.5rem 0 2rem;-->
+<!--            background:-->
+<!--                    radial-gradient(120% 150% at 0% 0%, rgba(var(&#45;&#45;brand-rgb), .22) 0%, rgba(0,0,0,0) 60%),-->
+<!--                    linear-gradient(180deg, #0f1114, #171a1f);-->
+<!--            color:#fff;-->
+<!--            margin-bottom:1.5rem;-->
+<!--        }-->
+<!--        .page-subtitle{ color:#cfd3da; }-->
+
+<!--        /* Footer */-->
+<!--        .footer{-->
+<!--            background:#0f1114; color:#cfd3da;-->
+<!--            border-top:1px solid rgba(255,255,255,.06);-->
+<!--        }-->
+<!--        .footer a{ color:#cfd3da; text-decoration:none; }-->
+<!--        .footer a:hover{ color:#fff; text-decoration:underline; }-->
+
+<!--        /* Gradient mix for brand icons */-->
+<!--        .icon-mix{ color: var(&#45;&#45;brand); } /* fallback */-->
+<!--        @supports (color: color-mix(in oklab, black 50%, white 50%)) {-->
+<!--            .icon-mix{-->
+<!--                background-image: linear-gradient(-->
+<!--                        135deg,-->
+<!--                        color-mix(in oklab, var(&#45;&#45;brand), white 22%),-->
+<!--                        var(&#45;&#45;brand),-->
+<!--                        color-mix(in oklab, var(&#45;&#45;brand), black 12%)-->
+<!--                );-->
+<!--                -webkit-background-clip: text;-->
+<!--                background-clip: text;-->
+<!--                color: transparent !important;-->
+<!--            }-->
+<!--        }-->
+
+<!--        @media (max-width: 576px){-->
+<!--            .hero-carousel h1{ font-size:2.25rem; }-->
+<!--            .hero-carousel .lead{ font-size:1rem; }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash; Navbar &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">-->
+<!--    <div class="container">-->
+<!--        <a class="navbar-brand fw-bold" href="#home">-->
+<!--            <i class="fa-solid fa-dumbbell me-2 icon-mix"></i>GymNest-->
+<!--        </a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="nav">-->
+<!--            <ul class="navbar-nav ms-auto">-->
+<!--                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#classes">Classes</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#coaches">Coaches</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>-->
+<!--                <li class="nav-item d-none d-lg-inline-flex ms-lg-3">-->
+<!--                    <a class="btn btn-sm btn-outline-brand" href="loginRegister.html">Sign in/up</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash; Home / Hero Slider &ndash;&gt;-->
+<!--<header id="home" class="hero-carousel">-->
+<!--    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false" data-bs-wrap="true" data-bs-touch="true">-->
+<!--        &lt;!&ndash; Indicators &ndash;&gt;-->
+<!--        <div class="carousel-indicators">-->
+<!--            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+<!--            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+<!--        </div>-->
+
+<!--        <div class="carousel-inner">-->
+<!--            &lt;!&ndash; Slide 1 &ndash;&gt;-->
+<!--            <div class="carousel-item active">-->
+<!--                <img class="hero-bg-img"-->
+<!--                     src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80"-->
+<!--                     alt="Barbell training"-->
+<!--                     loading="eager"-->
+<!--                     fetchpriority="high"-->
+<!--                     decoding="async"-->
+<!--                     referrerpolicy="no-referrer"-->
+<!--                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=60';">-->
+<!--                <div class="container hero-content text-center">-->
+<!--                    <span class="letter-spaced text-uppercase fw-semibold text-brand d-inline-block mb-3">GymNest Fitness</span>-->
+<!--                    <h1 class="display-3 fw-bold mb-3">Stronger Than Yesterday</h1>-->
+<!--                    <p class="lead mb-4">Build strength, boost endurance, and train with certified coaches.</p>-->
+<!--                    <div>-->
+<!--                        <a href="#classes" class="btn btn-brand btn-lg me-2">Explore Classes</a>-->
+<!--                        <a href="#contact" class="btn btn-outline-light btn-lg">Get in Touch</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Slide 2 &ndash;&gt;-->
+<!--            <div class="carousel-item">-->
+<!--                <img class="hero-bg-img"-->
+<!--                     src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1920&q=80"-->
+<!--                     alt="HIIT workout"-->
+<!--                     loading="eager"-->
+<!--                     fetchpriority="high"-->
+<!--                     decoding="async"-->
+<!--                     referrerpolicy="no-referrer"-->
+<!--                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1600&q=60';">-->
+<!--                <div class="container hero-content text-center">-->
+<!--                    <span class="letter-spaced text-uppercase fw-semibold text-brand d-inline-block mb-3">Strength & Conditioning</span>-->
+<!--                    <h1 class="display-3 fw-bold mb-3">Lift. Sweat. Recover.</h1>-->
+<!--                    <p class="lead mb-4">Modern equipment, smart programming, real results.</p>-->
+<!--                    <div>-->
+<!--                        <a href="#about" class="btn btn-brand btn-lg me-2">Why GymNest</a>-->
+<!--                        <a href="#classes" class="btn btn-outline-light btn-lg">View Programs</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Slide 3 &ndash;&gt;-->
+<!--            <div class="carousel-item">-->
+<!--                <img class="hero-bg-img"-->
+<!--                     src="assets/images/sam-moghadam-W8CyjblrF8U-unsplash.jpg"-->
+<!--                     alt="Group training class"-->
+<!--                     loading="eager"-->
+<!--                     fetchpriority="high"-->
+<!--                     decoding="async"-->
+<!--                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1526403222123-3817f35cbe5e?auto=format&fit=crop&w=1600&q=60';">-->
+<!--                <div class="container hero-content text-center">-->
+<!--                    <span class="letter-spaced text-uppercase fw-semibold text-brand d-inline-block mb-3">Group Training</span>-->
+<!--                    <h1 class="display-3 fw-bold mb-3">Train Together. Get Results.</h1>-->
+<!--                    <p class="lead mb-4">Motivation and accountability in coach-led sessions.</p>-->
+<!--                    <div>-->
+<!--                        <a href="#contact" class="btn btn-brand btn-lg me-2">Book Free Trial</a>-->
+<!--                        <a href="#coaches" class="btn btn-outline-light btn-lg">Meet Coaches</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Controls &ndash;&gt;-->
+<!--        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous slide">-->
+<!--            <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--        </button>-->
+<!--        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next slide">-->
+<!--            <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</header>-->
+
+<!--&lt;!&ndash; About &ndash;&gt;-->
+<!--<section id="about" class="section">-->
+<!--    <div class="container">-->
+<!--        <div class="row g-5 align-items-center">-->
+<!--            <div class="col-lg-6">-->
+<!--                <div class="ratio ratio-4x3 rounded-4 shadow-sm overflow-hidden">-->
+<!--                    <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=1400&q=80" alt="Gym facility" class="w-100 h-100 object-fit-cover" loading="lazy" referrerpolicy="no-referrer">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-6">-->
+<!--                <span class="badge badge-brand-subtle rounded-pill mb-3">About GymNest</span>-->
+<!--                <h2 class="mb-3">Train with Pros. Recover Smarter. Perform Better.</h2>-->
+<!--                <p class="text-secondary mb-4">-->
+<!--                    From strength training and HIIT to mobility and yoga, GymNest offers expert-led classes, modern equipment, and a community that motivates you to stay consistent.-->
+<!--                </p>-->
+<!--                <div class="row g-3">-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="feature d-flex align-items-start">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-dumbbell"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-1">Modern Equipment</h6>-->
+<!--                                <p class="mb-0 small text-secondary">Top-tier machines and free weights for every level.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="feature d-flex align-items-start">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-user-check"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-1">Certified Coaches</h6>-->
+<!--                                <p class="mb-0 small text-secondary">Personalized guidance to hit your goals faster.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <a href="#coaches" class="btn btn-brand mt-4">Meet Our Coaches</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Classes &ndash;&gt;-->
+<!--<section id="classes" class="py-5">-->
+<!--    <div class="container">-->
+<!--        <div class="row align-items-end mb-4">-->
+<!--            <div class="col-lg-8">-->
+<!--                <h2 class="section-title fw-bold mb-2">Our <span>Classes</span></h2>-->
+<!--                <p class="text-secondary mb-0">Choose from strength, cardio, and mind-body sessions. All classes are beginner-friendly with progressions.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row g-4" id="classes-grid">-->
+<!--            &lt;!&ndash; 1. Spin & Sweat &ndash;&gt;-->
+<!--            <div class="col-md-6 col-lg-4" data-category="cardio">-->
+<!--                <div class="card class-card h-100">-->
+<!--                    <img src="https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg" class="card-img-top" alt="Spin & Sweat" loading="lazy">-->
+<!--                    <div class="card-body p-4 d-flex flex-column">-->
+<!--                        <div class="d-flex align-items-center mb-3 gap-3">-->
+<!--                            <div class="class-icon"><i class="bi bi-bicycle"></i></div>-->
+<!--                            <div>-->
+<!--                                <h5 class="card-title mb-1">Spin &amp; Sweat</h5>-->
+<!--                                <span class="badge badge-soft">Cardio</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <p class="text-secondary mb-3">High-energy indoor cycling with music. Boosts heart health, leg endurance, and burns calories fast.</p>-->
+<!--                        <div class="meta small text-muted mb-3">-->
+<!--                            <i class="bi bi-clock me-1"></i> 45 min-->
+<!--                            <span class="dot"></span>-->
+<!--                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium-High-->
+<!--                        </div>-->
+<!--                        <div class="mt-auto d-flex align-items-center justify-content-between">-->
+<!--                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Beginner-Friendly</div>-->
+<!--                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 2. Core & Conditioning &ndash;&gt;-->
+<!--            <div class="col-md-6 col-lg-4" data-category="strength">-->
+<!--                <div class="card class-card h-100">-->
+<!--                    <img src="https://images.pexels.com/photos/1552249/pexels-photo-1552249.jpeg" class="card-img-top" alt="Core & Conditioning" loading="lazy">-->
+<!--                    <div class="card-body p-4 d-flex flex-column">-->
+<!--                        <div class="d-flex align-items-center mb-3 gap-3">-->
+<!--                            <div class="class-icon"><i class="bi bi-body-text"></i></div>-->
+<!--                            <div>-->
+<!--                                <h5 class="card-title mb-1">Core &amp; Conditioning</h5>-->
+<!--                                <span class="badge badge-soft">Strength</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <p class="text-secondary mb-3">Target abs, obliques, and lower-back with functional drills to improve posture, balance, and durability.</p>-->
+<!--                        <div class="meta small text-muted mb-3">-->
+<!--                            <i class="bi bi-clock me-1"></i> 40 min-->
+<!--                            <span class="dot"></span>-->
+<!--                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium-->
+<!--                        </div>-->
+<!--                        <div class="mt-auto d-flex align-items-center justify-content-between">-->
+<!--                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>-->
+<!--                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 3. Engine Builder &ndash;&gt;-->
+<!--            <div class="col-md-6 col-lg-4" data-category="cardio strength">-->
+<!--                <div class="card class-card h-100">-->
+<!--                    <img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg" class="card-img-top" alt="Engine Builder" loading="lazy">-->
+<!--                    <div class="card-body p-4 d-flex flex-column">-->
+<!--                        <div class="d-flex align-items-center mb-3 gap-3">-->
+<!--                            <div class="class-icon"><i class="bi bi-speedometer2"></i></div>-->
+<!--                            <div>-->
+<!--                                <h5 class="card-title mb-1">Engine Builder</h5>-->
+<!--                                <span class="badge badge-soft">Conditioning</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <p class="text-secondary mb-3">Interval circuits mixing weights, rowing, and bodyweight to build stamina, power, and metabolism.</p>-->
+<!--                        <div class="meta small text-muted mb-3">-->
+<!--                            <i class="bi bi-clock me-1"></i> 45–50 min-->
+<!--                            <span class="dot"></span>-->
+<!--                            <i class="bi bi-lightning-charge me-1"></i> Intensity: High-->
+<!--                        </div>-->
+<!--                        <div class="mt-auto d-flex align-items-center justify-content-between">-->
+<!--                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Intermediate</div>-->
+<!--                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 4. Yoga & Mobility &ndash;&gt;-->
+<!--            <div class="col-md-6 col-lg-4" data-category="mind">-->
+<!--                <div class="card class-card h-100">-->
+<!--                    <img src="https://images.pexels.com/photos/4325466/pexels-photo-4325466.jpeg" class="card-img-top" alt="Yoga & Mobility" loading="lazy">-->
+<!--                    <div class="card-body p-4 d-flex flex-column">-->
+<!--                        <div class="d-flex align-items-center mb-3 gap-3">-->
+<!--                            <div class="class-icon"><i class="bi bi-flower3"></i></div>-->
+<!--                            <div>-->
+<!--                                <h5 class="card-title mb-1">Yoga &amp; Mobility</h5>-->
+<!--                                <span class="badge badge-soft">Mind-Body</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <p class="text-secondary mb-3">Flow, stretch, and breathwork to improve flexibility, recovery, and stress relief.</p>-->
+<!--                        <div class="meta small text-muted mb-3">-->
+<!--                            <i class="bi bi-clock me-1"></i> 50–60 min-->
+<!--                            <span class="dot"></span>-->
+<!--                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Low-Medium-->
+<!--                        </div>-->
+<!--                        <div class="mt-auto d-flex align-items-center justify-content-between">-->
+<!--                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>-->
+<!--                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 5. HIIT Combat &ndash;&gt;-->
+<!--            <div class="col-md-6 col-lg-4" data-category="cardio">-->
+<!--                <div class="card class-card h-100">-->
+<!--                    <img src="https://images.pexels.com/photos/4753894/pexels-photo-4753894.jpeg" class="card-img-top" alt="HIIT Combat" loading="lazy">-->
+<!--                    <div class="card-body p-4 d-flex flex-column">-->
+<!--                        <div class="d-flex align-items-center mb-3 gap-3">-->
+<!--                            <div class="class-icon"><i class="bi bi-hand-thumbs-up"></i></div>-->
+<!--                            <div>-->
+<!--                                <h5 class="card-title mb-1">HIIT Combat</h5>-->
+<!--                                <span class="badge badge-soft">Cardio</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <p class="text-secondary mb-3">Boxing/kickboxing-inspired combinations and footwork. Torch calories while building agility and coordination.</p>-->
+<!--                        <div class="meta small text-muted mb-3">-->
+<!--                            <i class="bi bi-clock me-1"></i> 35–45 min-->
+<!--                            <span class="dot"></span>-->
+<!--                            <i class="bi bi-lightning-charge me-1"></i> Intensity: High-->
+<!--                        </div>-->
+<!--                        <div class="mt-auto d-flex align-items-center justify-content-between">-->
+<!--                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>-->
+<!--                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 6. Strength & Powerlifting &ndash;&gt;-->
+<!--            <div class="col-md-6 col-lg-4" data-category="strength">-->
+<!--                <div class="card class-card h-100">-->
+<!--                    <img src="https://images.pexels.com/photos/3837752/pexels-photo-3837752.jpeg" class="card-img-top" alt="Strength & Powerlifting" loading="lazy">-->
+<!--                    <div class="card-body p-4 d-flex flex-column">-->
+<!--                        <div class="d-flex align-items-center mb-3 gap-3">-->
+<!--                            <div class="class-icon"><i class="bi bi-bar-chart-steps"></i></div>-->
+<!--                            <div>-->
+<!--                                <h5 class="card-title mb-1">Strength &amp; Powerlifting</h5>-->
+<!--                                <span class="badge badge-soft">Strength</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <p class="text-secondary mb-3">Barbell, dumbbell, and kettlebell training focused on technique and progressive overload for real strength gains.</p>-->
+<!--                        <div class="meta small text-muted mb-3">-->
+<!--                            <i class="bi bi-clock me-1"></i> 60 min-->
+<!--                            <span class="dot"></span>-->
+<!--                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium-High-->
+<!--                        </div>-->
+<!--                        <div class="mt-auto d-flex align-items-center justify-content-between">-->
+<!--                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Intermediate</div>-->
+<!--                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Coaches &ndash;&gt;-->
+<!--<section id="coaches" class="section">-->
+<!--    <div class="container">-->
+<!--        <div class="text-center mb-5">-->
+<!--            <span class="badge badge-brand-subtle text-uppercase">Coaches</span>-->
+<!--            <h2 class="mt-2">Meet Our Experts</h2>-->
+<!--            <p class="text-secondary mb-0">Learn from certified, experienced trainers who care about your progress.</p>-->
+<!--        </div>-->
+
+<!--        <div class="row g-4">-->
+<!--            &lt;!&ndash; Coach cards &ndash;&gt;-->
+<!--            <div class="col-sm-6 col-lg-3">-->
+<!--                <div class="card card-lift h-100">-->
+<!--                    <div class="ratio ratio-4x5">-->
+<!--                        <img src="https://images.unsplash.com/photo-1551292831-023188e78222?auto=format&fit=crop&w=900&q=70" class="card-img-top object-fit-cover" alt="Coach 1" loading="lazy" referrerpolicy="no-referrer">-->
+<!--                    </div>-->
+<!--                    <div class="card-body text-center">-->
+<!--                        <h6 class="mb-1">Alex Fernando</h6>-->
+<!--                        <small class="text-secondary d-block mb-2">Strength & Conditioning</small>-->
+<!--                        <div class="d-flex justify-content-center gap-2">-->
+<!--                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>-->
+<!--                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm-6 col-lg-3">-->
+<!--                <div class="card card-lift h-100">-->
+<!--                    <div class="ratio ratio-4x5">-->
+<!--                        <img src="https://images.unsplash.com/photo-1549062572-0d7241f0d04a?auto=format&fit=crop&w=900&q=70" class="card-img-top object-fit-cover" alt="Coach 2" loading="lazy" referrerpolicy="no-referrer">-->
+<!--                    </div>-->
+<!--                    <div class="card-body text-center">-->
+<!--                        <h6 class="mb-1">Nadia Perera</h6>-->
+<!--                        <small class="text-secondary d-block mb-2">HIIT & Mobility</small>-->
+<!--                        <div class="d-flex justify-content-center gap-2">-->
+<!--                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>-->
+<!--                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm-6 col-lg-3">-->
+<!--                <div class="card card-lift h-100">-->
+<!--                    <div class="ratio ratio-4x5">-->
+<!--                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=70" class="card-img-top object-fit-cover" alt="Coach 3" loading="lazy" referrerpolicy="no-referrer">-->
+<!--                    </div>-->
+<!--                    <div class="card-body text-center">-->
+<!--                        <h6 class="mb-1">Ishan Silva</h6>-->
+<!--                        <small class="text-secondary d-block mb-2">Cross Training</small>-->
+<!--                        <div class="d-flex justify-content-center gap-2">-->
+<!--                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>-->
+<!--                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm-6 col-lg-3">-->
+<!--                <div class="card card-lift h-100">-->
+<!--                    <div class="ratio ratio-4x5">-->
+<!--                        <img src="https://images.unsplash.com/photo-1541534401786-2077eed87a72?auto=format&fit=crop&w=900&q=70" class="card-img-top object-fit-cover" alt="Coach 4" loading="lazy" referrerpolicy="no-referrer">-->
+<!--                    </div>-->
+<!--                    <div class="card-body text-center">-->
+<!--                        <h6 class="mb-1">Sasha de Alwis</h6>-->
+<!--                        <small class="text-secondary d-block mb-2">Functional Fitness</small>-->
+<!--                        <div class="d-flex justify-content-center gap-2">-->
+<!--                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>-->
+<!--                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Contact &ndash;&gt;-->
+<!--<section id="contact" class="section pt-0">-->
+<!--    <header class="page-header">-->
+<!--        <div class="container">-->
+<!--            <h1>Get in Touch</h1>-->
+<!--            <p class="page-subtitle">We’re here to help you start and stay consistent.</p>-->
+<!--        </div>-->
+<!--    </header>-->
+
+<!--    <div class="container">-->
+<!--        <div class="row g-4">-->
+<!--            <div class="col-lg-6">-->
+<!--                <form class="needs-validation" novalidate>-->
+<!--                    <div class="row g-3">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label class="form-label">Name</label>-->
+<!--                            <input class="form-control" required>-->
+<!--                            <div class="invalid-feedback">Your name?</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label class="form-label">Email</label>-->
+<!--                            <input type="email" class="form-control" required>-->
+<!--                            <div class="invalid-feedback">Valid email?</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12">-->
+<!--                            <label class="form-label">Message</label>-->
+<!--                            <textarea class="form-control" rows="5" required></textarea>-->
+<!--                            <div class="invalid-feedback">Type a message</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12">-->
+<!--                            <button class="btn btn-brand text-white">Send Message</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="col-lg-6">-->
+<!--                <div class="card p-3 h-100 card-lift">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5>Contact Info</h5>-->
+<!--                        <p class="mb-1"><i class="fa-solid fa-location-dot me-2 icon-mix"></i> 45 King Street, Colombo</p>-->
+<!--                        <p class="mb-1"><i class="fa-solid fa-phone me-2 icon-mix"></i> +94 77 123 4567</p>-->
+<!--                        <p class="mb-3"><i class="fa-solid fa-envelope me-2 icon-mix"></i> hello@gymnest.fit</p>-->
+<!--                        <div class="ratio ratio-16x9 rounded-3 overflow-hidden">-->
+<!--                            <iframe src="https://maps.google.com/maps?q=Colombo%20Sri%20Lanka&t=&z=12&ie=UTF8&iwloc=&output=embed"-->
+<!--                                    style="border:0" allowfullscreen="" loading="lazy"></iframe>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Footer &ndash;&gt;-->
+<!--<footer class="footer mt-5 pt-5 pb-4">-->
+<!--    <div class="container">-->
+<!--        <div class="row g-4 align-items-center">-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="d-flex align-items-center">-->
+<!--                    <i class="fa-solid fa-dumbbell me-2 icon-mix"></i>-->
+<!--                    <span class="fw-semibold">© <span class="year"></span> GymNest. All rights reserved.</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <ul class="list-inline mb-0 text-md-end">-->
+<!--                    <li class="list-inline-item"><a href="#home">Home</a></li>-->
+<!--                    <li class="list-inline-item"><a href="#about">About</a></li>-->
+<!--                    <li class="list-inline-item"><a href="#classes">Classes</a></li>-->
+<!--                    <li class="list-inline-item"><a href="#coaches">Coaches</a></li>-->
+<!--                    <li class="list-inline-item"><a href="#contact">Contact</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+
+<!--&lt;!&ndash; Scripts &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script>-->
+<!--    // Footer year-->
+<!--    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());-->
+
+<!--    // Ensure the hero carousel auto-plays (explicit init)-->
+<!--    document.addEventListener('DOMContentLoaded', () => {-->
+<!--        const heroEl = document.getElementById('heroCarousel');-->
+<!--        if (heroEl) {-->
+<!--            const heroCarousel = new bootstrap.Carousel(heroEl, {-->
+<!--                interval: 5000,-->
+<!--                pause: false,-->
+<!--                wrap: true,-->
+<!--                touch: true,-->
+<!--                keyboard: true-->
+<!--            });-->
+<!--            heroCarousel.cycle();-->
+<!--        }-->
+
+<!--        // Fallback: if any hero image fails, retry with a lighter version by tweaking query-->
+<!--        document.querySelectorAll('.hero-bg-img').forEach(img => {-->
+<!--            img.addEventListener('error', () => {-->
+<!--                try {-->
+<!--                    const u = new URL(img.src, window.location.href);-->
+<!--                    u.searchParams.set('q', '60'); // Unsplash quality param-->
+<!--                    img.src = u.toString();-->
+<!--                } catch(e) {}-->
+<!--            }, { once: true });-->
+<!--        });-->
+<!--    });-->
+
+<!--    // Simple form validation-->
+<!--    (() => {-->
+<!--        'use strict';-->
+<!--        const forms = document.querySelectorAll('.needs-validation');-->
+<!--        Array.from(forms).forEach(form => {-->
+<!--            form.addEventListener('submit', event => {-->
+<!--                if (!form.checkValidity()) {-->
+<!--                    event.preventDefault();-->
+<!--                    event.stopPropagation();-->
+<!--                }-->
+<!--                form.classList.add('was-validated');-->
+<!--            }, false);-->
+<!--        });-->
+<!--    })();-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
 
 
 
@@ -182,56 +939,127 @@
     <title>GymNest — Fitness & Training</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="GymNest — Train smarter with modern facilities, motivating classes, and expert coaches." />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#6C5CE7" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome + Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <!-- Preconnect to the image host to speed up TLS/DNS for remote images -->
+    <!-- Preconnect to the image host -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com" crossorigin>
 
-    <!-- Preload hero images so they’re fetched even when hidden by the carousel -->
+    <!-- Preload hero images -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80" crossorigin referrerpolicy="no-referrer">
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1920&q=80" crossorigin referrerpolicy="no-referrer">
-    <!-- Use the local image for the 3rd slide -->
     <link rel="preload" as="image" href="assets/images/sam-moghadam-W8CyjblrF8U-unsplash.jpg" type="image/jpeg">
 
     <style>
         :root{
-            --brand: #ffc107;
-            --text: #101216;
-            --muted: #6c757d;
-            --body-bg: #ffffff;
-            --section-pad: 4.5rem;
-        }
-        html{ scroll-behavior:smooth; }
-        body{ color:var(--text); background:var(--body-bg); }
+            /* Brand system */
+            --brand:#6C5CE7;         /* primary */
+            --brand-600:#5949D9;     /* hover */
+            --brand-700:#4E3FD0;     /* active */
+            --brand-rgb:108,92,231;
 
-        .navbar-dark .navbar-nav .nav-link{ color:#e7eaee; }
+            --brand-2:#00CEC9;       /* accent */
+            --accent-600:#00B3AE;
+            --brand2-rgb:0,206,201;
+
+            /* Neutrals */
+            --ink:#121212;
+            --muted:#6c757d;
+            --card-bg:#ffffff;
+            --bg:#f7f7fb;
+
+            /* Layout */
+            --section-pad:4.5rem;
+
+            /* Shadows */
+            --shadow-1: 0 10px 25px rgba(0,0,0,.08);
+            --shadow-2: 0 16px 40px rgba(0,0,0,.12);
+        }
+
+        html{ scroll-behavior:smooth; }
+        body{ color:var(--ink); background:var(--bg); }
+
+        /* Utilities */
+        .text-brand{ color:var(--brand)!important; }
+        .text-accent{ color:var(--brand-2)!important; }
+        .badge-brand-subtle{ background:rgba(var(--brand-rgb),.12); color:var(--brand); }
+        .object-fit-cover{ object-fit:cover; }
+        .letter-spaced{ letter-spacing:.12em; }
+        .section{ padding:var(--section-pad) 0; }
+        .section-title span{ color:var(--brand); }
+
+        /* Links */
+        a:not(.btn){ color:var(--brand); text-decoration:none; }
+        a:not(.btn):hover{ color:var(--brand-700); text-decoration:underline; }
+
+        /* Navbar */
+        .navbar-dark.bg-dark{ background-color:#0f1114!important; }
+        .navbar-dark .navbar-brand i{ color:var(--brand); }
+        .navbar-dark .navbar-nav .nav-link{ color:#e7eaee; transition:color .15s ease; }
         .navbar-dark .navbar-nav .nav-link.active,
         .navbar-dark .navbar-nav .nav-link:hover{ color:#fff; }
 
+        /* Buttons */
         .btn-brand{
-            --bs-btn-color:#1a1a1a;
+            --bs-btn-color:#fff;
             --bs-btn-bg:var(--brand);
             --bs-btn-border-color:var(--brand);
-            --bs-btn-hover-color:#111;
-            --bs-btn-hover-bg:#e0a800;
-            --bs-btn-hover-border-color:#d39e00;
-            --bs-btn-focus-shadow-rgb:255,193,7;
+            --bs-btn-hover-color:#fff;
+            --bs-btn-hover-bg:var(--brand-600);
+            --bs-btn-hover-border-color:var(--brand-600);
+            --bs-btn-active-bg:var(--brand-700);
+            --bs-btn-active-border-color:var(--brand-700);
+            --bs-btn-focus-shadow-rgb:var(--brand-rgb);
         }
         .btn-outline-brand{
             --bs-btn-color:var(--brand);
             --bs-btn-border-color:var(--brand);
-            --bs-btn-hover-color:#1a1a1a;
+            --bs-btn-hover-color:#fff;
             --bs-btn-hover-bg:var(--brand);
             --bs-btn-hover-border-color:var(--brand);
-            --bs-btn-focus-shadow-rgb:255,193,7;
+            --bs-btn-focus-shadow-rgb:var(--brand-rgb);
+        }
+        .btn-accent{
+            --bs-btn-color:#0b2a2a;
+            --bs-btn-bg:var(--brand-2);
+            --bs-btn-border-color:var(--brand-2);
+            --bs-btn-hover-color:#062020;
+            --bs-btn-hover-bg:var(--accent-600);
+            --bs-btn-hover-border-color:var(--accent-600);
+            --bs-btn-focus-shadow-rgb:var(--brand2-rgb);
         }
         .btn-icon{ padding:.4rem .6rem; line-height:1; }
 
-        .section{ padding:var(--section-pad) 0; }
+        /* Accessible focus rings */
+        .form-control:focus, .form-select:focus, .btn:focus, .btn:focus-visible {
+            border-color: rgba(var(--brand-rgb),.5)!important;
+            box-shadow: 0 0 0 .2rem rgba(var(--brand-rgb), .25)!important;
+            outline: none!important;
+        }
 
-        .object-fit-cover{ object-fit:cover; }
-        .letter-spaced{ letter-spacing:.12em; }
+        /* Cards (shared) */
+        .card{ --bs-card-bg: var(--card-bg); }
+        .card-lift{
+            transition: transform .2s ease, box-shadow .2s ease;
+            box-shadow: var(--shadow-1);
+            border:0; border-radius:1.25rem; overflow:hidden;
+            background:var(--card-bg);
+        }
+        .card-lift:hover{ transform:translateY(-4px); box-shadow: var(--shadow-2); }
+
+        /* Feature icon */
+        .feature .icon-wrap{
+            width:56px; height:56px; display:grid; place-items:center;
+            border-radius:16px;
+            background:linear-gradient(135deg, var(--brand), var(--brand-2));
+            color:#fff; font-size:22px;
+        }
 
         /* HERO CAROUSEL */
         .hero-carousel{ position:relative; }
@@ -254,46 +1082,78 @@
         .hero-carousel .carousel-item::before{
             content:"";
             position:absolute; inset:0;
-            background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35));
+            background:
+                    radial-gradient(60% 80% at 10% 10%, rgba(var(--brand-rgb), .22) 0%, transparent 60%),
+                    linear-gradient(180deg, rgba(12,14,20,.55), rgba(12,14,20,.35));
             z-index:1;
         }
-        .hero-carousel .hero-content{
-            position:relative; z-index:2; color:#fff;
-        }
+        .hero-carousel .hero-content{ position:relative; z-index:2; color:#fff; }
         .hero-carousel h1{ text-shadow:0 4px 24px rgba(0,0,0,.35); }
         .hero-carousel .lead{ color:#e7eaee; }
         .carousel-indicators [data-bs-target]{
-            width:12px; height:12px; border-radius:50%;
-            background:rgba(255,255,255,.55);
+            width:12px; height:12px; border-radius:50%; background:rgba(255,255,255,.55);
         }
         .carousel-indicators .active{ background:var(--brand); }
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon{
+        .carousel-control-prev-icon, .carousel-control-next-icon{
             filter: drop-shadow(0 2px 6px rgba(0,0,0,.45));
         }
 
-        .card-lift{ transition: transform .2s ease, box-shadow .2s ease; }
-        .card-lift:hover{ transform:translateY(-4px); box-shadow:0 1.25rem 1.75rem rgba(16,18,22,.08); }
-
-        .feature .icon-wrap{
-            width:42px; height:42px; display:grid; place-items:center;
-            border-radius:.75rem; background:#111; color:var(--brand);
+        /* Classes */
+        .class-card{
+            border:0; border-radius:1.25rem; overflow:hidden;
+            background:var(--card-bg);
+            box-shadow:var(--shadow-1);
+            transition:transform .2s ease, box-shadow .2s ease;
         }
+        .class-card:hover{ transform:translateY(-4px); box-shadow: var(--shadow-2); }
+        .class-icon, .coach-icon{
+            width:64px; height:64px; display:grid; place-items:center;
+            border-radius:16px;
+            background:linear-gradient(135deg, var(--brand), var(--brand-2));
+            color:#fff; font-size:28px;
+        }
+        .badge-soft{ background:rgba(var(--brand-rgb), .12); color:var(--brand); }
+        .level{ font-size:.9rem; }
+        .meta i{ font-size:1rem; }
+        .meta .dot{ width:6px; height:6px; background:var(--muted); border-radius:50%; display:inline-block; margin:0 .5rem; }
+        .cta-btn{ background:var(--brand); border-color:var(--brand); }
+        .cta-btn:hover{ background:var(--brand-600); border-color:var(--brand-600); }
+        .card-img-top{ height:220px; object-fit:cover; }
 
+        /* Page header with subtle brand glow */
         .page-header{
             padding:3.5rem 0 2rem;
-            background: linear-gradient(180deg, #0f1114, #171a1f);
+            background:
+                    radial-gradient(120% 150% at 0% 0%, rgba(var(--brand-rgb), .22) 0%, rgba(0,0,0,0) 60%),
+                    linear-gradient(180deg, #0f1114, #171a1f);
             color:#fff;
             margin-bottom:1.5rem;
         }
         .page-subtitle{ color:#cfd3da; }
 
+        /* Footer */
         .footer{
             background:#0f1114; color:#cfd3da;
             border-top:1px solid rgba(255,255,255,.06);
         }
         .footer a{ color:#cfd3da; text-decoration:none; }
-        .footer a:hover{ color:#fff; }
+        .footer a:hover{ color:#fff; text-decoration:underline; }
+
+        /* Gradient mix for brand icons */
+        .icon-mix{ color: var(--brand); } /* fallback */
+        @supports (color: color-mix(in oklab, black 50%, white 50%)) {
+            .icon-mix{
+                background-image: linear-gradient(
+                        135deg,
+                        color-mix(in oklab, var(--brand), white 22%),
+                        var(--brand),
+                        color-mix(in oklab, var(--brand), black 12%)
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
 
         @media (max-width: 576px){
             .hero-carousel h1{ font-size:2.25rem; }
@@ -307,7 +1167,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
     <div class="container">
         <a class="navbar-brand fw-bold" href="#home">
-            <i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest
+            <i class="fa-solid fa-dumbbell me-2 icon-mix"></i>GymNest
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>
@@ -349,7 +1209,7 @@
                      referrerpolicy="no-referrer"
                      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=60';">
                 <div class="container hero-content text-center">
-                    <span class="letter-spaced text-uppercase fw-semibold text-warning d-inline-block mb-3">GymNest Fitness</span>
+                    <span class="letter-spaced text-uppercase fw-semibold text-brand d-inline-block mb-3">GymNest Fitness</span>
                     <h1 class="display-3 fw-bold mb-3">Stronger Than Yesterday</h1>
                     <p class="lead mb-4">Build strength, boost endurance, and train with certified coaches.</p>
                     <div>
@@ -361,8 +1221,8 @@
 
             <!-- Slide 2 -->
             <div class="carousel-item">
-                <img class="hero-bg-img
-                     " src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1920&q=80"
+                <img class="hero-bg-img"
+                     src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1920&q=80"
                      alt="HIIT workout"
                      loading="eager"
                      fetchpriority="high"
@@ -370,7 +1230,7 @@
                      referrerpolicy="no-referrer"
                      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1600&q=60';">
                 <div class="container hero-content text-center">
-                    <span class="letter-spaced text-uppercase fw-semibold text-warning d-inline-block mb-3">Strength & Conditioning</span>
+                    <span class="letter-spaced text-uppercase fw-semibold text-brand d-inline-block mb-3">Strength & Conditioning</span>
                     <h1 class="display-3 fw-bold mb-3">Lift. Sweat. Recover.</h1>
                     <p class="lead mb-4">Modern equipment, smart programming, real results.</p>
                     <div>
@@ -380,7 +1240,7 @@
                 </div>
             </div>
 
-            <!-- Slide 3 (LOCAL IMAGE) -->
+            <!-- Slide 3 -->
             <div class="carousel-item">
                 <img class="hero-bg-img"
                      src="assets/images/sam-moghadam-W8CyjblrF8U-unsplash.jpg"
@@ -390,7 +1250,7 @@
                      decoding="async"
                      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1526403222123-3817f35cbe5e?auto=format&fit=crop&w=1600&q=60';">
                 <div class="container hero-content text-center">
-                    <span class="letter-spaced text-uppercase fw-semibold text-warning d-inline-block mb-3">Group Training</span>
+                    <span class="letter-spaced text-uppercase fw-semibold text-brand d-inline-block mb-3">Group Training</span>
                     <h1 class="display-3 fw-bold mb-3">Train Together. Get Results.</h1>
                     <p class="lead mb-4">Motivation and accountability in coach-led sessions.</p>
                     <div>
@@ -421,7 +1281,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <span class="badge text-bg-dark rounded-pill mb-3">About GymNest</span>
+                <span class="badge badge-brand-subtle rounded-pill mb-3">About GymNest</span>
                 <h2 class="mb-3">Train with Pros. Recover Smarter. Perform Better.</h2>
                 <p class="text-secondary mb-4">
                     From strength training and HIIT to mobility and yoga, GymNest offers expert-led classes, modern equipment, and a community that motivates you to stay consistent.
@@ -453,96 +1313,168 @@
 </section>
 
 <!-- Classes -->
-<section id="classes" class="section bg-light">
+<section id="classes" class="py-5">
     <div class="container">
-        <div class="text-center mb-5">
-            <span class="badge text-bg-warning-subtle text-uppercase">Classes</span>
-            <h2 class="mt-2">Explore Our Training Programs</h2>
-            <p class="text-secondary mb-0">Pick a class that fits your goals — strength, HIIT, mobility, and more.</p>
+        <div class="row align-items-end mb-4">
+            <div class="col-lg-8">
+                <h2 class="section-title fw-bold mb-2">Our <span>Classes</span></h2>
+                <p class="text-secondary mb-0">Choose from strength, cardio, and mind-body sessions. All classes are beginner-friendly with progressions.</p>
+            </div>
         </div>
 
-        <div class="row g-4">
-            <!-- Class cards (unchanged) -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card card-lift h-100">
-                    <div class="ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1594737625785-c6683fc8e59c?auto=format&fit=crop&w=1200&q=70" class="card-img-top object-fit-cover" alt="Strength training" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body">
-                        <span class="badge bg-dark mb-2">Strength</span>
-                        <h5 class="card-title">Weight Lifting</h5>
-                        <p class="card-text text-secondary">Master the big three: squat, bench, deadlift with expert guidance.</p>
-                        <a href="#contact" class="btn btn-outline-brand btn-sm">Join Class</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card card-lift h-100">
-                    <div class="ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1200&q=70" class="card-img-top object-fit-cover" alt="HIIT" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body">
-                        <span class="badge bg-dark mb-2">HIIT</span>
-                        <h5 class="card-title">Cardio and Strenght</h5>
-                        <p class="card-text text-secondary">High-intensity intervals to torch calories and improve conditioning.</p>
-                        <a href="#contact" class="btn btn-outline-brand btn-sm">Join Class</a>
+        <div class="row g-4" id="classes-grid">
+            <!-- 1. Spin & Sweat -->
+            <div class="col-md-6 col-lg-4" data-category="cardio">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg" class="card-img-top" alt="Spin & Sweat" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-bicycle"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Spin &amp; Sweat</h5>
+                                <span class="badge badge-soft">Cardio</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">High-energy indoor cycling with music. Boosts heart health, leg endurance, and burns calories fast.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 45 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium-High
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Beginner-Friendly</div>
+                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card card-lift h-100">
-                    <div class="ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=70" class="card-img-top object-fit-cover" alt="Yoga mobility" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body">
-                        <span class="badge bg-dark mb-2">Mobility</span>
-                        <h5 class="card-title">Flow and Flex</h5>
-                        <p class="card-text text-secondary">Improve mobility and posture with guided flows and breathwork.</p>
-                        <a href="#contact" class="btn btn-outline-brand btn-sm">Join Class</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card card-lift h-100">
-                    <div class="ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1526403222123-3817f35cbe5e?auto=format&fit=crop&w=1200&q=70" class="card-img-top object-fit-cover" alt="Cross training" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body">
-                        <span class="badge bg-dark mb-2">Cross Training</span>
-                        <h5 class="card-title">Engine Builder</h5>
-                        <p class="card-text text-secondary">Blended strength and cardio sessions for overall power and endurance.</p>
-                        <a href="#contact" class="btn btn-outline-brand btn-sm">Join Class</a>
+            <!-- 2. Core & Conditioning -->
+            <div class="col-md-6 col-lg-4" data-category="strength">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/1552249/pexels-photo-1552249.jpeg" class="card-img-top" alt="Core & Conditioning" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-body-text"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Core &amp; Conditioning</h5>
+                                <span class="badge badge-soft">Strength</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Target abs, obliques, and lower-back with functional drills to improve posture, balance, and durability.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 40 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card card-lift h-100">
-                    <div class="ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=70" class="card-img-top object-fit-cover" alt="Functional" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body">
-                        <span class="badge bg-dark mb-2">Functional</span>
-                        <h5 class="card-title">Core & Conditioning</h5>
-                        <p class="card-text text-secondary">Stability, balance and core-focused training for daily performance.</p>
-                        <a href="#contact" class="btn btn-outline-brand btn-sm">Join Class</a>
+            <!-- 3. Engine Builder -->
+            <div class="col-md-6 col-lg-4" data-category="cardio strength">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg" class="card-img-top" alt="Engine Builder" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-speedometer2"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Engine Builder</h5>
+                                <span class="badge badge-soft">Conditioning</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Interval circuits mixing weights, rowing, and bodyweight to build stamina, power, and metabolism.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 45–50 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: High
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Intermediate</div>
+                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card card-lift h-100">
-                    <div class="ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1200&q=70" class="card-img-top object-fit-cover" alt="Cycling" loading="lazy" referrerpolicy="no-referrer">
+            <!-- 4. Yoga & Mobility -->
+            <div class="col-md-6 col-lg-4" data-category="mind">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/4325466/pexels-photo-4325466.jpeg" class="card-img-top" alt="Yoga & Mobility" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-flower3"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Yoga &amp; Mobility</h5>
+                                <span class="badge badge-soft">Mind-Body</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Flow, stretch, and breathwork to improve flexibility, recovery, and stress relief.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 50–60 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Low-Medium
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <span class="badge bg-dark mb-2">Cycling</span>
-                        <h5 class="card-title">Spin & Sweat</h5>
-                        <p class="card-text text-secondary">Group cycling with music-driven intervals for a powerful ride.</p>
-                        <a href="#contact" class="btn btn-outline-brand btn-sm">Join Class</a>
+                </div>
+            </div>
+
+            <!-- 5. HIIT Combat -->
+            <div class="col-md-6 col-lg-4" data-category="cardio">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/4753894/pexels-photo-4753894.jpeg" class="card-img-top" alt="HIIT Combat" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">HIIT Combat</h5>
+                                <span class="badge badge-soft">Cardio</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Boxing/kickboxing-inspired combinations and footwork. Torch calories while building agility and coordination.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 35–45 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: High
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Strength & Powerlifting -->
+            <div class="col-md-6 col-lg-4" data-category="strength">
+                <div class="card class-card h-100">
+                    <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3" class="card-img-top" alt="Strength & Powerlifting" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-bar-chart-steps"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Strength &amp; Powerlifting</h5>
+                                <span class="badge badge-soft">Strength</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Barbell, dumbbell, and kettlebell training focused on technique and progressive overload for real strength gains.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 60 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium-High
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Intermediate</div>
+                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -553,70 +1485,183 @@
 <!-- Coaches -->
 <section id="coaches" class="section">
     <div class="container">
-        <div class="text-center mb-5">
-            <span class="badge text-bg-warning-subtle text-uppercase">Coaches</span>
-            <h2 class="mt-2">Meet Our Experts</h2>
-            <p class="text-secondary mb-0">Learn from certified, experienced trainers who care about your progress.</p>
+        <div class="row align-items-end mb-4">
+            <div class="col-lg-8">
+                <h2 class="section-title fw-bold mb-2">Our <span>Coaches</span></h2>
+                <p class="text-secondary mb-0">Learn from certified, experienced trainers who care about your progress.</p>
+            </div>
         </div>
 
         <div class="row g-4">
-            <!-- Coach cards -->
-            <div class="col-sm-6 col-lg-3">
-                <div class="card team-card h-100">
-                    <div class="ratio ratio-4x5">
-                        <img src="https://images.unsplash.com/photo-1551292831-023188e78222?auto=format&fit=crop&w=900&q=70" class="card-img-top object-fit-cover" alt="Coach 1" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body text-center">
-                        <h6 class="mb-1">Alex Fernando</h6>
-                        <small class="text-secondary d-block mb-2">Strength & Conditioning</small>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <!-- Coach 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/6456186/pexels-photo-6456186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Alex Fernando" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="coach-icon"><i class="bi bi-bar-chart-steps"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Alex Fernando</h5>
+                                <span class="badge badge-soft">Strength & Powerlifting</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Expert in barbell training and progressive overload, Alex helps you build strength with proper technique.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 10+ Years Experience
+                            <span class="dot"></span>
+                            <i class="bi bi-award me-1"></i> Certified: NSCA-CSCS
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card team-card h-100">
-                    <div class="ratio ratio-4x5">
-                        <img src="https://images.unsplash.com/photo-1549062572-0d7241f0d04a?auto=format&fit=crop&w=900&q=70" class="card-img-top object-fit-cover" alt="Coach 2" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body text-center">
-                        <h6 class="mb-1">Nadia Perera</h6>
-                        <small class="text-secondary d-block mb-2">HIIT & Mobility</small>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+            <!-- Coach 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/6147117/pexels-photo-6147117.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Nadia Perera" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="coach-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Nadia Perera</h5>
+                                <span class="badge badge-soft">HIIT & Combat</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Nadia specializes in high-intensity interval training and combat-inspired workouts to boost agility and endurance.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 8+ Years Experience
+                            <span class="dot"></span>
+                            <i class="bi bi-award me-1"></i> Certified: ACE-CPT
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card team-card h-100">
-                    <div class="ratio ratio-4x5">
-                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=70" class="card-img-top object-fit-cover" alt="Coach 3" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body text-center">
-                        <h6 class="mb-1">Ishan Silva</h6>
-                        <small class="text-secondary d-block mb-2">Cross Training</small>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+            <!-- Coach 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/4498609/pexels-photo-4498609.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Ishan Silva" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="coach-icon"><i class="bi bi-speedometer2"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Ishan Silva</h5>
+                                <span class="badge badge-soft">Engine Builder</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Ishan designs dynamic interval circuits to enhance stamina, power, and metabolic conditioning.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 7+ Years Experience
+                            <span class="dot"></span>
+                            <i class="bi bi-award me-1"></i> Certified: NASM-CPT
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Intermediate</div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card team-card h-100">
-                    <div class="ratio ratio-4x5">
-                        <img src="https://images.unsplash.com/photo-1541534401786-2077eed87a72?auto=format&fit=crop&w=900&q=70" class="card-img-top object-fit-cover" alt="Coach 4" loading="lazy" referrerpolicy="no-referrer">
+
+            <!-- Coach 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/6456213/pexels-photo-6456213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Sasha de Alwis" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="coach-icon"><i class="bi bi-flower3"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Sasha de Alwis</h5>
+                                <span class="badge badge-soft">Yoga & Mobility</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Sasha guides you through yoga flows and mobility exercises for flexibility and stress relief.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 9+ Years Experience
+                            <span class="dot"></span>
+                            <i class="bi bi-award me-1"></i> Certified: RYT-200
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body text-center">
-                        <h6 class="mb-1">Sasha de Alwis</h6>
-                        <small class="text-secondary d-block mb-2">Functional Fitness</small>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Coach 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/733767/pexels-photo-733767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Ravi Mendis" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="coach-icon"><i class="bi bi-bicycle"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Ravi Mendis</h5>
+                                <span class="badge badge-soft">Spin & Sweat</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Ravi leads high-energy cycling sessions, driving heart health and leg endurance with motivating music.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 6+ Years Experience
+                            <span class="dot"></span>
+                            <i class="bi bi-award me-1"></i> Certified: Schwinn Cycling
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Beginner-Friendly</div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach 6 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/416717/pexels-photo-416717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Lila Gunawardena" loading="lazy">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="coach-icon"><i class="bi bi-body-text"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Lila Gunawardena</h5>
+                                <span class="badge badge-soft">Core & Conditioning</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Lila focuses on core strength and functional drills to enhance posture, balance, and durability.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 7+ Years Experience
+                            <span class="dot"></span>
+                            <i class="bi bi-award me-1"></i> Certified: ISSA-CPT
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="Instagram"><i class="fab fa-instagram icon-mix"></i></a>
+                                <a href="#" class="btn btn-outline-brand btn-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in icon-mix"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -661,12 +1706,12 @@
                 </form>
             </div>
             <div class="col-lg-6">
-                <div class="card p-3 h-100">
+                <div class="card p-3 h-100 card-lift">
                     <div class="card-body">
                         <h5>Contact Info</h5>
-                        <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i> 45 King Street, Colombo</p>
-                        <p class="mb-1"><i class="fa-solid fa-phone me-2"></i> +94 77 123 4567</p>
-                        <p class="mb-3"><i class="fa-solid fa-envelope me-2"></i> hello@gymnest.fit</p>
+                        <p class="mb-1"><i class="fa-solid fa-location-dot me-2 icon-mix"></i> 45 King Street, Colombo</p>
+                        <p class="mb-1"><i class="fa-solid fa-phone me-2 icon-mix"></i> +94 77 123 4567</p>
+                        <p class="mb-3"><i class="fa-solid fa-envelope me-2 icon-mix"></i> hello@gymnest.fit</p>
                         <div class="ratio ratio-16x9 rounded-3 overflow-hidden">
                             <iframe src="https://maps.google.com/maps?q=Colombo%20Sri%20Lanka&t=&z=12&ie=UTF8&iwloc=&output=embed"
                                     style="border:0" allowfullscreen="" loading="lazy"></iframe>
@@ -684,7 +1729,7 @@
         <div class="row g-4 align-items-center">
             <div class="col-md-6">
                 <div class="d-flex align-items-center">
-                    <i class="fa-solid fa-dumbbell me-2 text-warning"></i>
+                    <i class="fa-solid fa-dumbbell me-2 icon-mix"></i>
                     <span class="fw-semibold">© <span class="year"></span> GymNest. All rights reserved.</span>
                 </div>
             </div>
@@ -701,7 +1746,8 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     // Footer year
     document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
@@ -711,7 +1757,7 @@
         const heroEl = document.getElementById('heroCarousel');
         if (heroEl) {
             const heroCarousel = new bootstrap.Carousel(heroEl, {
-                interval: 5000,  // give images time to paint
+                interval: 5000,
                 pause: false,
                 wrap: true,
                 touch: true,
@@ -725,7 +1771,7 @@
             img.addEventListener('error', () => {
                 try {
                     const u = new URL(img.src, window.location.href);
-                    u.searchParams.set('q', '60'); // has effect for Unsplash; harmless for local
+                    u.searchParams.set('q', '60'); // Unsplash quality param
                     img.src = u.toString();
                 } catch(e) {}
             }, { once: true });
@@ -749,12 +1795,6 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
 
 
 
