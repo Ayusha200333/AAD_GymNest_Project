@@ -29,7 +29,7 @@ public class ClassServiceImpl implements ClassService {
             classEntity.setDay(classDTO.getDay());
             classEntity.setTime(classDTO.getTime());
             classEntity.setCapacity(classDTO.getCapacity());
-            classEntity.setEnrolled(0); // default 0
+            classEntity.setEnrolled(0);
             classEntity.setStatus("AVAILABLE");
 
             classRepository.save(classEntity);

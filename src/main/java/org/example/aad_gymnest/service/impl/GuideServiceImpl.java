@@ -28,8 +28,8 @@ public class GuideServiceImpl implements GuideService {
             return VarList.Not_Acceptable;
         }
         GuideEntity entity = modelMapper.map(guideDTO, GuideEntity.class);
-        entity.setStatus("ACTIVE");  // Ensure default status
-        entity.setBooked("NO");       // Ensure default booked
+        entity.setStatus("ACTIVE");
+        entity.setBooked("NO");
         guideRepository.save(entity);
         return VarList.Created;
     }

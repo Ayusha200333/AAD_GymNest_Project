@@ -38,7 +38,6 @@ public class MembershipController {
             @RequestParam(value = "imageUrl", required = false) MultipartFile image
     ) {
         try {
-            // --- Prepare DTO ---
             MembershipDTO membershipDTO = new MembershipDTO();
             membershipDTO.setName(name);
             membershipDTO.setDescription(description);
@@ -46,13 +45,11 @@ public class MembershipController {
             membershipDTO.setAddress(address);
             membershipDTO.setOpenHours(openHours);
 
-            // --- Handle image upload ---
             if (image != null && !image.isEmpty()) {
                 String imagePath = saveFile(image);
                 membershipDTO.setImageUrl(imagePath);
             }
 
-            // --- Save using service ---
             int res = membershipService.saveMembership(membershipDTO);
 
             switch (res) {
@@ -72,7 +69,6 @@ public class MembershipController {
         }
     }
 
-    // ---- Helper method for saving uploaded file ----
     private String saveFile(MultipartFile file) throws IOException {
         File directory = new File(UPLOAD_DIR);
         if (!directory.exists()) {
@@ -83,7 +79,7 @@ public class MembershipController {
         Path path = Paths.get(UPLOAD_DIR + uniqueFileName);
         Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-        return uniqueFileName; // DB/store එකේ save වෙන්නේ මේ name එක
+        return uniqueFileName;
     }
 
 
@@ -96,8 +92,9 @@ public class MembershipController {
             @RequestParam("editMembershipAddress") List<String> address,
             @RequestParam("editMembershipOpenHours") String openHours,
             @RequestParam(value = "editMembershipImage", required = false) MultipartFile image) {
+
         try {
-            // --- Build DTO ---
+
             MembershipDTO membershipDTO = new MembershipDTO();
             membershipDTO.setName(name);
             membershipDTO.setDescription(description);
@@ -105,13 +102,11 @@ public class MembershipController {
             membershipDTO.setAddress(address);
             membershipDTO.setOpenHours(openHours);
 
-            // --- Handle image upload ---
             if (image != null && !image.isEmpty()) {
                 String imagePath = saveFile(image);
                 membershipDTO.setImageUrl(imagePath);
             }
 
-            // --- Call Service ---
             int res = membershipService.updateMembership(id, membershipDTO);
 
             switch (res) {

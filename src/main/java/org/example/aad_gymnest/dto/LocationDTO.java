@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class LocationDTO {
         private Long id;
-        private String name;       // Branch Name (Ex: Colombo 03)
-        private String description; // Description / Opening hours
+        private String name;
+        private String description;
         private String imageUrl;    // Location image
-        private String address;     // Address or location link
+        private String address;     // Address
         private String openHours;   // "Open 6am - 10pm"
 }

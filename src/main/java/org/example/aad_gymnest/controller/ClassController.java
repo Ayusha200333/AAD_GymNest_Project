@@ -16,77 +16,124 @@ import java.util.List;
 @RequestMapping("api/v1/class")
 public class ClassController {
 
-        @Autowired
-        private ClassService classService;
+    @Autowired
+    private ClassService classService;
 
-        @PostMapping("/save")
-        public ResponseEntity<ResponseDTO> saveClass(@RequestBody ClassDTO classDTO) {
-            try {
-                int res = classService.saveClass(classDTO);
-                if(res == VarList.Created) {
+    @PostMapping("/save")
+    public ResponseEntity<ResponseDTO> saveClass(
+            @RequestParam("name") String name,
+            @RequestParam("trainer") String trainer,
+            @RequestParam("day") String day,
+            @RequestParam("time") String time,
+            @RequestParam("capacity") int capacity) {
+
+        try {
+            ClassDTO classDTO = new ClassDTO();
+            classDTO.setName(name);
+            classDTO.setTrainer(trainer);
+            classDTO.setDay(day);
+            classDTO.setTime(time);
+            classDTO.setCapacity(capacity);
+            classDTO.setEnrolled(0);
+            classDTO.setStatus("AVAILABLE");
+
+            int res = classService.saveClass(classDTO);
+
+            switch (res) {
+                case VarList.Created:
                     return ResponseEntity.status(HttpStatus.CREATED)
                             .body(new ResponseDTO(VarList.Created, "Class Saved Successfully", classDTO));
-                } else {
+                case VarList.Not_Acceptable:
                     return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
                             .body(new ResponseDTO(VarList.Not_Acceptable, "Class Already Exists", null));
-                }
-            } catch(Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+                default:
+                    return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                            .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
             }
-        }
 
-        @PutMapping("/update/{id}")
-        public ResponseEntity<ResponseDTO> updateClass(@PathVariable Long id, @RequestBody ClassDTO classDTO) {
-            try {
-                int res = classService.updateClass(id, classDTO);
-                if(res == VarList.Created) {
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ResponseDTO> updateClass(
+            @PathVariable Long id,
+            @RequestParam("editName") String name,
+            @RequestParam("editTrainer") String trainer,
+            @RequestParam("editDay") String day,
+            @RequestParam("editTime") String time,
+            @RequestParam("editCapacity") int capacity) {
+
+        try {
+            ClassDTO classDTO = new ClassDTO();
+            classDTO.setName(name);
+            classDTO.setTrainer(trainer);
+            classDTO.setDay(day);
+            classDTO.setTime(time);
+            classDTO.setCapacity(capacity);
+
+            int res = classService.updateClass(id, classDTO);
+
+            switch (res) {
+                case VarList.Created:
                     return ResponseEntity.ok(new ResponseDTO(VarList.Created, "Class Updated Successfully", classDTO));
-                } else {
+                case VarList.Not_Found:
                     return ResponseEntity.status(HttpStatus.NOT_FOUND)
                             .body(new ResponseDTO(VarList.Not_Found, "Class Not Found", null));
-                }
-            } catch(Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+                default:
+                    return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                            .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
             }
-        }
 
-        @DeleteMapping("/delete/{id}")
-        public ResponseEntity<ResponseDTO> deleteClass(@PathVariable Long id) {
-            try {
-                int res = classService.deleteClass(id);
-                if(res == VarList.Created) {
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ResponseDTO> deleteClass(@PathVariable Long id) {
+        try {
+            int res = classService.deleteClass(id);
+
+            switch (res) {
+                case VarList.Created:
                     return ResponseEntity.ok(new ResponseDTO(VarList.Created, "Class Deleted Successfully", null));
-                } else {
+                case VarList.Not_Found:
                     return ResponseEntity.status(HttpStatus.NOT_FOUND)
                             .body(new ResponseDTO(VarList.Not_Found, "Class Not Found", null));
-                }
-            } catch(Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+                default:
+                    return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                            .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
             }
-        }
 
-        @GetMapping("/getAll")
-        public ResponseEntity<ResponseDTO> getAllClasses() {
-            try {
-                List<ClassDTO> classes = classService.getAllClasses();
-                return ResponseEntity.ok(new ResponseDTO(VarList.Created, "All Classes Retrieved Successfully", classes));
-            } catch(Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
-            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
         }
+    }
 
-        @GetMapping("/available")
-        public ResponseEntity<ResponseDTO> getAvailableClasses() {
-            try {
-                List<ClassDTO> classes = classService.getAvailableClasses();
-                return ResponseEntity.ok(new ResponseDTO(VarList.Created, "Available Classes Retrieved Successfully", classes));
-            } catch(Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
-            }
+    @GetMapping("/getAll")
+    public ResponseEntity<ResponseDTO> getAllClasses() {
+        try {
+            List<ClassDTO> classes = classService.getAllClasses();
+            return ResponseEntity.ok(new ResponseDTO(VarList.Created, "All Classes Retrieved Successfully", classes));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
         }
+    }
+
+    @GetMapping("/available")
+    public ResponseEntity<ResponseDTO> getAvailableClasses() {
+        try {
+            List<ClassDTO> classes = classService.getAvailableClasses();
+            return ResponseEntity.ok(new ResponseDTO(VarList.Created, "Available Classes Retrieved Successfully", classes));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
+    }
 }

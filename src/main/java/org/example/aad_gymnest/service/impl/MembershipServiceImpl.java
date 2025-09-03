@@ -36,16 +36,16 @@ public class MembershipServiceImpl implements MembershipService {
             return VarList.Not_Acceptable;
         }
 
-        // map DTO → Entity
+
         MembershipEntity membership = modelMapper.map(membershipDTO, MembershipEntity.class);
 
-        // convert DTO string addresses → Location entities
+        // convert DTO string addresses to Location entities
         List<LocationEntity> locationList = membershipDTO.getAddress().stream()
                 .map(addr -> {
                     LocationEntity loc = new LocationEntity();
-                    loc.setName(addr);       // <<< MUST set name
-                    loc.setAddress(addr);    // optional: physical address or same as name
-                    loc.setOpenHours(membershipDTO.getOpenHours()); // optional
+                    loc.setName(addr);
+                    loc.setAddress(addr);
+                    loc.setOpenHours(membershipDTO.getOpenHours());
                     return locationRepository.save(loc);
                 })
                 .collect(Collectors.toList());

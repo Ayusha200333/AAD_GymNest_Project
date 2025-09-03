@@ -32,7 +32,6 @@ public class GuideController {
 
     private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
 
-    // -------------------- SAVE GUIDE --------------------
     @PostMapping("/save")
     public ResponseEntity<ResponseDTO> saveGuide(
             @RequestParam("fullName") String fullName,
@@ -77,7 +76,6 @@ public class GuideController {
         }
     }
 
-    // -------------------- UPDATE GUIDE --------------------
     @PostMapping("/update/{email}")
     public ResponseEntity<ResponseDTO> updateGuide(
             @PathVariable String email,
@@ -118,7 +116,6 @@ public class GuideController {
         }
     }
 
-    // -------------------- DEACTIVATE GUIDE --------------------
     @PutMapping("/deactivate/{email}")
     public ResponseEntity<ResponseDTO> deactivateGuide(@PathVariable String email) {
         try {
@@ -138,7 +135,6 @@ public class GuideController {
         }
     }
 
-    // -------------------- ACTIVATE GUIDE --------------------
     @PutMapping("/activate/{email}")
     public ResponseEntity<ResponseDTO> activateGuide(@PathVariable String email) {
         try {
@@ -158,7 +154,6 @@ public class GuideController {
         }
     }
 
-    // -------------------- GET ALL GUIDES --------------------
     @GetMapping("/getAll")
     public ResponseEntity<ResponseDTO> getAllGuides() {
         try {
@@ -170,7 +165,6 @@ public class GuideController {
         }
     }
 
-    // -------------------- GET AVAILABLE GUIDES --------------------
     @GetMapping("/available")
     public ResponseEntity<ResponseDTO> getAvailableGuides() {
         try {
@@ -186,7 +180,6 @@ public class GuideController {
         }
     }
 
-    // -------------------- FILE SAVE UTILITY --------------------
     private String saveFile(MultipartFile file) throws IOException {
         File directory = new File(UPLOAD_DIR);
         if (!directory.exists()) {
@@ -201,7 +194,6 @@ public class GuideController {
     }
 
 
-//    // -------------------- DELETE GUIDE --------------------
 //    @DeleteMapping("/delete/{email}")
 //    public ResponseEntity<ResponseDTO> deleteGuide(@PathVariable String email) {
 //        try {
