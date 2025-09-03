@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "memberships")
-public class Membership {
+public class MembershipEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,7 +26,7 @@ public class Membership {
             joinColumns = @JoinColumn(name = "membership_id"),
             inverseJoinColumns = @JoinColumn(name = "location_id")
     )
-    private List<Location> address;
+    private List<LocationEntity> address;
     private String openHours;
     private String imageUrl;
 }

@@ -1,7 +1,7 @@
 package org.example.aad_gymnest.service.impl;
 
 import org.example.aad_gymnest.dto.GuideDTO;
-import org.example.aad_gymnest.entity.Guide;
+import org.example.aad_gymnest.entity.GuideEntity;
 import org.example.aad_gymnest.repo.GuideRepository;
 import org.example.aad_gymnest.service.GuideService;
 import org.example.aad_gymnest.util.VarList;
@@ -27,7 +27,7 @@ public class GuideServiceImpl implements GuideService {
         if (guideRepository.existsByEmail(guideDTO.getEmail())) {
             return VarList.Not_Acceptable;
         }
-        Guide entity = modelMapper.map(guideDTO, Guide.class);
+        GuideEntity entity = modelMapper.map(guideDTO, GuideEntity.class);
         entity.setStatus("ACTIVE");  // Ensure default status
         entity.setBooked("NO");       // Ensure default booked
         guideRepository.save(entity);
@@ -36,9 +36,9 @@ public class GuideServiceImpl implements GuideService {
 
     @Override
     public int updateGuide(String email, GuideDTO guideDTO) {
-        Optional<Guide> existing = guideRepository.findByEmail(email);
+        Optional<GuideEntity> existing = guideRepository.findByEmail(email);
         if (existing.isPresent()) {
-            Guide entity = existing.get();
+            GuideEntity entity = existing.get();
             entity.setFullName(guideDTO.getFullName());
             entity.setDescription(guideDTO.getDescription());
             entity.setPaymentPerHour(guideDTO.getPaymentPerHour());
@@ -55,9 +55,9 @@ public class GuideServiceImpl implements GuideService {
 
     @Override
     public int deactivateGuide(String email) {
-        Optional<Guide> existing = guideRepository.findByEmail(email);
+        Optional<GuideEntity> existing = guideRepository.findByEmail(email);
         if (existing.isPresent()) {
-            Guide entity = existing.get();
+            GuideEntity entity = existing.get();
             entity.setStatus("INACTIVE");
             guideRepository.save(entity);
             return VarList.Created;
@@ -67,9 +67,9 @@ public class GuideServiceImpl implements GuideService {
 
     @Override
     public int activateGuide(String email) {
-        Optional<Guide> existing = guideRepository.findByEmail(email);
+        Optional<GuideEntity> existing = guideRepository.findByEmail(email);
         if (existing.isPresent()) {
-            Guide entity = existing.get();
+            GuideEntity entity = existing.get();
             entity.setStatus("ACTIVE");
             guideRepository.save(entity);
             return VarList.Created;

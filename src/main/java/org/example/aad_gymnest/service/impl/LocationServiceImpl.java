@@ -2,7 +2,7 @@ package org.example.aad_gymnest.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.example.aad_gymnest.dto.LocationDTO;
-import org.example.aad_gymnest.entity.Location;
+import org.example.aad_gymnest.entity.LocationEntity;
 import org.example.aad_gymnest.repo.LocationRepository;
 import org.example.aad_gymnest.service.LocationService;
 import org.example.aad_gymnest.util.VarList;
@@ -28,16 +28,16 @@ public class LocationServiceImpl implements LocationService {
         if (locationRepository.existsByName(locationDTO.getName())) {
             return VarList.Not_Acceptable;
         }
-        Location location = modelMapper.map(locationDTO, Location.class);
+        LocationEntity location = modelMapper.map(locationDTO, LocationEntity.class);
         locationRepository.save(location);
         return VarList.Created;
     }
 
     @Override
     public int updateLocation(Long id, LocationDTO locationDTO) {
-        Optional<Location> existingLocationOpt = locationRepository.findById(id);
+        Optional<LocationEntity> existingLocationOpt = locationRepository.findById(id);
         if (existingLocationOpt.isPresent()) {
-            Location existingLocation = existingLocationOpt.get();
+            LocationEntity existingLocation = existingLocationOpt.get();
 
             existingLocation.setName(locationDTO.getName());
             existingLocation.setDescription(locationDTO.getDescription());
@@ -66,7 +66,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public List<LocationDTO> getAllLocations() {
-        List<Location> locations = locationRepository.findAll();
+        List<LocationEntity> locations = locationRepository.findAll();
         return locations.stream()
                 .map(loc -> modelMapper.map(loc, LocationDTO.class))
                 .collect(Collectors.toList());

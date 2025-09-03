@@ -1,6 +1,6 @@
 package org.example.aad_gymnest.repo;
 
-import org.example.aad_gymnest.entity.Guide;
+import org.example.aad_gymnest.entity.GuideEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface GuideRepository extends JpaRepository<Guide, Long> {
+public interface GuideRepository extends JpaRepository<GuideEntity, Long> {
     boolean existsByEmail(String email);
-    Optional<Guide> findByEmail(String email);
-    List<Guide> findAllByBookedAndStatus(String booked, String status);
+    Optional<GuideEntity> findByEmail(String email);
+    List<GuideEntity> findAllByBookedAndStatus(String booked, String status);
 }

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gym Classes</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+        :root{
+            --brand:#ff6600; /* Orange accent */
+            --brand-dark:#e55a00;
+            --ink:#111111;   /* Almost black */
+            --muted:#6c757d;
+            --card-bg:#ffffff;
+            --bg:#f9f9f9;    /* Light background */
+        }
+        body{background:var(--bg); color:var(--ink)}
+        .section-title span{color:var(--brand)}
+        .class-card{border:0; border-radius:1.25rem; overflow:hidden; background:var(--card-bg); box-shadow:0 10px 25px rgba(0,0,0,.08); transition:transform .2s ease, box-shadow .2s ease}
+        .class-card:hover{transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.12)}
+        .class-icon{width:64px; height:64px; display:grid; place-items:center; border-radius:16px; background:linear-gradient(135deg, var(--brand), var(--brand-dark)); color:#fff; font-size:28px}
+        .badge-soft{background:rgba(255,102,0,.12); color:var(--brand)}
+        .level{font-size:.85rem}
+        .meta i{font-size:1rem}
+        .meta .dot{width:6px; height:6px; background:var(--muted); border-radius:50%; display:inline-block; margin:0 .5rem}
+        .cta-btn{background:var(--brand); border-color:var(--brand)}
+        .cta-btn:hover{background:var(--brand-dark); border-color:var(--brand-dark)}
+        .filter-bar .btn{border-radius:999px}
+        .filter-bar .btn.active, .filter-bar .btn:focus{background:var(--brand); color:#fff; border-color:var(--brand)}
+        .card-img-top{height:200px; object-fit:cover}
+    </style>
+</head>
+<body>
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-end mb-4">
+            <div class="col-lg-8">
+                <h2 class="section-title fw-bold mb-2">Our <span>Classes</span></h2>
+                <p class="text-secondary mb-0">Choose from strength, cardio, and mind-body sessions. All classes are beginner-friendly with progressions.</p>
+            </div>
+            <div class="col-lg-4 mt-3 mt-lg-0">
+                <div class="filter-bar d-flex gap-2 justify-content-lg-end">
+                    <button class="btn btn-outline-dark btn-sm active" data-filter="all">All</button>
+                    <button class="btn btn-outline-dark btn-sm" data-filter="cardio">Cardio</button>
+                    <button class="btn btn-outline-dark btn-sm" data-filter="strength">Strength</button>
+                    <button class="btn btn-outline-dark btn-sm" data-filter="mind">Mind-Body</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4" id="classes-grid">
+            <!-- 1. Spin & Sweat -->
+            <div class="col-md-6 col-lg-4" data-category="cardio">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg" class="card-img-top" alt="Spin & Sweat">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-bicycle"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Spin &amp; Sweat</h5>
+                                <span class="badge badge-soft">Cardio</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">High-energy indoor cycling with music. Boosts heart health, leg endurance, and burns calories fast.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 45 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium-High
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Beginner-Friendly</div>
+                            <a href="#" class="btn btn-sm cta-btn">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Core & Conditioning -->
+            <div class="col-md-6 col-lg-4" data-category="strength">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/1552249/pexels-photo-1552249.jpeg" class="card-img-top" alt="Core & Conditioning">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-body-text"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Core &amp; Conditioning</h5>
+                                <span class="badge badge-soft">Strength</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Target abs, obliques, and lower-back with functional drills to improve posture, balance, and durability.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 40 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <a href="#" class="btn btn-sm cta-btn">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Engine Builder -->
+            <div class="col-md-6 col-lg-4" data-category="cardio strength">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg" class="card-img-top" alt="Engine Builder">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-speedometer2"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Engine Builder</h5>
+                                <span class="badge badge-soft">Conditioning</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Interval circuits mixing weights, rowing, and bodyweight to build stamina, power, and metabolism.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 45–50 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: High
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Intermediate</div>
+                            <a href="#" class="btn btn-sm cta-btn">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Yoga & Mobility -->
+            <div class="col-md-6 col-lg-4" data-category="mind">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/4325466/pexels-photo-4325466.jpeg" class="card-img-top" alt="Yoga & Mobility">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-flower3"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Yoga &amp; Mobility</h5>
+                                <span class="badge badge-soft">Mind-Body</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Flow, stretch, and breathwork to improve flexibility, recovery, and stress relief.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 50–60 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Low-Medium
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <a href="#" class="btn btn-sm cta-btn">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. HIIT Combat -->
+            <div class="col-md-6 col-lg-4" data-category="cardio">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/4753894/pexels-photo-4753894.jpeg" class="card-img-top" alt="HIIT Combat">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">HIIT Combat</h5>
+                                <span class="badge badge-soft">Cardio</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Boxing/kickboxing-inspired combinations and footwork. Torch calories while building agility and coordination.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 35–45 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: High
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> All Levels</div>
+                            <a href="#" class="btn btn-sm cta-btn">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Strength & Powerlifting -->
+            <div class="col-md-6 col-lg-4" data-category="strength">
+                <div class="card class-card h-100">
+                    <img src="https://images.pexels.com/photos/3837752/pexels-photo-3837752.jpeg" class="card-img-top" alt="Strength & Powerlifting">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3 gap-3">
+                            <div class="class-icon"><i class="bi bi-bar-chart-steps"></i></div>
+                            <div>
+                                <h5 class="card-title mb-1">Strength &amp; Powerlifting</h5>
+                                <span class="badge badge-soft">Strength</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-3">Barbell, dumbbell, and kettlebell training focused on technique and progressive overload for real strength gains.</p>
+                        <div class="meta small text-muted mb-3">
+                            <i class="bi bi-clock me-1"></i> 60 min
+                            <span class="dot"></span>
+                            <i class="bi bi-lightning-charge me-1"></i> Intensity: Medium-High
+                        </div>
+                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> Intermediate</div>
+                            <a href="#" class="btn btn-sm cta-btn">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Note -->
+        <div class="alert alert-light border mt-4" role="alert">
+            <i class="bi bi-info-circle me-2 text-warning"></i>
+            New to training? Ask our coaches for the best starting class for your goals.
+        </div>
+
+    </div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Simple client-side filter
+    const buttons = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('#classes-grid > div[data-category]');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const f = btn.getAttribute('data-filter');
+            buttons.forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            cards.forEach(c => {
+                if (f === 'all') { c.classList.remove('d-none'); return; }
+                const cats = c.getAttribute('data-category');
+                c.classList.toggle('d-none', !cats.includes(f));
+            });
+        });
+    });
+</script>
+</body>
+</html>

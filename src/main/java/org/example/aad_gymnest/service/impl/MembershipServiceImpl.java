@@ -1,10 +1,9 @@
 package org.example.aad_gymnest.service.impl;
 
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import org.example.aad_gymnest.dto.MembershipDTO;
-import org.example.aad_gymnest.entity.Location;
-import org.example.aad_gymnest.entity.Membership;
+import org.example.aad_gymnest.entity.LocationEntity;
+import org.example.aad_gymnest.entity.MembershipEntity;
 import org.example.aad_gymnest.repo.LocationRepository;
 import org.example.aad_gymnest.repo.MembershipRepository;
 import org.example.aad_gymnest.service.MembershipService;
@@ -38,12 +37,12 @@ public class MembershipServiceImpl implements MembershipService {
         }
 
         // map DTO → Entity
-        Membership membership = modelMapper.map(membershipDTO, Membership.class);
+        MembershipEntity membership = modelMapper.map(membershipDTO, MembershipEntity.class);
 
         // convert DTO string addresses → Location entities
-        List<Location> locationList = membershipDTO.getAddress().stream()
+        List<LocationEntity> locationList = membershipDTO.getAddress().stream()
                 .map(addr -> {
-                    Location loc = new Location();
+                    LocationEntity loc = new LocationEntity();
                     loc.setName(addr);       // <<< MUST set name
                     loc.setAddress(addr);    // optional: physical address or same as name
                     loc.setOpenHours(membershipDTO.getOpenHours()); // optional
@@ -53,7 +52,6 @@ public class MembershipServiceImpl implements MembershipService {
 
         membership.setAddress(locationList);
 
-
         membershipRepository.save(membership);
         return VarList.Created;
     }
@@ -61,9 +59,9 @@ public class MembershipServiceImpl implements MembershipService {
     @Override
     @Transactional
     public int updateMembership(Long id, MembershipDTO membershipDTO) {
-        Optional<Membership> existingOpt = membershipRepository.findById(id);
+        Optional<MembershipEntity> existingOpt = membershipRepository.findById(id);
         if (existingOpt.isPresent()) {
-            Membership existing = existingOpt.get();
+            MembershipEntity existing = existingOpt.get();
 
             // manually map fields instead of full ModelMapper
             existing.setName(membershipDTO.getName());
@@ -73,9 +71,9 @@ public class MembershipServiceImpl implements MembershipService {
             existing.setImageUrl(membershipDTO.getImageUrl());
 
             // update locations
-            List<Location> locationList = membershipDTO.getAddress().stream()
+            List<LocationEntity> locationList = membershipDTO.getAddress().stream()
                     .map(addr -> {
-                        Location loc = new Location();
+                        LocationEntity loc = new LocationEntity();
                         loc.setName(addr);
                         loc.setAddress(addr);
                         loc.setOpenHours(membershipDTO.getOpenHours());
@@ -94,7 +92,7 @@ public class MembershipServiceImpl implements MembershipService {
     @Override
     @Transactional
     public int deleteMembership(Long id) {
-        Optional<Membership> existingOpt = membershipRepository.findById(id);
+        Optional<MembershipEntity> existingOpt = membershipRepository.findById(id);
         if (existingOpt.isPresent()) {
             membershipRepository.deleteById(id);
             return VarList.Created;
@@ -104,14 +102,14 @@ public class MembershipServiceImpl implements MembershipService {
 
     @Override
     public List<MembershipDTO> getAllMemberships() {
-        List<Membership> memberships = membershipRepository.findAll();
+        List<MembershipEntity> memberships = membershipRepository.findAll();
 
         return memberships.stream().map(membership -> {
             MembershipDTO dto = modelMapper.map(membership, MembershipDTO.class);
 
             // map Location entities → String addresses
             List<String> addresses = membership.getAddress().stream()
-                    .map(Location::getAddress)
+                    .map(LocationEntity::getAddress)
                     .collect(Collectors.toList());
             dto.setAddress(addresses);
 
