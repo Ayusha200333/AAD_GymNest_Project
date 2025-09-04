@@ -33,8 +33,8 @@ public class PackageController {
             @RequestParam("name") String name,
             @RequestParam("description") String description,
             @RequestParam("price") Double price,
-            @RequestParam("address") List<String> address,
             @RequestParam("openHours") String openHours,
+            @RequestParam(value = "classIds", required = false) List<String> classIds,
             @RequestParam(value = "imageUrl", required = false) MultipartFile image
     ) {
         try {
@@ -42,8 +42,8 @@ public class PackageController {
             packageDTO.setName(name);
             packageDTO.setDescription(description);
             packageDTO.setPrice(price);
-            packageDTO.setAddress(address);
             packageDTO.setOpenHours(openHours);
+            packageDTO.setClasses(classIds);
 
             if (image != null && !image.isEmpty()) {
                 String imagePath = saveFile(image);
@@ -82,25 +82,23 @@ public class PackageController {
         return uniqueFileName;
     }
 
-
     @PostMapping("/update/{id}")
     public ResponseEntity<ResponseDTO> updatePackage(
             @PathVariable Long id,
             @RequestParam("editMembershipName") String name,
             @RequestParam("editMembershipDescription") String description,
             @RequestParam("editMembershipPrice") Double price,
-            @RequestParam("editMembershipAddress") List<String> address,
             @RequestParam("editMembershipOpenHours") String openHours,
-            @RequestParam(value = "editMembershipImage", required = false) MultipartFile image) {
-
+            @RequestParam(value = "editMembershipClassIds", required = false) List<String> classIds,
+            @RequestParam(value = "editMembershipImage", required = false) MultipartFile image
+    ) {
         try {
-
             PackageDTO packageDTO = new PackageDTO();
             packageDTO.setName(name);
             packageDTO.setDescription(description);
             packageDTO.setPrice(price);
-            packageDTO.setAddress(address);
             packageDTO.setOpenHours(openHours);
+            packageDTO.setClasses(classIds);
 
             if (image != null && !image.isEmpty()) {
                 String imagePath = saveFile(image);
@@ -126,7 +124,6 @@ public class PackageController {
                     .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
         }
     }
-
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ResponseDTO> deletePackage(@PathVariable Long id) {

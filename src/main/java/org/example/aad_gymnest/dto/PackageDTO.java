@@ -3,6 +3,7 @@ package org.example.aad_gymnest.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.aad_gymnest.entity.ClassEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class PackageDTO {
     private String name;
     private String description;
     private Double price;
-    private List<String> address;
+    private List<String> classes  ;
     private String openHours;
     private String imageUrl;
 }

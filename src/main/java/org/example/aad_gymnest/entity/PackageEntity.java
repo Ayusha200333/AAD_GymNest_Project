@@ -16,17 +16,22 @@ public class PackageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String description;
+
     private Double price;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "package_locations",
+            name = "package_class", // join table
             joinColumns = @JoinColumn(name = "package_id"),
-            inverseJoinColumns = @JoinColumn(name = "location_id")
+            inverseJoinColumns = @JoinColumn(name = "class_id")
     )
-    private List<LocationEntity> address;
+    private List<ClassEntity> classes;
+
     private String openHours;
+
     private String imageUrl;
 }
