@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @EnableWebSecurity
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
@@ -27,6 +26,7 @@ public class WebSecurityConfig {
     private UserServiceImpl userService;
     @Autowired
     private JwtFilter jwtFilter;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -36,7 +36,6 @@ public class WebSecurityConfig {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
@@ -44,8 +43,8 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    protected  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return  http
+    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
@@ -60,6 +59,10 @@ public class WebSecurityConfig {
                                 "/api/v1/location/**",
                                 "/api/v1/package/**",
                                 "/api/v1/dashboard/**").permitAll()
+                        // Attendance specific permissions
+                        .requestMatchers("/api/v1/attendance/mark").hasRole("ADMIN") // Only ADMIN can mark attendance for others
+                        .requestMatchers("/api/v1/attendance/self-mark").authenticated() // Any authenticated user can self-mark
+                        .requestMatchers("/api/v1/attendance/list").hasAnyRole("ADMIN", "USER") // Both ADMIN and USER can view attendance
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
