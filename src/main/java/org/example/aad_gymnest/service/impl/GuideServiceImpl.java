@@ -97,4 +97,14 @@ public class GuideServiceImpl implements GuideService {
     public int getTotalGuideCount() {
         return (int) guideRepository.count();
     }
+
+    @Override
+    public int deleteGuide(String email) {
+        Optional<GuideEntity> existing = guideRepository.findByEmail(email);
+        if (existing.isPresent()) {
+            guideRepository.delete(existing.get());
+            return VarList.Created;
+        }
+        return VarList.Not_Found;
+    }
 }

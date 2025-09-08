@@ -12,6 +12,8 @@ public interface GuideService {
     List<GuideDTO> getAllGuides();
     List<GuideDTO> getAvailableGuides();
     int getTotalGuideCount();
+
+    int deleteGuide(String email);
 }
 
 

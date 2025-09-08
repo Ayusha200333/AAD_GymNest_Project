@@ -1,57 +1,484 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials - GymNest</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css"></head><body>
-<nav class="navbar navbar-expand-lg sticky-top shadow-sm"><div class="container">
-    <a class="navbar-brand" href="index.html"><i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest</a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="guide.html">Coaches</a></li>
-        <li class="nav-item"><a class="nav-link" href="package.html">Packages</a></li>
-        <li class="nav-item"><a class="nav-link" href="booking.html">Book</a></li>
-        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-    </ul></div></div></nav>
+<!--<!DOCTYPE html><html lang="en"><head>-->
+<!--    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Testimonials - GymNest</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">-->
+<!--    <link rel="stylesheet" href="assets/css/style.css"></head><body>-->
+<!--<nav class="navbar navbar-expand-lg sticky-top shadow-sm"><div class="container">-->
+<!--    <a class="navbar-brand" href="index.html"><i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest</a>-->
+<!--    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>-->
+<!--    <div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto">-->
+<!--        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="guide.html">Coaches</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="package.html">Packages</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="booking.html">Book</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
+<!--    </ul></div></div></nav>-->
 
-<header class="page-header"><div class="container"><h1>Member Stories</h1><p class="page-subtitle">Real results from real people.</p></div></header>
+<!--<header class="page-header"><div class="container"><h1>Member Stories</h1><p class="page-subtitle">Real results from real people.</p></div></header>-->
 
-<section class="section"><div class="container">
-    <div class="row g-4">
-        <div class="col-md-6 col-lg-4">
-            <div class="card p-3 h-100">
-                <blockquote class="mb-3">“The coaches keep me accountable and the programs are spot on!”</blockquote>
-                <div class="d-flex align-items-center gap-3">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle" width="54" height="54" alt="">
-                    <div><strong>Amaya</strong><div class="text-muted small">Lost 8kg in 12 weeks</div></div>
+<!--<section class="section"><div class="container">-->
+<!--    <div class="row g-4">-->
+<!--        <div class="col-md-6 col-lg-4">-->
+<!--            <div class="card p-3 h-100">-->
+<!--                <blockquote class="mb-3">“The coaches keep me accountable and the programs are spot on!”</blockquote>-->
+<!--                <div class="d-flex align-items-center gap-3">-->
+<!--                    <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle" width="54" height="54" alt="">-->
+<!--                    <div><strong>Amaya</strong><div class="text-muted small">Lost 8kg in 12 weeks</div></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 col-lg-4">-->
+<!--            <div class="card p-3 h-100">-->
+<!--                <blockquote class="mb-3">“I finally enjoy training. GymNest feels like family.”</blockquote>-->
+<!--                <div class="d-flex align-items-center gap-3">-->
+<!--                    <img src="https://randomuser.me/api/portraits/men/22.jpg" class="rounded-circle" width="54" height="54" alt="">-->
+<!--                    <div><strong>Ruwan</strong><div class="text-muted small">Built serious strength</div></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 col-lg-4">-->
+<!--            <div class="card p-3 h-100">-->
+<!--                <blockquote class="mb-3">“Yoga + strength here fixed my back pain.”</blockquote>-->
+<!--                <div class="d-flex align-items-center gap-3">-->
+<!--                    <img src="https://randomuser.me/api/portraits/women/12.jpg" class="rounded-circle" width="54" height="54" alt="">-->
+<!--                    <div><strong>Nadee</strong><div class="text-muted small">Pain-free and mobile</div></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div></section>-->
+
+<!--<footer class="footer mt-5 pt-5 pb-4"><div class="container"><div class="d-flex justify-content-between"><span>© <span class="year"></span> GymNest</span><a href="contact.html">Contact</a></div></div></footer>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><script defer src="assets/js/main.js"></script>-->
+<!--</body></html>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Reviews System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            padding: 20px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .review-form {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 350px;
+            max-width: 500px;
+        }
+
+        .form-title {
+            margin-bottom: 20px;
+            color: #2575fc;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .rating {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0 20px;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 28px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .rating input:checked ~ label {
+            color: #ffc107;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: #ffdb70;
+        }
+
+        button {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .reviews-container {
+            flex: 1;
+            min-width: 350px;
+            max-width: 600px;
+        }
+
+        .reviews-title {
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #6a11cb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .review-date {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .review-rating {
+            color: #ffc107;
+            font-size: 18px;
+        }
+
+        .review-content {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6a11cb;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #777;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .review-form, .reviews-container {
+                width: 100%;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Project Feedback & Reviews</h1>
+        <p class="subtitle">Share your experience and help us improve</p>
+    </header>
+
+    <div class="content">
+        <div class="review-form">
+            <h2 class="form-title">Submit Your Review</h2>
+            <form id="reviewForm">
+                <div class="input-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
                 </div>
-            </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Your Rating</label>
+                    <div class="rating">
+                        <input type="radio" id="star5" name="rating" value="5" required>
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="review">Your Review</label>
+                    <textarea id="review" placeholder="Share your experience with us..." required></textarea>
+                </div>
+
+                <button type="submit">Submit Review</button>
+            </form>
         </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card p-3 h-100">
-                <blockquote class="mb-3">“I finally enjoy training. GymNest feels like family.”</blockquote>
-                <div class="d-flex align-items-center gap-3">
-                    <img src="https://randomuser.me/api/portraits/men/22.jpg" class="rounded-circle" width="54" height="54" alt="">
-                    <div><strong>Ruwan</strong><div class="text-muted small">Built serious strength</div></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card p-3 h-100">
-                <blockquote class="mb-3">“Yoga + strength here fixed my back pain.”</blockquote>
-                <div class="d-flex align-items-center gap-3">
-                    <img src="https://randomuser.me/api/portraits/women/12.jpg" class="rounded-circle" width="54" height="54" alt="">
-                    <div><strong>Nadee</strong><div class="text-muted small">Pain-free and mobile</div></div>
-                </div>
+
+        <div class="reviews-container">
+            <h2 class="reviews-title">Recent Reviews</h2>
+            <div class="reviews-list" id="reviewsList">
+                <!-- Reviews will be added here dynamically -->
             </div>
         </div>
     </div>
-</div></section>
 
-<footer class="footer mt-5 pt-5 pb-4"><div class="container"><div class="d-flex justify-content-between"><span>© <span class="year"></span> GymNest</span><a href="contact.html">Contact</a></div></div></footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><script defer src="assets/js/main.js"></script>
-</body></html>
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number">4.8</div>
+            <div class="stat-label">Average Rating</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">127</div>
+            <div class="stat-label">Total Reviews</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">96%</div>
+            <div class="stat-label">Would Recommend</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sample reviews data
+        const sampleReviews = [
+            {
+                name: "Samantha Perera",
+                rating: 5,
+                content: "This project is absolutely fantastic! The user interface is intuitive and the functionality exceeds my expectations. Great job!",
+                date: "2023-07-15"
+            },
+            {
+                name: "Rajesh Kumar",
+                rating: 4,
+                content: "Very useful tool that has helped streamline our workflow. There are a few minor bugs, but the support team is responsive and helpful.",
+                date: "2023-07-10"
+            },
+            {
+                name: "Ayesha Khan",
+                rating: 5,
+                content: "I've been using this for my business for the past month and it has increased our productivity by at least 30%. Highly recommended!",
+                date: "2023-07-05"
+            }
+        ];
+
+        const reviewsList = document.getElementById('reviewsList');
+        const reviewForm = document.getElementById('reviewForm');
+
+        // Display sample reviews
+        function displayReviews() {
+            reviewsList.innerHTML = '';
+
+            sampleReviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.classList.add('review-card');
+
+                // Generate star rating HTML
+                let stars = '';
+                for (let i = 0; i < 5; i++) {
+                    stars += i < review.rating ? '★' : '☆';
+                }
+
+                reviewElement.innerHTML = `
+                        <div class="review-header">
+                            <div class="user-info">
+                                <div class="avatar">${review.name.charAt(0)}</div>
+                                <div class="user-name">${review.name}</div>
+                            </div>
+                            <div class="review-date">${review.date}</div>
+                        </div>
+                        <div class="review-rating">${stars}</div>
+                        <p class="review-content">${review.content}</p>
+                    `;
+
+                reviewsList.appendChild(reviewElement);
+            });
+        }
+
+        // Handle form submission
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const rating = document.querySelector('input[name="rating"]:checked').value;
+            const content = document.getElementById('review').value;
+
+            // Create new review object
+            const newReview = {
+                name: name,
+                rating: parseInt(rating),
+                content: content,
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            // Add to sample reviews
+            sampleReviews.unshift(newReview);
+
+            // Update display
+            displayReviews();
+
+            // Show success message
+            alert('Thank you for your review!');
+
+            // Reset form
+            reviewForm.reset();
+        });
+
+        // Initial display of reviews
+        displayReviews();
+    });
+</script>
+</body>
+</html>

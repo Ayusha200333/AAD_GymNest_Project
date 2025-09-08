@@ -58,6 +58,7 @@ public class WebSecurityConfig {
                                 "/api/v1/class/**",
                                 "/api/v1/location/**",
                                 "/api/v1/package/**",
+//                                "/api/v1/user-reviews/**",
                                 "/api/v1/dashboard/**").permitAll()
                         // Attendance specific permissions
                         .requestMatchers("/api/v1/attendance/mark").hasRole("ADMIN") // Only ADMIN can mark attendance for others

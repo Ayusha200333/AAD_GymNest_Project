@@ -64,6 +64,14 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 
+//    @Override
+//    protected boolean shouldNotFilter(HttpServletRequest request) {
+//        String path = request.getServletPath();
+//        return path.startsWith("/auth/")
+//                || path.startsWith("/api/v1/auth/")
+//                || path.startsWith("/api/v1/user/register")
+//                || path.startsWith("/api/v1/user-reviews/");
+//    }
 
     private Claims getClaimsFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(secretKey.getBytes()).parseClaimsJws(token).getBody();

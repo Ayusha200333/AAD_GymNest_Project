@@ -30,7 +30,52 @@ public class GuideController {
     @Autowired
     private EmailService emailService;
 
-    private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
+//    private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
+
+    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
+
+//    @PostMapping("/save")
+//    public ResponseEntity<ResponseDTO> saveGuide(
+//            @RequestParam("fullName") String fullName,
+//            @RequestParam("email") String email,
+//            @RequestParam(value = "imageUrl", required = false) MultipartFile image,
+//            @RequestParam("description") String description,
+//            @RequestParam("paymentPerHour") String paymentPerHour,
+//            @RequestParam("phone") String phone) {
+//
+//        try {
+//            GuideDTO guideDTO = new GuideDTO();
+//            guideDTO.setFullName(fullName);
+//            guideDTO.setEmail(email);
+//            guideDTO.setDescription(description);
+//            guideDTO.setPaymentPerHour(paymentPerHour);
+//            guideDTO.setPhone(phone);
+//            guideDTO.setStatus("ACTIVE");
+//            guideDTO.setBooked("NO");
+//
+//            if (image != null && !image.isEmpty()) {
+//                String imagePath = saveFile(image);
+//                guideDTO.setImageUrl(imagePath);
+//            }
+//
+//            int res = guideService.saveGuide(guideDTO);
+//
+//            if (res == VarList.Created) {
+//                emailService.sendGuideRegistrationEmail(email, fullName);
+//                return ResponseEntity.status(HttpStatus.CREATED)
+//                        .body(new ResponseDTO(VarList.Created, "Guide Saved Successfully", guideDTO));
+//            } else if (res == VarList.Not_Acceptable) {
+//                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+//                        .body(new ResponseDTO(VarList.Not_Acceptable, "Guide Already Exists", null));
+//            } else {
+//                return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+//                        .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
+//            }
+//
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+//        }
 
     @PostMapping("/save")
     public ResponseEntity<ResponseDTO> saveGuide(
@@ -59,7 +104,11 @@ public class GuideController {
             int res = guideService.saveGuide(guideDTO);
 
             if (res == VarList.Created) {
-                emailService.sendGuideRegistrationEmail(email, fullName);
+                try {
+                    emailService.sendGuideRegistrationEmail(email, fullName);
+                } catch (Exception e) {
+                    System.err.println("Email sending failed but guide saved: " + e.getMessage());
+                }
                 return ResponseEntity.status(HttpStatus.CREATED)
                         .body(new ResponseDTO(VarList.Created, "Guide Saved Successfully", guideDTO));
             } else if (res == VarList.Not_Acceptable) {
@@ -74,7 +123,9 @@ public class GuideController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
         }
+
     }
+
 
     @PostMapping("/update/{email}")
     public ResponseEntity<ResponseDTO> updateGuide(
@@ -194,23 +245,23 @@ public class GuideController {
     }
 
 
-//    @DeleteMapping("/delete/{email}")
-//    public ResponseEntity<ResponseDTO> deleteGuide(@PathVariable String email) {
-//        try {
-//            int res = guideService.deleteGuide(email); // make sure this method exists in your service
-//            if (res == VarList.Created) {
-//                return ResponseEntity.ok(new ResponseDTO(VarList.Created, "Guide Deleted Successfully", null));
-//            } else if (res == VarList.Not_Found) {
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                        .body(new ResponseDTO(VarList.Not_Found, "Guide Not Found", null));
-//            } else {
-//                return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
-//                        .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
-//            }
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
-//        }
-//    }
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<ResponseDTO> deleteGuide(@PathVariable String email) {
+        try {
+            int res = guideService.deleteGuide(email); // Ensure this method exists in GuideService
+            if (res == VarList.Created) {
+                return ResponseEntity.ok(new ResponseDTO(VarList.Created, "Guide Deleted Successfully", null));
+            } else if (res == VarList.Not_Found) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new ResponseDTO(VarList.Not_Found, "Guide Not Found", null));
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                        .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
+    }
 
 }
