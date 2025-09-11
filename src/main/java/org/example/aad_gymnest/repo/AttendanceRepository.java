@@ -11,8 +11,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface AttendanceRepository extends JpaRepository<AttendanceEntity,UUID>{
+public interface AttendanceRepository extends JpaRepository<AttendanceEntity, UUID> {
     Optional<AttendanceEntity> findByMemberAndDate(UserEntity member, LocalDate date);
+
     List<AttendanceEntity> findByDate(LocalDate date);
-    List<AttendanceEntity> findByMember_NameContainingIgnoreCaseOrMember_EmailContainingIgnoreCase(String name, String email);
+
+    List<AttendanceEntity> findByMember_NameContainingIgnoreCaseOrMember_EmailContainingIgnoreCase(
+            String name, String email);
+
+    List<AttendanceEntity> findByDateAndMember_NameContainingIgnoreCaseOrDateAndMember_EmailContainingIgnoreCase(
+            LocalDate date1, String name,
+            LocalDate date2, String email);
 }

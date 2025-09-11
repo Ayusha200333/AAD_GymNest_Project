@@ -1,21 +1,52 @@
+//package org.example.aad_gymnest.dto;
+//
+//import lombok.AllArgsConstructor;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
+//
+//import java.time.LocalDate;
+//import java.time.LocalTime;
+//
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Data
+//public class AttendanceDTO {
+//        private String memberName;
+//        private String email;
+//        private LocalDate date;
+//        private LocalTime checkIn;
+//        private LocalTime checkOut;
+//        private String status;     // Present, Absent, Late
+//}
+//
+
 package org.example.aad_gymnest.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class AttendanceDTO {
+        private UUID id;
         private String memberName;
         private String email;
-        private LocalDate date;
-        private LocalTime checkIn;
-        private LocalTime checkOut;
-        private String status;     // Present, Absent, Late
-}
 
+        @JsonFormat(pattern = "yyyy-MM-dd")
+        private LocalDate date;
+
+        @JsonFormat(pattern = "HH:mm:ss")
+        private LocalTime checkIn;
+
+        @JsonFormat(pattern = "HH:mm:ss")
+        private LocalTime checkOut;
+
+        private String status; // Present, Absent, Late, Completed
+}

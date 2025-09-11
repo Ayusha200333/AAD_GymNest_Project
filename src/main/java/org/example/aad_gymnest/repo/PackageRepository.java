@@ -11,4 +11,6 @@ public interface PackageRepository extends JpaRepository<PackageEntity, Long> {
 boolean existsByName(String name);
 
 Optional<PackageEntity> findByName(String name);
+
+    Optional<PackageEntity> findByNameIgnoreCase(String name);
 }

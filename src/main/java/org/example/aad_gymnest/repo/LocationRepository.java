@@ -13,4 +13,7 @@ public interface LocationRepository extends JpaRepository<LocationEntity, String
     boolean existsById(Long id);
     void deleteById(Long id);
 
+    Optional<LocationEntity> findByName(String name);
+    // Case-insensitive search
+    Optional<LocationEntity> findByNameIgnoreCase(String name);
 }
