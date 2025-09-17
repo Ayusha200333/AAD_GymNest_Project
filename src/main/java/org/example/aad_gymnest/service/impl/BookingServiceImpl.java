@@ -252,6 +252,13 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepository.findTotalPricePerBooking();
     }
 
+
+
+    @Override
+    public int getTodayBookingCount() {
+        return 0;
+    }
+
     private BookingDTO convertToDTO(BookingEntity booking) {
         BookingDTO dto = new BookingDTO();
         dto.setPackageName(booking.getGymPackage().getName());

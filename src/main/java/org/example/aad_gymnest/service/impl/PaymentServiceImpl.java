@@ -20,8 +20,8 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    public boolean savePayment(PaymentDTO dto){
-        try{
+    public boolean savePayment(PaymentDTO dto) {
+        try {
             PaymentEntity paymentEntity = new PaymentEntity();
             paymentEntity.setUserEmail(dto.getUserEmail());
             paymentEntity.setCardHolderName(dto.getCardHolderName());
@@ -39,15 +39,19 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public List<Map<String,Object>> getAllPayments(){
+    public List<Map<String, Object>> getAllPayments() {
         List<PaymentEntity> payments = paymentRepository.findAll();
         System.out.println(payments);
         return payments.stream().map(paymentEntity -> {
-            Map<String,Object> paymentDetails = new HashMap<>();
-            paymentDetails.put("id",paymentEntity.getId());
-            paymentDetails.put("userEmail",paymentEntity.getUserEmail());
-            paymentDetails.put("amount",paymentEntity.getAmount());
-            paymentDetails.put("paymentDate",paymentEntity.getPaymentDate());
+            Map<String, Object> paymentDetails = new HashMap<>();
+            paymentDetails.put("id", paymentEntity.getId());
+            paymentDetails.put("userEmail", paymentEntity.getUserEmail());
+            paymentDetails.put("amount", paymentEntity.getAmount());
+            paymentDetails.put("paymentDate", paymentEntity.getPaymentDate().toString());
+            paymentDetails.put("cardHolderName", paymentEntity.getCardHolderName());
+            paymentDetails.put("cardNumber", paymentEntity.getCardNumber());
+            paymentDetails.put("expiryDate", paymentEntity.getExpiryDate());
+            paymentDetails.put("cvv", paymentEntity.getCvv());
             return paymentDetails;
         }).collect(Collectors.toList());
     }

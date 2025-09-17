@@ -34,49 +34,6 @@ public class GuideController {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
 
-//    @PostMapping("/save")
-//    public ResponseEntity<ResponseDTO> saveGuide(
-//            @RequestParam("fullName") String fullName,
-//            @RequestParam("email") String email,
-//            @RequestParam(value = "imageUrl", required = false) MultipartFile image,
-//            @RequestParam("description") String description,
-//            @RequestParam("paymentPerHour") String paymentPerHour,
-//            @RequestParam("phone") String phone) {
-//
-//        try {
-//            GuideDTO guideDTO = new GuideDTO();
-//            guideDTO.setFullName(fullName);
-//            guideDTO.setEmail(email);
-//            guideDTO.setDescription(description);
-//            guideDTO.setPaymentPerHour(paymentPerHour);
-//            guideDTO.setPhone(phone);
-//            guideDTO.setStatus("ACTIVE");
-//            guideDTO.setBooked("NO");
-//
-//            if (image != null && !image.isEmpty()) {
-//                String imagePath = saveFile(image);
-//                guideDTO.setImageUrl(imagePath);
-//            }
-//
-//            int res = guideService.saveGuide(guideDTO);
-//
-//            if (res == VarList.Created) {
-//                emailService.sendGuideRegistrationEmail(email, fullName);
-//                return ResponseEntity.status(HttpStatus.CREATED)
-//                        .body(new ResponseDTO(VarList.Created, "Guide Saved Successfully", guideDTO));
-//            } else if (res == VarList.Not_Acceptable) {
-//                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
-//                        .body(new ResponseDTO(VarList.Not_Acceptable, "Guide Already Exists", null));
-//            } else {
-//                return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
-//                        .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
-//            }
-//
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
-//        }
-
     @PostMapping("/save")
     public ResponseEntity<ResponseDTO> saveGuide(
             @RequestParam("fullName") String fullName,

@@ -24,4 +24,8 @@ public interface BookingService {
     List<Map<String, Object>> getBookingsPerDay();
 
     List<Map<String, Object>> getTotalPricePerBooking();
+
+
+
+    int getTodayBookingCount();
 }

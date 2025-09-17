@@ -11,4 +11,9 @@ public interface UserService {
     boolean updateUserRole(String email , String role);
     List<UserDTO> getAllUsers();
     boolean deleteUserByEmail(String email);
+
+
+
+    int getTotalMemberCount();
+    int getActiveMembershipCount();
 }

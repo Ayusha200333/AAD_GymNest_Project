@@ -76,4 +76,11 @@ public class ClassServiceImpl implements ClassService {
                             c.getTime(), c.getCapacity(), c.getEnrolled(), c.getStatus()
                     )).collect(Collectors.toList());
         }
+
+
+
+    @Override
+    public int getTotalClassCount() {
+        return 0;
     }
+}

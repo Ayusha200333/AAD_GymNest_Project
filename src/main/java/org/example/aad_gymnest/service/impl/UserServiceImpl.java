@@ -123,4 +123,17 @@ public class UserServiceImpl implements UserService , UserDetailsService {
         }
         return false;
     }
+
+
+
+
+    @Override
+    public int getTotalMemberCount() {
+        return 0;
+    }
+
+    @Override
+    public int getActiveMembershipCount() {
+        return 0;
+    }
 }

@@ -8,5 +8,9 @@ public interface ClassService {
         int deleteClass(Long id);
         List<ClassDTO> getAllClasses();
         List<ClassDTO> getAvailableClasses();
+
+
+
+    int getTotalClassCount();
 }
 

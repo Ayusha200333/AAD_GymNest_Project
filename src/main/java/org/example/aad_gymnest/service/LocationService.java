@@ -8,4 +8,8 @@ public interface LocationService {
     List<LocationDTO> getAllLocations();
     int updateLocation(Long id, LocationDTO locationDTO);
     int deleteLocation(Long id);
+
+
+
+    int getTotalLocationCount();
 }

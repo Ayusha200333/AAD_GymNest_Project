@@ -1,5 +1,4 @@
 
-
 <!--<!DOCTYPE html>-->
 <!--<html lang="en">-->
 <!--<head>-->
@@ -14,6 +13,7 @@
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>-->
 <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 <!--    <style>-->
+<!--        /* Your existing CSS remains the same */-->
 <!--        :root {-->
 <!--            &#45;&#45;primary: #7c3aed;-->
 <!--            &#45;&#45;primary-dark: #6d28d9;-->
@@ -328,11 +328,11 @@
 <!--    </style>-->
 <!--</head>-->
 <!--<body>-->
-<!--<div class="container active" id="container"> &lt;!&ndash; Added 'active' class by default &ndash;&gt;-->
+<!--<div class="container active" id="container">-->
 <!--    <div class="form-container">-->
 <!--        <div class="login-form">-->
 <!--            <div class="form-box">-->
-<!--                <h1>Welcome to NexusFit</h1>-->
+<!--                <h1>Welcome to GymNest</h1>-->
 <!--                <p class="form-subtitle">Sign in to your fitness journey</p>-->
 <!--                <div id="login-alert" class="alert"></div>-->
 
@@ -481,7 +481,7 @@
 
 <!--        /**************** Sign in ****************/-->
 
-<!--        // Login function-->
+<!--        // Login function - UPDATED to redirect to user profile with proper data fetching-->
 <!--        $("#loginBtn").click(function () {-->
 <!--            let email = $("#loginEmail").val();-->
 <!--            let password = $("#loginPassword").val();-->
@@ -493,8 +493,10 @@
 <!--                data: JSON.stringify({ email, password }),-->
 <!--                success: function (response) {-->
 <!--                    localStorage.setItem("token", response.data.token);-->
-<!--                    checkUserRole();-->
-<!--                    getUsername();-->
+<!--                    localStorage.setItem("userEmail", email); // Store email for profile page-->
+
+<!--                    // Get complete user data and redirect to profile-->
+<!--                    getUserProfileData(email, response.data.token);-->
 <!--                },-->
 <!--                error: function (xhr) {-->
 <!--                    showAlert(loginAlert, 'error', "Login Failed: " + (xhr.responseJSON?.message || "Unknown error"));-->
@@ -502,77 +504,10 @@
 <!--            });-->
 <!--        });-->
 
-<!--        function checkUserRole() {-->
-<!--            let token = localStorage.getItem("token");-->
-<!--            if (!token) {-->
-<!--                showDashboard("Unauthorized: Please log in.");-->
-<!--                return;-->
-<!--            }-->
-
-<!--            // Function to check role using a given endpoint-->
-<!--            function checkRole(url, successCallback, failureCallback) {-->
-<!--                $.ajax({-->
-<!--                    url: `${API_BASE}/admin/${url}`,-->
-<!--                    type: "GET",-->
-<!--                    headers: {"Authorization": `Bearer ${token}`},-->
-<!--                    success: successCallback,-->
-<!--                    error: function (jqXHR, textStatus, errorThrown) {-->
-<!--                        if (jqXHR.status === 403) {-->
-<!--                            // Hide 403 error from console-->
-<!--                            console.log(`Access Denied for ${url}, no need to log error.`);-->
-<!--                            if (failureCallback) {-->
-<!--                                failureCallback(jqXHR, textStatus, errorThrown);-->
-<!--                            }-->
-<!--                        } else {-->
-<!--                            // Log other errors normally-->
-<!--                            console.error(`Error checking role at ${url}:`, textStatus, errorThrown);-->
-<!--                            if (failureCallback) {-->
-<!--                                failureCallback(jqXHR, textStatus, errorThrown);-->
-<!--                            }-->
-<!--                        }-->
-<!--                    }-->
-<!--                });-->
-<!--            }-->
-
-<!--            // First, check if the user is an Admin (test1)-->
-<!--            checkRole("test1",-->
-<!--                function () {-->
-<!--                    console.log("hi admin");-->
-<!--                    window.location.href = 'admin-panal.html';-->
-<!--                },-->
-<!--                function (jqXHR, textStatus, errorThrown) {-->
-<!--                    console.log("Admin check failed, checking if user is valid...");-->
-<!--                    window.location.href = 'index.html';-->
-
-<!--                    // If not an Admin, check if they are a User (test2)-->
-<!--                    checkRole("test2",-->
-<!--                        function () {-->
-<!--                            console.log("hi user");-->
-<!--                        },-->
-<!--                        function (jqXHR, textStatus, errorThrown) {-->
-<!--                            console.log("User check failed, checking if vehicle role exists...");-->
-
-<!--                            // If test2 fails, check test3 as another User validation-->
-<!--                            checkRole("test3",-->
-<!--                                function () {-->
-<!--                                    console.log("hi vehicle");-->
-<!--                                },-->
-<!--                                function () {-->
-<!--                                    showDashboard("Unauthorized: Access denied.");-->
-<!--                                }-->
-<!--                            );-->
-<!--                        }-->
-<!--                    );-->
-<!--                }-->
-<!--            );-->
-<!--        }-->
-
-<!--        function getUsername() {-->
-<!--            const email = $('#loginEmail').val().trim();-->
-<!--            const token = localStorage.getItem("token");-->
-
+<!--        // NEW FUNCTION: Get complete user profile data-->
+<!--        function getUserProfileData(email, token) {-->
 <!--            $.ajax({-->
-<!--                url: `http://localhost:8080/api/v1/user/getUserByEmail?email=${encodeURIComponent(email)}`,-->
+<!--                url: `${API_BASE}/user/getUserByEmail?email=${encodeURIComponent(email)}`,-->
 <!--                method: 'GET',-->
 <!--                contentType: 'application/json',-->
 <!--                headers: {-->
@@ -580,10 +515,17 @@
 <!--                },-->
 <!--                success: function (response) {-->
 <!--                    if (response.data) {-->
-<!--                        saveToLocalStorage("name", response.data.name, 5);-->
-<!--                        saveToLocalStorage("email", response.data.email, 5);-->
-<!--                        saveToLocalStorage("role", response.data.role, 5);-->
-<!--                        console.log("User retrieved successfully!");-->
+<!--                        // Save all user data to localStorage-->
+<!--                        localStorage.setItem("userId", response.data.id);-->
+<!--                        localStorage.setItem("name", response.data.name);-->
+<!--                        localStorage.setItem("email", response.data.email);-->
+<!--                        localStorage.setItem("contact", response.data.contact);-->
+<!--                        localStorage.setItem("role", response.data.role);-->
+
+<!--                        console.log("User data retrieved successfully!");-->
+
+<!--                        // Redirect to user profile page-->
+<!--                        window.location.href = 'user-profile.html';-->
 <!--                    } else {-->
 <!--                        alert("User not found.");-->
 <!--                    }-->
@@ -593,13 +535,6 @@
 <!--                    alert(error.responseJSON?.message || 'Failed to get user details.');-->
 <!--                }-->
 <!--            });-->
-<!--        }-->
-
-<!--        function saveToLocalStorage(key, value, days) {-->
-<!--            const now = new Date();-->
-<!--            const expiryTime = now.getTime() + days * 24 * 60 * 60 * 1000;-->
-<!--            const data = { value: value, expiry: expiryTime };-->
-<!--            localStorage.setItem(key, JSON.stringify(data));-->
 <!--        }-->
 
 <!--        // Helper function to show alerts-->
@@ -618,65 +553,10 @@
 <!--        phoneInputField.addEventListener('input', validatePhoneNumber);-->
 <!--        phoneInputField.addEventListener('blur', validatePhoneNumber);-->
 <!--    });-->
-
-<!--    // Login function - UPDATED to redirect to user profile with proper data fetching-->
-<!--    $("#loginBtn").click(function () {-->
-<!--        let email = $("#loginEmail").val();-->
-<!--        let password = $("#loginPassword").val();-->
-
-<!--        $.ajax({-->
-<!--            url: `${API_BASE}/auth/authenticate`,-->
-<!--            type: "POST",-->
-<!--            contentType: "application/json",-->
-<!--            data: JSON.stringify({ email, password }),-->
-<!--            success: function (response) {-->
-<!--                localStorage.setItem("token", response.data.token);-->
-<!--                localStorage.setItem("userEmail", email); // Store email for profile page-->
-
-<!--                // Get complete user data and redirect to profile-->
-<!--                getUserProfileData(email, response.data.token);-->
-<!--            },-->
-<!--            error: function (xhr) {-->
-<!--                showAlert(loginAlert, 'error', "Login Failed: " + (xhr.responseJSON?.message || "Unknown error"));-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-
-<!--    // NEW FUNCTION: Get complete user profile data-->
-<!--    function getUserProfileData(email, token) {-->
-<!--        $.ajax({-->
-<!--            url: `${API_BASE}/user/getUserByEmail?email=${encodeURIComponent(email)}`,-->
-<!--            method: 'GET',-->
-<!--            contentType: 'application/json',-->
-<!--            headers: {-->
-<!--                'Authorization': 'Bearer ' + token-->
-<!--            },-->
-<!--            success: function (response) {-->
-<!--                if (response.data) {-->
-<!--                    // Save all user data to localStorage-->
-<!--                    localStorage.setItem("userId", response.data.id);-->
-<!--                    localStorage.setItem("name", response.data.name);-->
-<!--                    localStorage.setItem("email", response.data.email);-->
-<!--                    localStorage.setItem("contact", response.data.contact);-->
-<!--                    localStorage.setItem("role", response.data.role);-->
-
-<!--                    console.log("User data retrieved successfully!");-->
-
-<!--                    // Redirect to user profile page-->
-<!--                    window.location.href = 'user-profile.html';-->
-<!--                } else {-->
-<!--                    alert("User not found.");-->
-<!--                }-->
-<!--            },-->
-<!--            error: function (error) {-->
-<!--                console.error('Error:', error);-->
-<!--                alert(error.responseJSON?.message || 'Failed to get user details.');-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
 <!--</script>-->
 <!--</body>-->
 <!--</html>-->
+
 
 
 <!DOCTYPE html>
@@ -684,7 +564,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusFit - Fitness Portal</title>
+    <title>GymNest - Sign In/Up</title>
     <!-- intl-tel-input CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -693,14 +573,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* Your existing CSS remains the same */
         :root {
-            --primary: #7c3aed;
-            --primary-dark: #6d28d9;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --dark: #1f2937;
-            --light: #f9fafb;
+            --primary: #E63946;
+            --primary-dark: #C62828;
+            --secondary: #457B9D;
+            --accent: #FCA311;
+            --dark: #1D3557;
+            --light: #F1FAEE;
             --gray: #9ca3af;
             --error: #ef4444;
         }
@@ -712,13 +591,20 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: radial-gradient(circle at center, var(--secondary) 0%, var(--dark) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             font-family: 'Poppins', sans-serif;
+            animation: pulseBackground 10s ease-in-out infinite;
+        }
+
+        @keyframes pulseBackground {
+            0% { background-size: 100% 100%; }
+            50% { background-size: 120% 120%; }
+            100% { background-size: 100% 100%; }
         }
 
         .container {
@@ -726,12 +612,24 @@
             width: 100%;
             max-width: 900px;
             height: 550px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background: var(--light);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(230, 57, 70, 0.2);
             overflow: hidden;
-            backdrop-filter: blur(10px);
             display: flex;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .form-container {
@@ -740,7 +638,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            transition: all 0.6s ease-in-out;
             position: relative;
         }
 
@@ -758,6 +655,18 @@
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: expandText 0.8s ease-out;
+        }
+
+        @keyframes expandText {
+            from {
+                letter-spacing: -2px;
+                opacity: 0;
+            }
+            to {
+                letter-spacing: 0;
+                opacity: 1;
+            }
         }
 
         .form-subtitle {
@@ -765,6 +674,18 @@
             color: var(--gray);
             margin-bottom: 30px;
             font-size: 14px;
+            animation: slideInRight 0.8s ease-out 0.2s;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         .input-box {
@@ -775,19 +696,34 @@
         .input-box input {
             width: 100%;
             padding: 16px 20px 16px 50px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
+            border: none;
+            border-bottom: 2px solid var(--gray);
+            border-radius: 0;
             font-size: 16px;
             outline: none;
-            transition: all 0.3s;
-            background: var(--light);
+            transition: all 0.3s ease;
+            background: transparent;
             color: var(--dark);
+            transform: scale(0.8);
+            opacity: 0;
+            animation: growIn 0.6s ease-out forwards;
+        }
+
+        .input-box:nth-child(1) input { animation-delay: 0.2s; }
+        .input-box:nth-child(2) input { animation-delay: 0.3s; }
+        .input-box:nth-child(3) input { animation-delay: 0.4s; }
+        .input-box:nth-child(4) input { animation-delay: 0.5s; }
+
+        @keyframes growIn {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .input-box input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
-            transform: translateY(-2px);
+            border-bottom-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(230, 57, 70, 0.3);
         }
 
         .input-box i {
@@ -797,52 +733,89 @@
             transform: translateY(-50%);
             color: var(--gray);
             font-size: 20px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: pulseIn 0.6s ease-out forwards;
+        }
+
+        .input-box:nth-child(1) i { animation-delay: 0.2s; }
+        .input-box:nth-child(2) i { animation-delay: 0.3s; }
+        .input-box:nth-child(3) i { animation-delay: 0.4s; }
+        .input-box:nth-child(4) i { animation-delay: 0.5s; }
+
+        @keyframes pulseIn {
+            0% { transform: translateY(-50%) scale(0.5); opacity: 0; }
+            50% { transform: translateY(-50%) scale(1.2); }
+            100% { transform: translateY(-50%) scale(1); opacity: 1; }
         }
 
         .input-box input:focus + i {
             color: var(--primary);
+            transform: translateY(-50%) scale(1.1);
         }
 
         .forgot-link {
             text-align: right;
             margin: -10px 0 20px;
+            animation: slideInRight 0.8s ease-out 0.3s;
         }
 
         .forgot-link a {
             color: var(--primary);
             font-size: 14px;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             font-weight: 500;
         }
 
         .forgot-link a:hover {
             color: var(--primary-dark);
             text-decoration: underline;
+            transform: translateX(3px);
         }
 
         .btn {
             width: 100%;
             padding: 16px;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(124, 58, 237, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: growIn 0.6s ease-out 0.6s forwards;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(124, 58, 237, 0.4);
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.4);
+            transform: scale(1.02);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            top: -50%;
+            left: -50%;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .btn:hover::after {
+            transform: translate(100px, 100px);
+            opacity: 1;
         }
 
         .btn:active {
-            transform: translateY(0);
+            transform: scale(0.95);
         }
 
         .toggle-container {
@@ -861,26 +834,30 @@
             align-items: center;
             padding: 40px;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
             color: white;
             transition: all 0.6s ease-in-out;
         }
 
         .toggle-left {
-            transform: translateX(-100%);
+            transform: translateX(-100%) scale(0.9);
+            opacity: 0;
         }
 
         .toggle-right {
             right: 0;
-            transform: translateX(0);
+            transform: translateX(0) scale(1);
+            opacity: 1;
         }
 
         .container.active .toggle-left {
-            transform: translateX(0);
+            transform: translateX(0) scale(1);
+            opacity: 1;
         }
 
         .container.active .toggle-right {
-            transform: translateX(100%);
+            transform: translateX(100%) scale(0.9);
+            opacity: 0;
         }
 
         .toggle-panel h2 {
@@ -888,12 +865,14 @@
             font-size: 32px;
             margin-bottom: 20px;
             font-weight: 700;
+            animation: expandText 0.8s ease-out;
         }
 
         .toggle-panel p {
             font-size: 16px;
             margin-bottom: 30px;
             opacity: 0.9;
+            animation: slideInRight 0.8s ease-out 0.2s;
         }
 
         .toggle-btn {
@@ -905,14 +884,35 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: growIn 0.6s ease-out 0.4s;
         }
 
         .toggle-btn:hover {
-            background: white;
-            color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-btn::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            top: -50%;
+            left: -50%;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .toggle-btn:hover::after {
+            transform: translate(80px, 80px);
+            opacity: 1;
         }
 
         .phone-error {
@@ -922,24 +922,37 @@
             display: none;
             margin-top: 5px;
             font-weight: 500;
+            animation: wobble 0.5s ease-out;
+        }
+
+        @keyframes wobble {
+            0% { transform: translateX(0); }
+            15% { transform: translateX(-5px); }
+            30% { transform: translateX(5px); }
+            45% { transform: translateX(-3px); }
+            60% { transform: translateX(3px); }
+            100% { transform: translateX(0); }
         }
 
         .feature-icon {
             font-size: 50px;
             margin-bottom: 20px;
             opacity: 0.9;
+            animation: spinFloat 2s ease-in-out infinite;
         }
 
-        /* Animation for form switch - UPDATED */
-        .login-form {
+        @keyframes spinFloat {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        .login-form, .register-form {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0;
-            transform: translateX(-50px);
-            pointer-events: none;
             padding: 40px;
             display: flex;
             flex-direction: column;
@@ -947,30 +960,41 @@
             transition: all 0.6s ease-in-out;
         }
 
+        .login-form {
+            opacity: 0;
+            transform: translateX(-50px) scale(0.9);
+            pointer-events: none;
+        }
+
         .register-form {
             opacity: 1;
-            transform: translateX(0);
-            transition: all 0.6s ease-in-out;
+            transform: translateX(0) scale(1);
         }
 
         .container.active .login-form {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateX(0) scale(1);
             pointer-events: all;
         }
 
         .container.active .register-form {
             opacity: 0;
-            transform: translateX(50px);
+            transform: translateX(50px) scale(0.9);
             pointer-events: none;
         }
 
-        /* Alert styles */
         .alert {
             padding: 12px;
             border-radius: 8px;
             margin-bottom: 20px;
             display: none;
+            animation: bounceInAlert 0.5s ease-out;
+        }
+
+        @keyframes bounceInAlert {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .alert-success {
@@ -983,9 +1007,9 @@
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+            animation: bounceInAlert 0.5s ease-out, wobble 0.5s ease-out;
         }
 
-        /* Responsive design */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -1003,6 +1027,22 @@
 
             .form-box {
                 padding: 20px;
+            }
+
+            .input-box input, .btn, .toggle-btn, .form-box h1, .form-subtitle, .feature-icon, .alert {
+                animation: none;
+            }
+
+            .login-form, .register-form, .toggle-panel {
+                transition: all 0.4s ease;
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .container, .form-box h1, .form-subtitle, .input-box input, .input-box i, .btn, .toggle-btn, .toggle-panel, .login-form, .register-form, .alert, .feature-icon {
+                animation: none;
+                transition: none;
             }
         }
     </style>
@@ -1105,7 +1145,7 @@
 
         // Initialize intl-tel-input
         const iti = window.intlTelInput(phoneInputField, {
-            initialCountry: "lk", // Default country (Sri Lanka)
+            initialCountry: "lk",
             preferredCountries: ["lk", "us", "gb", "in", "au"],
             separateDialCode: true,
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
@@ -1122,20 +1162,18 @@
             }
         }
 
-        // Updated Signup Function
+        // Signup Function
         $("#signupBtn").click(function () {
             let name = $("#name").val();
             let email = $("#signupEmail").val();
-            let contact = iti.getNumber(); // Get full international format
+            let contact = iti.getNumber();
             let password = $("#signupPassword").val();
 
-            // Validate phone number
             if (!validatePhoneNumber()) {
                 showAlert(registerAlert, 'error', 'Please enter a valid phone number');
                 return;
             }
 
-            // Disable button to prevent multiple clicks
             $("#signupBtn").prop("disabled", true).text("Registering...");
 
             $.ajax({
@@ -1146,7 +1184,7 @@
                 success: function (response) {
                     showAlert(registerAlert, 'success', '✅ Registration Successful!');
                     setTimeout(() => {
-                        window.location.reload();
+                        container.classList.add('active'); // Switch to login form
                     }, 1500);
                 },
                 error: function (xhr) {
@@ -1159,12 +1197,12 @@
             });
         });
 
-        /**************** Sign in ****************/
-
-        // Login function - UPDATED to redirect to user profile with proper data fetching
+        // Login Function
         $("#loginBtn").click(function () {
             let email = $("#loginEmail").val();
             let password = $("#loginPassword").val();
+
+            $("#loginBtn").prop("disabled", true).text("Logging in...");
 
             $.ajax({
                 url: `${API_BASE}/auth/authenticate`,
@@ -1173,18 +1211,19 @@
                 data: JSON.stringify({ email, password }),
                 success: function (response) {
                     localStorage.setItem("token", response.data.token);
-                    localStorage.setItem("userEmail", email); // Store email for profile page
+                    localStorage.setItem("userEmail", email);
 
-                    // Get complete user data and redirect to profile
+                    // Fetch user profile data and redirect to index.html
                     getUserProfileData(email, response.data.token);
                 },
                 error: function (xhr) {
                     showAlert(loginAlert, 'error', "Login Failed: " + (xhr.responseJSON?.message || "Unknown error"));
+                    $("#loginBtn").prop("disabled", false).text("Login");
                 }
             });
         });
 
-        // NEW FUNCTION: Get complete user profile data
+        // Get complete user profile data
         function getUserProfileData(email, token) {
             $.ajax({
                 url: `${API_BASE}/user/getUserByEmail?email=${encodeURIComponent(email)}`,
@@ -1195,7 +1234,6 @@
                 },
                 success: function (response) {
                     if (response.data) {
-                        // Save all user data to localStorage
                         localStorage.setItem("userId", response.data.id);
                         localStorage.setItem("name", response.data.name);
                         localStorage.setItem("email", response.data.email);
@@ -1203,16 +1241,16 @@
                         localStorage.setItem("role", response.data.role);
 
                         console.log("User data retrieved successfully!");
-
-                        // Redirect to user profile page
-                        window.location.href = 'user-profile.html';
+                        window.location.href = 'index.html'; // Redirect to index page
                     } else {
-                        alert("User not found.");
+                        showAlert(loginAlert, 'error', 'User not found.');
+                        $("#loginBtn").prop("disabled", false).text("Login");
                     }
                 },
                 error: function (error) {
                     console.error('Error:', error);
-                    alert(error.responseJSON?.message || 'Failed to get user details.');
+                    showAlert(loginAlert, 'error', error.responseJSON?.message || 'Failed to get user details.');
+                    $("#loginBtn").prop("disabled", false).text("Login");
                 }
             });
         }
@@ -1222,8 +1260,6 @@
             element.textContent = message;
             element.className = `alert alert-${type}`;
             element.style.display = 'block';
-
-            // Hide alert after 5 seconds
             setTimeout(() => {
                 element.style.display = 'none';
             }, 5000);
@@ -1236,12 +1272,6 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
 
 
 

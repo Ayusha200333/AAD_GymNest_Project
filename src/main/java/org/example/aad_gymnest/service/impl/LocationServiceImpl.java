@@ -64,6 +64,14 @@ public class LocationServiceImpl implements LocationService {
         return VarList.Not_Found;
     }
 
+
+
+
+    @Override
+    public int getTotalLocationCount() {
+        return 0;
+    }
+
     @Override
     public List<LocationDTO> getAllLocations() {
         List<LocationEntity> locations = locationRepository.findAll();

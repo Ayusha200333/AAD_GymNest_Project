@@ -139,6 +139,7 @@ public class WebSecurityConfig {
                                 "/api/v1/location/**",
                                 "/api/v1/package/**",
                                 "/api/v1/bookings/**",
+                                "/api/v1/user-reviews/**",
                                 "/api/v1/payment/**",
                                 "/api/v1/dashboard/**"
                         ).permitAll()

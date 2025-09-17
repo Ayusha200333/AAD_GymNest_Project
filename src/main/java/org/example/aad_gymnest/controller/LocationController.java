@@ -26,7 +26,10 @@ public class LocationController {
     @Autowired
     private LocationService locationService;
 
-    private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
+//    private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
+
+    // In LocationController
+    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/templates/uploads/";
 
     @PostMapping("/save")
     public ResponseEntity<ResponseDTO> saveLocation(
