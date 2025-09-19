@@ -109,10 +109,10 @@ All authorized API calls attach headers automatically:
 JSON
 Authorization: Bearer <token>
 
-
 👨‍💻 Author
 Developed by Ayusha Wijerathna– Advanced Application Development Project (AAD).
 
  
+
 
 
