@@ -2513,8 +2513,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
         :root{
             --accent: #ff6a00;
@@ -2940,10 +2938,9 @@
                 <canvas id="revenueChart"></canvas>
             </div>
         </div>
+
+
     </div>
-
-
-
 
     <!-- Members -->
     <div id="members" class="hidden">
@@ -3631,86 +3628,21 @@
             </div>
         </div>
     </div>
-
+</div>
 <!-- Scripts -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Membership Growth (Line Chart)
-        const ctx1 = document.getElementById('membershipChart');
-        new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'New Members',
-                    data: [30, 45, 60, 80, 95, 120],
-                    borderColor: '#ff6a00',
-                    backgroundColor: 'rgba(255, 106, 0, 0.2)',
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } }
-            }
-        });
+    let membershipChartInstance = null;
+    let revenueChartInstance = null;
 
-        // Revenue Breakdown (Doughnut Chart)
-        const ctx2 = document.getElementById('revenueChart');
-        new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: ['Memberships', 'Classes', 'Personal Training'],
-                datasets: [{
-                    data: [65, 25, 10],
-                    backgroundColor: ['#ff6a00', '#007bff', '#28a745'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { font: { size: 12 } }
-                    }
-                }
-            }
-        });
-    });
-
-
-    // Chart.js defaults (nicer grid + fonts)
+    // Chart.js defaults
     Chart.defaults.font.family = "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
     Chart.defaults.color = "#6b7280";
 
-    // Optional: add auth header if you store token in localStorage
+    // Auth headers
     function authHeaders() {
         const token = localStorage.getItem("token");
         return token ? { "Authorization": "Bearer " + token } : {};
     }
-
-    // // Sidebar routing
-    // function showPanel(panelId) {
-    //     $('.sidebar a').removeClass('active');
-    //     $('.sidebar a').filter(function(){ return $(this).attr('onclick')?.includes(panelId); }).addClass('active');
-    //
-    //     $('.content > div').addClass('hidden');
-    //     $('#' + panelId).removeClass('hidden');
-    //
-    //     switch (panelId) {
-    //         case 'dashboard': loadDashboardCounts(); loadSignupsChart(); loadRevenueChart(); break;
-    //         case 'members': loadAllUsers(); break;
-    //         case 'guides': loadAllGuides(); break;
-    //         case 'classes': loadGuideOptions(); loadAllClasses(); break;
-    //         case 'memberships': loadAllClassesForPackages(); loadAllPackages(); break;
-    //         case 'bookings': loadAllBookings(); loadBookingOptions(); break;
-    //         case 'payments': loadAllPayments(); break;
-    //         case 'reviews': loadAllReviews(); break;
-    //         case 'attendance': loadAttendance(); break;
-    //     }
-    // }
 
         function showPanel(panelId) {
         $('.sidebar a').removeClass('active');
@@ -3720,7 +3652,12 @@
         $('#' + panelId).removeClass('hidden');
 
         switch (panelId) {
-            case 'dashboard': loadDashboardCounts(); break; // Removed loadSignupsChart
+            // case 'dashboard': loadDashboardCounts(); break; // Removed loadSignupsChart
+            case 'dashboard':
+                loadDashboardCounts();
+                loadMembershipGrowthChart();
+                loadRevenueBreakdownChart();
+                break;
             case 'members': loadAllUsers(); break;
             case 'guides': loadAllGuides(); break;
             case 'classes': loadGuideOptions(); loadAllClasses(); break;
@@ -3817,7 +3754,6 @@
     });
 
     // DASHBOARD
-    // DASHBOARD COUNTS
     function loadDashboardCounts() {
         $.ajax({
             url: "http://localhost:8080/api/v1/dashboard/counts",
@@ -3833,6 +3769,129 @@
             },
             error: function () {
                 console.warn("Failed to load dashboard counts.");
+            }
+        });
+    }
+
+
+    function loadMembershipGrowthChart() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/dashboard/membership-growth",
+            method: "GET",
+            headers: authHeaders(),
+            success: function(res) {
+                const ctx = document.getElementById('membershipChart').getContext('2d');
+
+                if (membershipChartInstance) {
+                    membershipChartInstance.destroy();
+                }
+
+                membershipChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: res.data?.labels || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'New Members',
+                            data: res.data?.values || [30, 45, 60, 80, 95, 120],
+                            borderColor: '#ff6a00',
+                            backgroundColor: 'rgba(255, 106, 0, 0.2)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            },
+            error: function(xhr) {
+                console.error("Failed to load membership growth data:", xhr);
+                // Fallback static chart
+                const ctx = document.getElementById('membershipChart').getContext('2d');
+                if (membershipChartInstance) membershipChartInstance.destroy();
+
+                membershipChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'New Members',
+                            data: [30, 45, 60, 80, 95, 120],
+                            borderColor: '#ff6a00',
+                            backgroundColor: 'rgba(255, 106, 0, 0.2)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+        });
+    }
+
+    function loadRevenueBreakdownChart() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/dashboard/revenue-breakdown",
+            method: "GET",
+            headers: authHeaders(),
+            success: function(res) {
+                const ctx = document.getElementById('revenueChart').getContext('2d');
+
+                if (revenueChartInstance) {
+                    revenueChartInstance.destroy();
+                }
+
+                revenueChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: res.data?.labels || ['Memberships', 'Classes', 'Personal Training'],
+                        datasets: [{
+                            data: res.data?.values || [65, 25, 10],
+                            backgroundColor: ['#ff6a00', '#007bff', '#28a745'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { font: { size: 12 } }
+                            }
+                        }
+                    }
+                });
+            },
+            error: function(xhr) {
+                console.error("Failed to load revenue breakdown data:", xhr);
+                // Fallback static chart
+                const ctx = document.getElementById('revenueChart').getContext('2d');
+                if (revenueChartInstance) revenueChartInstance.destroy();
+
+                revenueChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Memberships', 'Classes', 'Personal Training'],
+                        datasets: [{
+                            data: [65, 25, 10],
+                            backgroundColor: ['#ff6a00', '#007bff', '#28a745'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { font: { size: 12 } }
+                            }
+                        }
+                    }
+                });
             }
         });
     }
