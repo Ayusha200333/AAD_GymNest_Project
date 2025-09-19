@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//public class DashboardDTO {
-//    private int totalGuides;
-//}
 
 public class DashboardDTO {
     private int totalMembers;

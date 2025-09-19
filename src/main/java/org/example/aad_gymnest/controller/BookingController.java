@@ -18,27 +18,6 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-//    // ===== Save Booking =====
-//    @PostMapping("/save")
-//    public ResponseEntity<ResponseDTO> saveBooking(@RequestBody BookingDTO bookingDTO) {
-//        try {
-//            boolean isSaved = bookingService.saveBooking(bookingDTO);
-//
-//            if (isSaved) {
-//                return ResponseEntity.status(HttpStatus.CREATED)
-//                        .body(new ResponseDTO(201, "Booking Saved Successfully", bookingDTO));
-//            } else {
-//                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                        .body(new ResponseDTO(406, "Booking Not Saved", null));
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                    .body(new ResponseDTO(500, e.getMessage(), null));
-//        }
-//    }
-
     @PostMapping("/save")
     public ResponseEntity<ResponseDTO> saveBooking(@RequestBody BookingDTO bookingDTO) {
         try {
@@ -46,7 +25,6 @@ public class BookingController {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(new ResponseDTO(201, "Booking Saved Successfully", bookingDTO));
         } catch (RuntimeException e) {
-            // This will now show exactly which entity is missing
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ResponseDTO(400, e.getMessage(), null));
         } catch (Exception e) {
@@ -55,7 +33,6 @@ public class BookingController {
         }
     }
 
-    // ===== Get All Bookings =====
     @GetMapping("/getAll")
     public ResponseEntity<ResponseDTO> getAllBookings() {
         try {

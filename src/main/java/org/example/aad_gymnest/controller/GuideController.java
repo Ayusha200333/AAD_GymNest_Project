@@ -30,8 +30,6 @@ public class GuideController {
     @Autowired
     private EmailService emailService;
 
-//    private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
-
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
 
     @PostMapping("/save")

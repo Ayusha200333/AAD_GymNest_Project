@@ -44,11 +44,6 @@ public class UserServiceImpl implements UserService , UserDetailsService {
         return modelMapper.map(userEntity, UserDTO.class);
     }
 
-//    private Set<GrantedAuthority> getAuthority(UserEntity userEntity) {
-//        Set<GrantedAuthority> authorities = new HashSet<>();
-//        authorities.add(new SimpleGrantedAuthority(userEntity.getRole()));
-//        return authorities;
-//    }
 
     private Set<GrantedAuthority> getAuthority(UserEntity userEntity) {
         Set<GrantedAuthority> authorities = new HashSet<>();

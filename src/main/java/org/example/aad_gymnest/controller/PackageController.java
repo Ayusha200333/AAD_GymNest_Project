@@ -26,8 +26,6 @@ public class PackageController {
     @Autowired
     private PackageService packageService;
 
-//    private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
-
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
 
     @PostMapping("/save")

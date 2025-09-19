@@ -9,19 +9,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookingDTO {
 
-    private String packageName;     // From Package.name (e.g., Monthly/Yearly plan)
-    private String className;       // From Class.name (e.g., Yoga, Cardio)
-    private String coachEmail;      // From Coach.email
-    private String locationName;    // From Location.name (branch/center)
-    private String userEmail;       // From User.email (member)
+    private String packageName;     // Monthly/Yearly plan
+    private String className;
+    private String coachEmail;
+    private String locationName;
+    private String userEmail;
 
-    private String bookingDate;     // yyyy-MM-dd (convert to LocalDate in backend)
-    private String endDate;         // membership/class end date
+    private String bookingDate;
+    private String endDate;
 
-    private int numberOfSessions;   // How many sessions booked
-    private double packagePrice;    // Base package price
-    private double coachFee;        // Extra coach fee if any
+    private int numberOfSessions;
+    private double packagePrice;
+    private double coachFee;
     private double totalPrice;
 
-    private String status;          // ACTIVE / COMPLETED / CANCELLED// packagePrice + coachFee
+    private String status;          // ACTIVE / COMPLETED / CANCELLED
 }

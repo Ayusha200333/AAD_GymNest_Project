@@ -1288,46 +1288,186 @@
         });
     }
 
-    // Load Classes
+    // // Load Classes
+    // function loadClasses() {
+    //     $.ajax({
+    //         url: "http://localhost:8080/api/v1/class/getAll",
+    //         method: "GET",
+    //         success: function (response) {
+    //             if (response.data && Array.isArray(response.data)) {
+    //                 let html = "";
+    //                 response.data.forEach(cls => {
+    //                     const imageUrl = 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';
+    //                     html += `
+    //                         <div class="col-md-6">
+    //                             <div class="card card-option h-100">
+    //                                 <img src="${imageUrl}" class="card-img-top" alt="${cls.name}" loading="lazy">
+    //                                 <div class="card-body p-3">
+    //                                     <h6 class="card-title text-center">${cls.name}</h6>
+    //                                     <p class="text-muted small text-center">Trainer: ${cls.trainer || 'TBD'}</p>
+    //                                     <button class="btn btn-outline-primary btn-sm w-100"
+    //                                         data-name="${cls.name}">Select</button>
+    //                                 </div>
+    //                             </div>
+    //                         </div>
+    //                     `;
+    //                 });
+    //                 $("#classCards").html(html);
+    //
+    //                 $('#classCards .card-option button').on('click', function () {
+    //                     $('#classCards .card-option').removeClass('selected');
+    //                     const card = $(this).closest('.card-option');
+    //                     card.addClass('selected');
+    //                     const name = $(this).data('name');
+    //                     $('#summaryClass').text(name);
+    //                 });
+    //             } else {
+    //                 $("#classCards").html('<p class="text-danger text-center">No classes available.</p>');
+    //             }
+    //         },
+    //         error: function (xhr, status, error) {
+    //             console.error("Error loading classes:", error);
+    //             $("#classCards").html('<p class="text-danger text-center">Error loading classes.</p>');
+    //         }
+    //     });
+    // }
+
+
+    // Global array to store loaded classes
+    window.allClasses = [];
+
     function loadClasses() {
         $.ajax({
+            type: "GET",
             url: "http://localhost:8080/api/v1/class/getAll",
-            method: "GET",
             success: function (response) {
-                if (response.data && Array.isArray(response.data)) {
-                    let html = "";
-                    response.data.forEach(cls => {
-                        const imageUrl = 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';
-                        html += `
-                            <div class="col-md-6">
-                                <div class="card card-option h-100">
-                                    <img src="${imageUrl}" class="card-img-top" alt="${cls.name}" loading="lazy">
-                                    <div class="card-body p-3">
-                                        <h6 class="card-title text-center">${cls.name}</h6>
-                                        <p class="text-muted small text-center">Trainer: ${cls.trainer || 'TBD'}</p>
-                                        <button class="btn btn-outline-primary btn-sm w-100"
-                                            data-name="${cls.name}">Select</button>
+                // Ensure response.data exists and is an array
+                const classes = Array.isArray(response.data) ? response.data : [];
+                window.allClasses = classes; // Store globally
+
+                // Maps
+                const iconMap = {
+                    'Spin & Sweat': 'bi-bicycle',
+                    'Core & Conditioning': 'bi-body-text',
+                    'Engine Builder': 'bi-speedometer2',
+                    'Yoga & Mobility': 'bi-flower3',
+                    'HIIT Combat': 'bi-hand-thumbs-up',
+                    'Strength & Powerlifting': 'bi-bar-chart-steps'
+                };
+                const categoryMap = {
+                    'Spin & Sweat': 'Cardio',
+                    'Core & Conditioning': 'Strength',
+                    'Engine Builder': 'Conditioning',
+                    'Yoga & Mobility': 'Mind-Body',
+                    'HIIT Combat': 'Cardio',
+                    'Strength & Powerlifting': 'Strength'
+                };
+                const levelMap = {
+                    'Strength & Powerlifting': 'Intermediate',
+                    'Engine Builder': 'Intermediate'
+                };
+                const intensityMap = {
+                    'Spin & Sweat': 'Medium-High',
+                    'Core & Conditioning': 'Medium',
+                    'Engine Builder': 'High',
+                    'Yoga & Mobility': 'Low-Medium',
+                    'HIIT Combat': 'High',
+                    'Strength & Powerlifting': 'Medium-High'
+                };
+                const durationMap = {
+                    'Spin & Sweat': '45 min',
+                    'Core & Conditioning': '40 min',
+                    'Engine Builder': '45–50 min',
+                    'Yoga & Mobility': '50–60 min',
+                    'HIIT Combat': '35–45 min',
+                    'Strength & Powerlifting': '60 min'
+                };
+                const imageMap = {
+                    'Spin & Sweat': 'https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg',
+                    'Core & Conditioning': 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg',
+                    'Engine Builder': 'https://images.pexels.com/photos/414029/pexels-photo-414029.jpeg',
+                    'Yoga & Mobility': 'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg',
+                    'HIIT Combat': 'https://images.pexels.com/photos/404029/pexels-photo-404029.jpeg',
+                    'Strength & Powerlifting': 'https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg'
+                };
+
+                // 1️⃣ Render index page classes
+                $('#classes-grid').empty();
+                classes.forEach(function (cls) {
+                    const name = cls.name || 'Unknown Class';
+                    const trainer = cls.trainer || 'Trainer TBD';
+                    const iconClass = iconMap[name] || 'bi-person';
+                    const category = categoryMap[name] || 'N/A';
+                    const level = levelMap[name] || 'All Levels';
+                    const intensity = intensityMap[name] || 'N/A';
+                    const duration = durationMap[name] || 'N/A';
+                    const imageUrl = imageMap[name] || 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';
+
+                    const classCard = `
+                    <div class="col-md-6 col-lg-4" data-category="${category.toLowerCase()}">
+                        <div class="card class-card h-100">
+                            <img src="${imageUrl}" class="card-img-top" alt="${name}" loading="lazy"
+                                onerror="this.onerror=null;this.src='https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <div class="d-flex align-items-center mb-3 gap-3">
+                                    <div class="class-icon"><i class="bi ${iconClass}"></i></div>
+                                    <div>
+                                        <h5 class="card-title mb-1">${name}</h5>
+                                        <span class="badge badge-soft">${category}</span>
                                     </div>
                                 </div>
+                                <p class="text-secondary mb-3">${trainer}</p>
+                                <div class="meta small text-muted mb-3">
+                                    <i class="bi bi-clock me-1"></i> ${duration}
+                                    <span class="dot"></span>
+                                    <i class="bi bi-lightning-charge me-1"></i> Intensity: ${intensity}
+                                </div>
+                                <div class="mt-auto d-flex align-items-center justify-content-between">
+                                    <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> ${level}</div>
+                                    <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
+                                </div>
                             </div>
-                        `;
-                    });
-                    $("#classCards").html(html);
+                        </div>
+                    </div>
+                `;
+                    $('#classes-grid').append(classCard);
+                });
 
-                    $('#classCards .card-option button').on('click', function () {
-                        $('#classCards .card-option').removeClass('selected');
-                        const card = $(this).closest('.card-option');
-                        card.addClass('selected');
-                        const name = $(this).data('name');
-                        $('#summaryClass').text(name);
-                    });
-                } else {
-                    $("#classCards").html('<p class="text-danger text-center">No classes available.</p>');
-                }
+                // 2️⃣ Render booking section
+                $('#classCards').empty();
+                classes.forEach(function (cls) {
+                    const name = cls.name || 'Unknown Class';
+                    const trainer = cls.trainer || 'TBD';
+                    const imageUrl = imageMap[name] || 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';
+
+                    const bookingCard = `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card card-option h-100">
+                            <img src="${imageUrl}" class="card-img-top" alt="${name}" loading="lazy">
+                            <div class="card-body p-3">
+                                <h6 class="card-title text-center">${name}</h6>
+                                <p class="text-muted small text-center">Trainer: ${trainer}</p>
+                                <button class="btn btn-outline-primary btn-sm w-100" data-name="${name}">Select</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    $('#classCards').append(bookingCard);
+                });
+
+                // Booking card selection logic
+                $('#classCards .card-option button').on('click', function () {
+                    $('#classCards .card-option').removeClass('selected');
+                    const card = $(this).closest('.card-option');
+                    card.addClass('selected');
+                    const name = $(this).data('name');
+                    $('#summaryClass').text(name);
+                });
             },
             error: function (xhr, status, error) {
-                console.error("Error loading classes:", error);
-                $("#classCards").html('<p class="text-danger text-center">Error loading classes.</p>');
+                console.error("Failed to load classes:", status, error);
+                $('#classes-grid').html('<p class="text-danger">Failed to load classes. Please try again later.</p>');
+                $('#classCards').html('<p class="text-danger text-center">Failed to load classes.</p>');
             }
         });
     }
@@ -1383,7 +1523,6 @@
         });
     }
 
-    // Load Locations
     // Load Locations
     function loadLocations() {
         $.ajax({

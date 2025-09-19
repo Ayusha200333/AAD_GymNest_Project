@@ -5484,13 +5484,1013 @@
 
 
 
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>GymNest — Fitness & Training</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1" />-->
+<!--    <meta name="description" content="GymNest — Train smarter with modern facilities, motivating classes, and expert coaches." />-->
+<!--    <meta name="theme-color" content="#E63946" />-->
+
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />-->
+<!--    &lt;!&ndash; Font Awesome + Bootstrap Icons &ndash;&gt;-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />-->
+
+<!--    &lt;!&ndash; Preconnect to the image host &ndash;&gt;-->
+<!--    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>-->
+<!--    <link rel="preconnect" href="https://images.pexels.com" crossorigin>-->
+
+<!--    &lt;!&ndash; Preload hero images &ndash;&gt;-->
+<!--    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80" crossorigin referrerpolicy="no-referrer">-->
+<!--    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1920&q=80" crossorigin referrerpolicy="no-referrer">-->
+<!--    <link rel="preload" as="image" href="assets/images/sam-moghadam-W8CyjblrF8U-unsplash.jpg" type="image/jpeg">-->
+
+<!--    <style>-->
+<!--        :root{-->
+<!--            /* Updated Brand Colors - Energetic fitness palette */-->
+<!--            &#45;&#45;primary: #E63946;-->
+<!--            &#45;&#45;primary-600: #D32F2F;-->
+<!--            &#45;&#45;primary-700: #C62828;-->
+<!--            &#45;&#45;primary-rgb: 230, 57, 70;-->
+
+<!--            &#45;&#45;secondary: #457B9D;-->
+<!--            &#45;&#45;secondary-600: #3D6B8A;-->
+<!--            &#45;&#45;secondary-rgb: 69, 123, 157;-->
+
+<!--            &#45;&#45;accent: #FCA311;-->
+<!--            &#45;&#45;accent-600: #F39C12;-->
+<!--            &#45;&#45;accent-rgb: 252, 163, 17;-->
+
+<!--            &#45;&#45;dark: #1D3557;-->
+<!--            &#45;&#45;dark-rgb: 29, 53, 87;-->
+
+<!--            &#45;&#45;light: #F1FAEE;-->
+<!--            &#45;&#45;light-rgb: 241, 250, 238;-->
+
+<!--            /* Neutrals */-->
+<!--            &#45;&#45;ink: #121212;-->
+<!--            &#45;&#45;muted: #6c757d;-->
+<!--            &#45;&#45;card-bg: #ffffff;-->
+<!--            &#45;&#45;bg: #f8f9fa;-->
+
+<!--            /* Layout */-->
+<!--            &#45;&#45;section-pad: 5rem 0;-->
+<!--            &#45;&#45;border-radius: 12px;-->
+
+<!--            /* Shadows */-->
+<!--            &#45;&#45;shadow-1: 0 10px 25px rgba(0,0,0,.08);-->
+<!--            &#45;&#45;shadow-2: 0 16px 40px rgba(0,0,0,.12);-->
+<!--            &#45;&#45;shadow-3: 0 20px 50px rgba(0,0,0,.15);-->
+<!--        }-->
+
+<!--        html{ scroll-behavior:smooth; }-->
+<!--        body{ color:var(&#45;&#45;ink); background:var(&#45;&#45;bg); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }-->
+
+<!--        /* Utilities */-->
+<!--        .text-primary{ color:var(&#45;&#45;primary)!important; }-->
+<!--        .text-secondary{ color:var(&#45;&#45;secondary)!important; }-->
+<!--        .text-accent{ color:var(&#45;&#45;accent)!important; }-->
+<!--        .badge-primary-subtle{ background:rgba(var(&#45;&#45;primary-rgb),.12); color:var(&#45;&#45;primary); }-->
+<!--        .badge-secondary-subtle{ background:rgba(var(&#45;&#45;secondary-rgb),.12); color:var(&#45;&#45;secondary); }-->
+<!--        .object-fit-cover{ object-fit:cover; }-->
+<!--        .letter-spaced{ letter-spacing:.12em; }-->
+<!--        .section{ padding:var(&#45;&#45;section-pad); }-->
+<!--        .section-title span{ color:var(&#45;&#45;primary); }-->
+
+<!--        /* Links */-->
+<!--        a:not(.btn){ color:var(&#45;&#45;primary); text-decoration:none; transition: all 0.3s ease; }-->
+<!--        a:not(.btn):hover{ color:var(&#45;&#45;primary-600); text-decoration:underline; }-->
+
+<!--        /* Navbar */-->
+<!--        .navbar{-->
+<!--            background: rgba(255, 255, 255, 0.95)!important;-->
+<!--            backdrop-filter: blur(10px);-->
+<!--            box-shadow: 0 2px 15px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .navbar-brand{ font-weight: 800; }-->
+<!--        .navbar .navbar-brand i{ color:var(&#45;&#45;primary); }-->
+<!--        .navbar .navbar-nav .nav-link{-->
+<!--            color: var(&#45;&#45;dark);-->
+<!--            font-weight: 500;-->
+<!--            transition: color .15s ease;-->
+<!--            position: relative;-->
+<!--        }-->
+<!--        .navbar .navbar-nav .nav-link::after {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            bottom: 0;-->
+<!--            left: 50%;-->
+<!--            width: 0;-->
+<!--            height: 2px;-->
+<!--            background: var(&#45;&#45;primary);-->
+<!--            transition: all 0.3s ease;-->
+<!--            transform: translateX(-50%);-->
+<!--        }-->
+<!--        .navbar .navbar-nav .nav-link.active,-->
+<!--        .navbar .navbar-nav .nav-link:hover{ color:var(&#45;&#45;primary); }-->
+<!--        .navbar .navbar-nav .nav-link.active::after,-->
+<!--        .navbar .navbar-nav .nav-link:hover::after{ width: 80%; }-->
+<!--        .navbar .navbar-toggler-icon{-->
+<!--            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath stroke="rgba(29,53,87,0.8)" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');-->
+<!--        }-->
+
+<!--        /* Buttons */-->
+<!--        .btn-primary{-->
+<!--            &#45;&#45;bs-btn-color:#fff;-->
+<!--            &#45;&#45;bs-btn-bg:var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-border-color:var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-hover-color:#fff;-->
+<!--            &#45;&#45;bs-btn-hover-bg:var(&#45;&#45;primary-600);-->
+<!--            &#45;&#45;bs-btn-hover-border-color:var(&#45;&#45;primary-600);-->
+<!--            &#45;&#45;bs-btn-active-bg:var(&#45;&#45;primary-700);-->
+<!--            &#45;&#45;bs-btn-active-border-color:var(&#45;&#45;primary-700);-->
+<!--            &#45;&#45;bs-btn-focus-shadow-rgb:var(&#45;&#45;primary-rgb);-->
+<!--            font-weight: 600;-->
+<!--            border-radius: 8px;-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--        }-->
+<!--        .btn-outline-primary{-->
+<!--            &#45;&#45;bs-btn-color:var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-border-color:var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-hover-color:#fff;-->
+<!--            &#45;&#45;bs-btn-hover-bg:var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-hover-border-color:var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-focus-shadow-rgb:var(&#45;&#45;primary-rgb);-->
+<!--            font-weight: 600;-->
+<!--            border-radius: 8px;-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--        }-->
+<!--        .btn-secondary{-->
+<!--            &#45;&#45;bs-btn-color:#fff;-->
+<!--            &#45;&#45;bs-btn-bg:var(&#45;&#45;secondary);-->
+<!--            &#45;&#45;bs-btn-border-color:var(&#45;&#45;secondary);-->
+<!--            &#45;&#45;bs-btn-hover-color:#fff;-->
+<!--            &#45;&#45;bs-btn-hover-bg:var(&#45;&#45;secondary-600);-->
+<!--            &#45;&#45;bs-btn-hover-border-color:var(&#45;&#45;secondary-600);-->
+<!--            &#45;&#45;bs-btn-focus-shadow-rgb:var(&#45;&#45;secondary-rgb);-->
+<!--            font-weight: 600;-->
+<!--            border-radius: 8px;-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--        }-->
+<!--        .btn-accent{-->
+<!--            &#45;&#45;bs-btn-color:#0b2a2a;-->
+<!--            &#45;&#45;bs-btn-bg:var(&#45;&#45;accent);-->
+<!--            &#45;&#45;bs-btn-border-color:var(&#45;&#45;accent);-->
+<!--            &#45;&#45;bs-btn-hover-color:#062020;-->
+<!--            &#45;&#45;bs-btn-hover-bg:var(&#45;&#45;accent-600);-->
+<!--            &#45;&#45;bs-btn-hover-border-color:var(&#45;&#45;accent-600);-->
+<!--            &#45;&#45;bs-btn-focus-shadow-rgb:var(&#45;&#45;accent-rgb);-->
+<!--            font-weight: 600;-->
+<!--            border-radius: 8px;-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--        }-->
+<!--        .btn-icon{-->
+<!--            padding:.5rem;-->
+<!--            line-height:1;-->
+<!--            border-radius: 8px;-->
+<!--            display: inline-flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--        }-->
+
+<!--        /* Accessible focus rings (global) */-->
+<!--        .form-control:focus, .form-select:focus, .btn:focus, .btn:focus-visible {-->
+<!--            border-color: rgba(var(&#45;&#45;primary-rgb),.5)!important;-->
+<!--            box-shadow: 0 0 0 .2rem rgba(var(&#45;&#45;primary-rgb), .25)!important;-->
+<!--            outline: none!important;-->
+<!--        }-->
+
+<!--        /* Cards (shared) */-->
+<!--        .card{-->
+<!--            &#45;&#45;bs-card-bg: var(&#45;&#45;card-bg);-->
+<!--            border-radius: var(&#45;&#45;border-radius);-->
+<!--            overflow: hidden;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+<!--        .card-lift{-->
+<!--            transition: transform .3s ease, box-shadow .3s ease;-->
+<!--            box-shadow: var(&#45;&#45;shadow-1);-->
+<!--            border: 0;-->
+<!--        }-->
+<!--        .card-lift:hover{-->
+<!--            transform: translateY(-8px);-->
+<!--            box-shadow: var(&#45;&#45;shadow-3);-->
+<!--        }-->
+
+<!--        /* Global Icon wrap (used in About, Contact, etc.) */-->
+<!--        .icon-wrap{-->
+<!--            width: 40px;-->
+<!--            height: 40px;-->
+<!--            display: grid;-->
+<!--            place-items: center;-->
+<!--            border-radius: 16px;-->
+<!--            background: linear-gradient(135deg, var(&#45;&#45;primary), var(&#45;&#45;accent));-->
+<!--            color: #fff;-->
+<!--            font-size: 24px;-->
+<!--            flex-shrink: 0;-->
+<!--        }-->
+
+<!--        /* HERO CAROUSEL */-->
+<!--        .hero-carousel{ position:relative; }-->
+<!--        .hero-carousel .carousel{ position:relative; }-->
+<!--        .hero-carousel .carousel-item{-->
+<!--            position:relative;-->
+<!--            height: min(100vh, 860px);-->
+<!--            min-height: 640px;-->
+<!--            display:flex;-->
+<!--            align-items:center;-->
+<!--            overflow:hidden;-->
+<!--        }-->
+<!--        .hero-carousel .hero-bg-img{-->
+<!--            position:absolute;-->
+<!--            inset:0;-->
+<!--            width:100%;-->
+<!--            height:100%;-->
+<!--            object-fit:cover;-->
+<!--            z-index:0;-->
+<!--            transform: scale(1.02);-->
+<!--            transition: transform 10s ease;-->
+<!--        }-->
+<!--        .hero-carousel .carousel-item.active .hero-bg-img {-->
+<!--            transform: scale(1);-->
+<!--        }-->
+<!--        .hero-carousel .carousel-item::before{-->
+<!--            content:"";-->
+<!--            position:absolute;-->
+<!--            inset:0;-->
+<!--            background: linear-gradient(105deg,-->
+<!--            rgba(29, 53, 87, 0.4) 0%,-->
+<!--            rgba(29, 53, 87, 0.25) 35%,-->
+<!--            rgba(29, 53, 87, 0.15) 100%);-->
+<!--            z-index:1;-->
+<!--        }-->
+<!--        .hero-carousel .hero-content{-->
+<!--            position: relative;-->
+<!--            z-index: 2;-->
+<!--            color: #fff;-->
+<!--            text-shadow: 0 2px 4px rgba(0,0,0,0.5);-->
+<!--        }-->
+<!--        .hero-carousel h1{-->
+<!--            font-weight: 800;-->
+<!--            margin-bottom: 1.5rem;-->
+<!--            text-shadow: 0 2px 8px rgba(0,0,0,0.7);-->
+<!--        }-->
+<!--        .hero-carousel .lead{-->
+<!--            color: #f0f0f0;-->
+<!--            font-size: 1.25rem;-->
+<!--            margin-bottom: 2rem;-->
+<!--            max-width: 600px;-->
+<!--            margin-left: auto;-->
+<!--            margin-right: auto;-->
+<!--            text-shadow: 0 2px 4px rgba(0,0,0,0.6);-->
+<!--        }-->
+<!--        .carousel-indicators [data-bs-target]{-->
+<!--            width: 12px;-->
+<!--            height: 12px;-->
+<!--            border-radius: 50%;-->
+<!--            background: rgba(255,255,255,.55);-->
+<!--            margin: 0 8px;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+<!--        .carousel-indicators .active{-->
+<!--            background: var(&#45;&#45;primary);-->
+<!--            width: 30px;-->
+<!--            border-radius: 10px;-->
+<!--        }-->
+<!--        .carousel-control-prev, .carousel-control-next {-->
+<!--            width: 60px;-->
+<!--            height: 60px;-->
+<!--            background: rgba(255, 255, 255, 0.15);-->
+<!--            border-radius: 50%;-->
+<!--            top: 50%;-->
+<!--            transform: translateY(-50%);-->
+<!--            opacity: 0.8;-->
+<!--            transition: all 0.3s ease;-->
+<!--            margin: 0 1rem;-->
+<!--        }-->
+<!--        .carousel-control-prev:hover, .carousel-control-next:hover {-->
+<!--            opacity: 1;-->
+<!--            background: var(&#45;&#45;primary);-->
+<!--        }-->
+<!--        .carousel-control-prev-icon, .carousel-control-next-icon{-->
+<!--            filter: drop-shadow(0 2px 6px rgba(0,0,0,.45));-->
+<!--            width: 1.8rem;-->
+<!--            height: 1.8rem;-->
+<!--        }-->
+
+<!--        /* Classes */-->
+<!--        .class-card{-->
+<!--            border: 0;-->
+<!--            border-radius: var(&#45;&#45;border-radius);-->
+<!--            overflow: hidden;-->
+<!--            background: var(&#45;&#45;card-bg);-->
+<!--            box-shadow: var(&#45;&#45;shadow-1);-->
+<!--            transition: transform .3s ease, box-shadow .3s ease;-->
+<!--            height: 100%;-->
+<!--        }-->
+<!--        .class-card:hover{-->
+<!--            transform: translateY(-8px);-->
+<!--            box-shadow: var(&#45;&#45;shadow-3);-->
+<!--        }-->
+<!--        .class-icon, .coach-icon{-->
+<!--            width: 40px;-->
+<!--            height: 40px;-->
+<!--            display: grid;-->
+<!--            place-items: center;-->
+<!--            border-radius: 16px;-->
+<!--            background: linear-gradient(135deg, var(&#45;&#45;primary), var(&#45;&#45;accent));-->
+<!--            color: #fff;-->
+<!--            font-size: 28px;-->
+<!--            flex-shrink: 0;-->
+<!--        }-->
+<!--        .badge-soft{-->
+<!--            background: rgba(var(&#45;&#45;primary-rgb), .12);-->
+<!--            color: var(&#45;&#45;primary);-->
+<!--            font-weight: 600;-->
+<!--            padding: 0.5rem 1rem;-->
+<!--            border-radius: 50px;-->
+<!--        }-->
+<!--        .level{ font-size:.9rem; }-->
+<!--        .meta i{ font-size:1rem; }-->
+<!--        .meta .dot{-->
+<!--            width: 6px;-->
+<!--            height: 6px;-->
+<!--            background: var(&#45;&#45;muted);-->
+<!--            border-radius: 50%;-->
+<!--            display: inline-block;-->
+<!--            margin: 0 .5rem;-->
+<!--        }-->
+<!--        .cta-btn{-->
+<!--            background: var(&#45;&#45;primary);-->
+<!--            border-color: var(&#45;&#45;primary);-->
+<!--            border-radius: 8px;-->
+<!--            font-weight: 600;-->
+<!--            padding: 0.5rem 1.25rem;-->
+<!--        }-->
+<!--        .cta-btn:hover{-->
+<!--            background: var(&#45;&#45;primary-600);-->
+<!--            border-color: var(&#45;&#45;primary-600);-->
+<!--        }-->
+<!--        .card-img-top{-->
+<!--            height: 220px;-->
+<!--            object-fit: cover;-->
+<!--            transition: transform 0.5s ease;-->
+<!--        }-->
+<!--        .class-card:hover .card-img-top {-->
+<!--            transform: scale(1.05);-->
+<!--        }-->
+
+<!--        /* Page header (kept for reuse if needed on other pages) */-->
+<!--        .page-header{-->
+<!--            padding: 5rem 0 3rem;-->
+<!--            background: linear-gradient(90deg, var(&#45;&#45;dark) 0%, var(&#45;&#45;secondary) 100%);-->
+<!--            color: #fff;-->
+<!--            margin-bottom: 2rem;-->
+<!--            text-align: center;-->
+<!--            position: relative;-->
+<!--        }-->
+<!--        .page-header::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+<!--            right: 0;-->
+<!--            bottom: 0;-->
+<!--            background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80') center/cover;-->
+<!--            opacity: 0.1;-->
+<!--            z-index: -1;-->
+<!--        }-->
+<!--        .page-header h1 {-->
+<!--            font-weight: 800;-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+<!--        .page-subtitle{-->
+<!--            color: #cfd3da;-->
+<!--            font-size: 1.25rem;-->
+<!--            max-width: 600px;-->
+<!--            margin: 0 auto;-->
+<!--        }-->
+
+<!--        /* Footer */-->
+<!--        .footer{-->
+<!--            background: var(&#45;&#45;dark);-->
+<!--            color: #cfd3da;-->
+<!--            padding: 4rem 0 2rem;-->
+<!--            position: relative;-->
+<!--        }-->
+<!--        .footer::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+<!--            right: 0;-->
+<!--            height: 1px;-->
+<!--            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);-->
+<!--        }-->
+<!--        .footer a{-->
+<!--            color: #cfd3da;-->
+<!--            text-decoration: none;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+<!--        .footer a:hover{-->
+<!--            color: #fff;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+<!--        .footer .brand {-->
+<!--            font-weight: 700;-->
+<!--            font-size: 1.5rem;-->
+<!--            color: #fff;-->
+<!--            margin-bottom: 1rem;-->
+<!--            display: inline-block;-->
+<!--        }-->
+<!--        .footer .brand i {-->
+<!--            color: var(&#45;&#45;accent);-->
+<!--        }-->
+<!--        .footer h6 {-->
+<!--            color: #fff;-->
+<!--            font-weight: 600;-->
+<!--            margin-bottom: 1.25rem;-->
+<!--            position: relative;-->
+<!--            padding-bottom: 0.5rem;-->
+<!--        }-->
+<!--        .footer h6::after {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            bottom: 0;-->
+<!--            left: 0;-->
+<!--            width: 40px;-->
+<!--            height: 2px;-->
+<!--            background: var(&#45;&#45;accent);-->
+<!--        }-->
+<!--        .footer ul.list-unstyled li {-->
+<!--            margin-bottom: 0.75rem;-->
+<!--        }-->
+<!--        .footer .contact-info p {-->
+<!--            margin-bottom: 0.75rem;-->
+<!--            display: flex;-->
+<!--            align-items: flex-start;-->
+<!--        }-->
+<!--        .footer .contact-info i {-->
+<!--            margin-right: 0.75rem;-->
+<!--            color: var(&#45;&#45;accent);-->
+<!--            margin-top: 0.25rem;-->
+<!--            min-width: 16px;-->
+<!--        }-->
+<!--        .footer .social-links {-->
+<!--            margin-top: 1.5rem;-->
+<!--        }-->
+<!--        .footer .social-links a {-->
+<!--            display: inline-flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            width: 36px;-->
+<!--            height: 36px;-->
+<!--            border-radius: 50%;-->
+<!--            background: rgba(255,255,255,0.1);-->
+<!--            color: #fff;-->
+<!--            margin-right: 0.75rem;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+<!--        .footer .social-links a:hover {-->
+<!--            background: var(&#45;&#45;primary);-->
+<!--            transform: translateY(-3px);-->
+<!--        }-->
+<!--        .footer .copyright {-->
+<!--            border-top: 1px solid rgba(255,255,255,0.1);-->
+<!--            padding-top: 1.5rem;-->
+<!--            margin-top: 3rem;-->
+<!--        }-->
+
+<!--        /* Gradient mix for brand icons */-->
+<!--        .icon-mix{-->
+<!--            color: var(&#45;&#45;primary);-->
+<!--        }-->
+<!--        @supports (color: color-mix(in oklab, black 50%, white 50%)) {-->
+<!--            .icon-mix{-->
+<!--                background-image: linear-gradient(-->
+<!--                        135deg,-->
+<!--                        color-mix(in oklab, var(&#45;&#45;primary) 22%, white),-->
+<!--                        var(&#45;&#45;primary),-->
+<!--                        color-mix(in oklab, var(&#45;&#45;four&#45;&#45;primary) 12%, black)-->
+<!--                );-->
+<!--                -webkit-background-clip: text;-->
+<!--                background-clip: text;-->
+<!--                color: transparent !important;-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Back to top button */-->
+<!--        .back-to-top {-->
+<!--            position: fixed;-->
+<!--            bottom: 2rem;-->
+<!--            right: 2rem;-->
+<!--            width: 50px;-->
+<!--            height: 50px;-->
+<!--            border-radius: 50%;-->
+<!--            background: var(&#45;&#45;primary);-->
+<!--            color: white;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            text-decoration: none;-->
+<!--            box-shadow: var(&#45;&#45;shadow-2);-->
+<!--            opacity: 0;-->
+<!--            visibility: hidden;-->
+<!--            transition: all 0.3s ease;-->
+<!--            z-index: 1000;-->
+<!--        }-->
+<!--        .back-to-top.show {-->
+<!--            opacity: 1;-->
+<!--            visibility: visible;-->
+<!--        }-->
+<!--        .back-to-top:hover {-->
+<!--            background: var(&#45;&#45;primary-600);-->
+<!--            transform: translateY(-3px);-->
+<!--        }-->
+
+<!--        /* Animation utilities */-->
+<!--        .fade-in {-->
+<!--            animation: fadeIn 0.6s ease forwards;-->
+<!--        }-->
+<!--        @keyframes fadeIn {-->
+<!--            from { opacity: 0; transform: translateY(20px); }-->
+<!--            to { opacity: 1; transform: translateY(0); }-->
+<!--        }-->
+
+<!--        /* Loading animation for images */-->
+<!--        .img-loading {-->
+<!--            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);-->
+<!--            background-size: 200% 100%;-->
+<!--            animation: loading 1.5s infinite;-->
+<!--        }-->
+<!--        @keyframes loading {-->
+<!--            0% { background-position: 200% 0; }-->
+<!--            100% { background-position: -200% 0; }-->
+<!--        }-->
+
+<!--        /* CONTACT overrides: remove blue focus border/glow, neutral borders */-->
+<!--        #contact .form-control,-->
+<!--        #contact .form-select{-->
+<!--            border: 1px solid #e5e7eb;-->
+<!--        }-->
+<!--        #contact .form-control:focus,-->
+<!--        #contact .form-select:focus,-->
+<!--        #contact .btn:focus,-->
+<!--        #contact .btn:focus-visible{-->
+<!--            border-color: #e5e7eb !important;-->
+<!--            box-shadow: none !important;-->
+<!--            outline: none !important;-->
+<!--        }-->
+
+<!--        /* Dropdown Menu Styling */-->
+<!--        .dropdown-menu {-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: var(&#45;&#45;shadow-2);-->
+<!--            border: none;-->
+<!--            padding: 0.5rem 0;-->
+<!--        }-->
+<!--        .dropdown-item {-->
+<!--            font-weight: 500;-->
+<!--            padding: 0.5rem 1.5rem;-->
+<!--            transition: all 0.3s ease;-->
+<!--            color: var(&#45;&#45;dark);-->
+<!--        }-->
+<!--        .dropdown-item:hover {-->
+<!--            background: var(&#45;&#45;light);-->
+<!--            color: var(&#45;&#45;primary);-->
+<!--        }-->
+<!--        .dropdown-item.text-danger:hover {-->
+<!--            background: var(&#45;&#45;primary);-->
+<!--            color: #fff !important;-->
+<!--        }-->
+
+<!--        @media (max-width: 768px){-->
+<!--            .hero-carousel h1{ font-size: 2.5rem; }-->
+<!--            .hero-carousel .lead{ font-size: 1.1rem; }-->
+<!--            .section { padding: 3rem 0; }-->
+<!--            .carousel-control-prev, .carousel-control-next {-->
+<!--                width: 45px;-->
+<!--                height: 45px;-->
+<!--            }-->
+<!--            .footer {-->
+<!--                padding: 3rem 0 1.5rem;-->
+<!--            }-->
+<!--            .footer .row.g-4 > div {-->
+<!--                margin-bottom: 2rem;-->
+<!--            }-->
+<!--        }-->
+
+<!--        @media (max-width: 576px){-->
+<!--            .hero-carousel h1{ font-size: 2rem; }-->
+<!--            .hero-carousel .lead{ font-size: 1rem; }-->
+<!--            .hero-carousel .carousel-item {-->
+<!--                min-height: 560px;-->
+<!--            }-->
+<!--            .btn-primary, .btn-outline-primary, .btn-secondary, .btn-accent {-->
+<!--                padding: 0.6rem 1.2rem;-->
+<!--                font-size: 0.9rem;-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash; Back to top button &ndash;&gt;-->
+<!--<a href="#" class="back-to-top">-->
+<!--    <i class="fas fa-arrow-up"></i>-->
+<!--</a>-->
+
+<!--&lt;!&ndash; Navbar &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand-lg sticky-top shadow-sm">-->
+<!--    <div class="container">-->
+<!--        <a class="navbar-brand fw-bold" href="#home">-->
+<!--            <i class="fa-solid fa-dumbbell me-2 icon-mix"></i>GymNest-->
+<!--        </a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="nav">-->
+<!--            <ul class="navbar-nav ms-auto">-->
+<!--                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#classes">Classes</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#coaches">Coaches</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#locations">Locations</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>-->
+<!--                <li class="nav-item d-lg-none">-->
+<!--                    <a class="nav-link" href="signin.html">Sign in/up</a>-->
+<!--                </li>-->
+<!--                &lt;!&ndash; User Dropdown (only visible when logged in) &ndash;&gt;-->
+<!--                <li class="nav-item dropdown d-none d-lg-inline-flex ms-lg-3" id="userDropdown"></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash; Home / Hero Slider &ndash;&gt;-->
+<!--<header id="home" class="hero-carousel">-->
+<!--    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false" data-bs-wrap="true" data-bs-touch="true">-->
+<!--        &lt;!&ndash; Indicators &ndash;&gt;-->
+<!--        <div class="carousel-indicators">-->
+<!--            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+<!--            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+<!--        </div>-->
+
+<!--        <div class="carousel-inner">-->
+<!--            &lt;!&ndash; Slide 1 &ndash;&gt;-->
+<!--            <div class="carousel-item active">-->
+<!--                <img class="hero-bg-img"-->
+<!--                     src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80"-->
+<!--                     alt="Barbell training"-->
+<!--                     loading="eager"-->
+<!--                     fetchpriority="high"-->
+<!--                     decoding="async"-->
+<!--                     referrerpolicy="no-referrer"-->
+<!--                     onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=60';">-->
+<!--                <div class="container hero-content text-center">-->
+<!--                    <span class="letter-spaced text-uppercase fw-semibold text-accent d-inline-block mb-3">GymNest Fitness</span>-->
+<!--                    <h1 class="display-3 fw-bold mb-3">Stronger Than Yesterday</h1>-->
+<!--                    <p class="lead mb-4">Build strength, boost endurance, and train with certified coaches.</p>-->
+<!--                    <div>-->
+<!--                        <a href="#classes" class="btn btn-primary btn-lg me-3">Explore Classes</a>-->
+<!--                        <a href="#contact" class="btn btn-outline-light btn-lg">Get in Touch</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Slide 2 &ndash;&gt;-->
+<!--            <div class="carousel-item">-->
+<!--                <img class="hero-bg-img"-->
+<!--                     src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1920&q=80"-->
+<!--                     alt="HIIT workout"-->
+<!--                     loading="eager"-->
+<!--                     fetchpriority="high"-->
+<!--                     decoding="async"-->
+<!--                     referrerpolicy="no-referrer"-->
+<!--                     onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1600&q=60';">-->
+<!--                <div class="container hero-content text-center">-->
+<!--                    <span class="letter-spaced text-uppercase fw-semibold text-accent d-inline-block mb-3">Strength & Conditioning</span>-->
+<!--                    <h1 class="display-3 fw-bold mb-3">Lift. Sweat. Recover.</h1>-->
+<!--                    <p class="lead mb-4">Modern equipment, smart programming, real results.</p>-->
+<!--                    <div>-->
+<!--                        <a href="#about" class="btn btn-primary btn-lg me-3">Why GymNest</a>-->
+<!--                        <a href="#classes" class="btn btn-outline-light btn-lg">View Programs</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Slide 3 &ndash;&gt;-->
+<!--            <div class="carousel-item">-->
+<!--                <img class="hero-bg-img"-->
+<!--                     src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1920&q=80"-->
+<!--                     alt="Group training class"-->
+<!--                     loading="eager"-->
+<!--                     fetchpriority="high"-->
+<!--                     decoding="async"-->
+<!--                     onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.unsplash.com/photo-1526403222123-3817f35cbe5e?auto=format&fit=crop&w=1600&q=60';">-->
+<!--                <div class="container hero-content text-center">-->
+<!--                    <span class="letter-spaced text-uppercase fw-semibold text-accent d-inline-block mb-3">Group Training</span>-->
+<!--                    <h1 class="display-3 fw-bold mb-3">Train Together. Get Results.</h1>-->
+<!--                    <p class="lead mb-4">Motivation and accountability in coach-led sessions.</p>-->
+<!--                    <div>-->
+<!--                        <a href="#contact" class="btn btn-primary btn-lg me-3">Book Free Trial</a>-->
+<!--                        <a href="#coaches" class="btn btn-outline-light btn-lg">Meet Coaches</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Controls &ndash;&gt;-->
+<!--        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous slide">-->
+<!--            <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--        </button>-->
+<!--        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next slide">-->
+<!--            <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</header>-->
+
+<!--&lt;!&ndash; About &ndash;&gt;-->
+<!--<section id="about" class="section">-->
+<!--    <div class="container">-->
+<!--        <div class="row g-5 align-items-center">-->
+<!--            <div class="col-lg-6">-->
+<!--                <div class="ratio ratio-4x3 rounded-4 shadow-sm overflow-hidden">-->
+<!--                    <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=1400&q=80" alt="Gym facility" class="w-100 h-100 object-fit-cover" loading="lazy" referrerpolicy="no-referrer">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-6">-->
+<!--                <span class="badge badge-primary-subtle rounded-pill px-3 py-2 mb-3">About GymNest</span>-->
+<!--                <h2 class="mb-4">Train with Pros. Recover Smarter. Perform Better.</h2>-->
+<!--                <p class="text-secondary mb-4">-->
+<!--                    From strength training and HIIT to mobility and yoga, GymNest offers expert-led classes, modern equipment, and a community that motivates you to stay consistent.-->
+<!--                </p>-->
+<!--                <div class="row g-4 mb-4">-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="feature d-flex align-items-start">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-dumbbell"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-1">Modern Equipment</h6>-->
+<!--                                <p class="mb-0 small text-secondary">Top-tier machines and free weights for every level.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="feature d-flex align-items-start">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-user-check"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-1">Certified Coaches</h6>-->
+<!--                                <p class="mb-0 small text-secondary">Personalized guidance to hit your goals faster.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="feature d-flex align-items-start">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-heart-pulse"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-1">Recovery Focused</h6>-->
+<!--                                <p class="mb-0 small text-secondary">Dedicated recovery zones with stretching areas.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="feature d-flex align-items-start">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-people-group"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-1">Community Spirit</h6>-->
+<!--                                <p class="mb-0 small text-secondary">Supportive environment that keeps you motivated.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <a href="#coaches" class="btn btn-primary">Meet Our Coaches</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Classes &ndash;&gt;-->
+<!--<section id="classes" class="py-5 bg-light">-->
+<!--    <div class="container">-->
+<!--        <div class="row align-items-end mb-5">-->
+<!--            <div class="col-lg-8">-->
+<!--                <span class="badge badge-primary-subtle rounded-pill px-3 py-2 mb-2">Our Programs</span>-->
+<!--                <h2 class="section-title fw-bold mb-2">Fitness <span>Classes</span></h2>-->
+<!--                <p class="text-secondary mb-0">Choose from strength, cardio, and mind-body sessions. All classes are beginner-friendly with progressions.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row g-4" id="classes-grid">-->
+<!--            &lt;!&ndash; Classes will be dynamically loaded here &ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Coaches &ndash;&gt;-->
+<!--<section id="coaches" class="section">-->
+<!--    <div class="container">-->
+<!--        <div class="row align-items-end mb-5">-->
+<!--            <div class="col-lg-8">-->
+<!--                <span class="badge badge-primary-subtle rounded-pill px-3 py-2 mb-2">Our Team</span>-->
+<!--                <h2 class="section-title fw-bold mb-2">Expert <span>Coaches</span></h2>-->
+<!--                <p class="text-secondary mb-0">Learn from certified, experienced trainers who care about your progress.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row g-4" id="coaches-grid">-->
+<!--            &lt;!&ndash; Coaches will be dynamically loaded here &ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Packages &ndash;&gt;-->
+<!--<section id="packages" class="section py-5 bg-light">-->
+<!--    <div class="container">-->
+<!--        <div class="row align-items-end mb-5">-->
+<!--            <div class="col-lg-8">-->
+<!--                <span class="badge badge-primary-subtle rounded-pill px-3 py-2 mb-2">Our Offers</span>-->
+<!--                <h2 class="section-title fw-bold mb-2">Membership <span>Packages</span></h2>-->
+<!--                <p class="text-secondary mb-0">Choose a plan that fits your fitness goals and schedule.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row g-4" id="packages-grid">-->
+<!--            &lt;!&ndash; Packages will be dynamically loaded here &ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Locations &ndash;&gt;-->
+<!--<section id="locations" class="section">-->
+<!--    <div class="container">-->
+<!--        <div class="row align-items-end mb-5">-->
+<!--            <div class="col-lg-8">-->
+<!--                <span class="badge badge-primary-subtle rounded-pill px-3 py-2 mb-2">Our Branches</span>-->
+<!--                <h2 class="section-title fw-bold mb-2">Our <span>Locations</span></h2>-->
+<!--                <p class="text-secondary mb-0">Visit our modern facilities across multiple locations, designed for your fitness journey.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row g-4" id="locations-grid">-->
+<!--            &lt;!&ndash; Locations will be dynamically loaded here &ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Reviews &ndash;&gt;-->
+<!--<section id="reviews" class="section bg-light">-->
+<!--    <div class="container">-->
+<!--        <div class="row align-items-end mb-5">-->
+<!--            <div class="col-lg-8">-->
+<!--                <span class="badge badge-primary-subtle rounded-pill px-3 py-2 mb-2">What Members Say</span>-->
+<!--                <h2 class="section-title fw-bold mb-2">Member <span>Reviews</span></h2>-->
+<!--                <p class="text-secondary mb-0">Hear from our community about their GymNest experience.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row g-4" id="reviews-grid">-->
+<!--            &lt;!&ndash; Reviews will be dynamically loaded here &ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Contact &ndash;&gt;-->
+<!--<section id="contact" class="section">-->
+<!--    <div class="container">-->
+<!--        &lt;!&ndash; Section header &ndash;&gt;-->
+<!--        <div class="row align-items-end mb-5">-->
+<!--            <div class="col-lg-8">-->
+<!--                <span class="badge badge-primary-subtle rounded-pill px-3 py-2 mb-2">Contact</span>-->
+<!--                <h2 class="section-title fw-bold mb-2">Get in Touch</h2>-->
+<!--                <p class="text-secondary mb-0">We're here to help you start and stay consistent.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row g-5">-->
+<!--            <div class="col-lg-6">-->
+<!--                <form id="contactForm" class="needs-validation" novalidate>-->
+<!--                    <div class="row g-3">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label class="form-label">Name</label>-->
+<!--                            <input name="name" class="form-control" required>-->
+<!--                            <div class="invalid-feedback">Your name?</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label class="form-label">Email</label>-->
+<!--                            <input name="email" type="email" class="form-control" required>-->
+<!--                            <div class="invalid-feedback">Valid email?</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12">-->
+<!--                            <label class="form-label">Subject</label>-->
+<!--                            <input name="subject" type="text" class="form-control" required>-->
+<!--                            <div class="invalid-feedback">Please enter a subject</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12">-->
+<!--                            <label class="form-label">Message</label>-->
+<!--                            <textarea name="message" class="form-control" rows="5" required></textarea>-->
+<!--                            <div class="invalid-feedback">Type a message</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12">-->
+<!--                            <button type="submit" class="btn btn-primary w-100">Send Message</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Contact Info Card &ndash;&gt;-->
+<!--            <div class="col-lg-6">-->
+<!--                <div class="card p-4 h-100 card-lift">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="mb-4">Contact Info</h5>-->
+<!--                        <div class="d-flex align-items-start mb-3">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-location-dot"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-0">Address</h6>-->
+<!--                                <p class="mb-0">45 King Street, Colombo</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="d-flex align-items-start mb-3">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-phone"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-0">Phone</h6>-->
+<!--                                <p class="mb-0">+94 77 123 4567</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="d-flex align-items-start mb-4">-->
+<!--                            <div class="icon-wrap me-3"><i class="fa-solid fa-envelope"></i></div>-->
+<!--                            <div>-->
+<!--                                <h6 class="mb-0">Email</h6>-->
+<!--                                <p class="mb-0">hello@gymnest.fit</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="ratio ratio-16x9 rounded-3 overflow-hidden">-->
+<!--                            <iframe src="https://maps.google.com/maps?q=Colombo%20Sri%20Lanka&t=&z=12&ie=UTF8&iwloc=&output=embed"-->
+<!--                                    style="border:0" allowfullscreen="" loading="lazy"></iframe>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Footer &ndash;&gt;-->
+<!--<footer class="footer mt-5 pt-5 pb-4">-->
+<!--    <div class="container">-->
+<!--        <div class="row g-4">-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="brand mb-2"><i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest</div>-->
+<!--                <p>Stronger every day — with expert coaching and a community that has your back.</p>-->
+<!--                <div class="social-links">-->
+<!--                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>-->
+<!--                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>-->
+<!--                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>-->
+<!--                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <h6 class="text-white">Quick Links</h6>-->
+<!--                <ul class="list-unstyled">-->
+<!--                    <li><a href="#home">Home</a></li>-->
+<!--                    <li><a href="#about">About</a></li>-->
+<!--                    <li><a href="#classes">Classes</a></li>-->
+<!--                    <li><a href="#coaches">Coaches</a></li>-->
+<!--                    <li><a href="#packages">Packages</a></li>-->
+<!--                    <li><a href="#locations">Locations</a></li>-->
+<!--                    <li><a href="#reviews">Reviews</a></li>-->
+<!--                    <li><a href="#contact">Contact</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <h6 class="text-white">Contact</h6>-->
+<!--                <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i> 45 King Street, Colombo</p>-->
+<!--                <p class="mb-1"><i class="fa-solid fa-phone me-2"></i> +94 77 123 4567</p>-->
+<!--                <p class="mb-0"><i class="fa-solid fa-envelope me-2"></i> hello@gymnest.fit</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr class="border-secondary my-4">-->
+<!--        <div class="d-flex justify-content-between flex-wrap small">-->
+<!--            <span>© <span class="year"></span> GymNest</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>GymNest — Fitness & Training</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="GymNest — — Train smarter with modern facilities, motivating classes, and expert coaches." />
+    <meta name="description" content="GymNest — Train smarter with modern facilities, motivating classes, and expert coaches." />
     <meta name="theme-color" content="#E63946" />
 
     <!-- Bootstrap CSS -->
@@ -5570,32 +6570,38 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
         }
-        .navbar-brand{ font-weight: 800; }
-        .navbar .navbar-brand i{ color:var(--primary); }
+        .navbar-brand{
+            font-weight: 800;
+            white-space: nowrap; /* Prevent title from breaking into multiple lines */
+        }
         .navbar .navbar-nav .nav-link{
             color: var(--dark);
             font-weight: 500;
             transition: color .15s ease;
             position: relative;
         }
-        .navbar .navbar-nav .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
         .navbar .navbar-nav .nav-link.active,
         .navbar .navbar-nav .nav-link:hover{ color:var(--primary); }
-        .navbar .navbar-nav .nav-link.active::after,
-        .navbar .navbar-nav .nav-link:hover::after{ width: 80%; }
-        /* Ensure toggler icon is visible on white navbar */
         .navbar .navbar-toggler-icon{
             background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath stroke="rgba(29,53,87,0.8)" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+        }
+
+        /* Navbar Brand Icon Animation - UPDATED */
+        .brand-icon {
+            transition: transform 0.5s ease, filter 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        .navbar-brand:hover .brand-icon {
+            animation: rotateAndPulse 1s ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes rotateAndPulse {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(15deg) scale(1.2); }
+            100% { transform: rotate(0deg) scale(1); }
         }
 
         /* Buttons */
@@ -5683,8 +6689,8 @@
 
         /* Global Icon wrap (used in About, Contact, etc.) */
         .icon-wrap{
-            width: 64px;
-            height: 64px;
+            width: 40px;
+            height: 40px;
             display: grid;
             place-items: center;
             border-radius: 16px;
@@ -5797,8 +6803,8 @@
             box-shadow: var(--shadow-3);
         }
         .class-icon, .coach-icon{
-            width: 64px;
-            height: 64px;
+            width: 40px;
+            height: 40px;
             display: grid;
             place-items: center;
             border-radius: 16px;
@@ -5812,7 +6818,7 @@
             color: var(--primary);
             font-weight: 600;
             padding: 0.5rem 1rem;
-            border-radius: 50px;
+            край: 50px;
         }
         .level{ font-size:.9rem; }
         .meta i{ font-size:1rem; }
@@ -5832,7 +6838,7 @@
             padding: 0.5rem 1.25rem;
         }
         .cta-btn:hover{
-            background: var(--primary-600);
+            край: var(--primary-600);
             border-color: var(--primary-600);
         }
         .card-img-top{
@@ -5875,12 +6881,96 @@
             margin: 0 auto;
         }
 
-        /* Footer */
+
+
+        /* Reviews section card styles */
+        #reviews-grid .card {
+            border: none;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--card-bg);
+            box-shadow: var(--shadow-1);
+            height: 100%;
+        }
+
+        #reviews-grid .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-3);
+        }
+
+        #reviews-grid .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 1.5rem;
+        }
+
+        #reviews-grid .card-body {
+            padding: 1.5rem;
+        }
+
+        #reviews-grid .reviewer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        #reviews-grid .reviewer-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 2px solid var(--primary);
+        }
+
+        #reviews-grid .reviewer-info h6 {
+            margin-bottom: 0.25rem;
+            color: var(--dark);
+        }
+
+        #reviews-grid .reviewer-info .position {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        #reviews-grid .stars {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        #reviews-grid .review-text {
+            color: var(--ink);
+            line-height: 1.6;
+            font-style: italic;
+            position: relative;
+        }
+
+        #reviews-grid .review-text::before,
+        #reviews-grid .review-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        #reviews-grid .review-text::before {
+            margin-right: 0.25rem;
+        }
+
+        #reviews-grid .review-text::after {
+            margin-left: 0.25rem;
+            vertical-align: top;
+        }
+        /* Footer - UPDATED with modern styles */
         .footer{
-            background: var(--dark);
-            color: #cfd3da;
+            background: linear-gradient(to right, #1D3557, #457B9D);
+            color: #fff;
             padding: 4rem 0 2rem;
             position: relative;
+            overflow: hidden;
         }
         .footer::before {
             content: '';
@@ -5891,78 +6981,122 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         }
+        .footer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
         .footer a{
-            color: #cfd3da;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
             transition: all 0.3s ease;
+            position: relative;
         }
         .footer a:hover{
             color: #fff;
-            text-decoration: none;
+            transform: translateX(5px);
+        }
+        .footer a:hover::before {
+            content: '→';
+            position: absolute;
+            left: -15px;
+            opacity: 1;
         }
         .footer .brand {
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #fff;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: inline-block;
+            position: relative;
+            z-index: 1;
+            white-space: nowrap; /* Prevent title from breaking into multiple lines */
         }
         .footer .brand i {
             color: var(--accent);
+            animation: pulse 2s infinite;
+        }
+        .footer .brand i:hover {
+            animation: rotateAndPulse 1s ease-in-out;
         }
         .footer h6 {
             color: #fff;
-            font-weight: 600;
-            margin-bottom: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             position: relative;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.75rem;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
         }
         .footer h6::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 40px;
-            height: 2px;
+            край: 50px;
+            height: 3px;
             background: var(--accent);
+            border-radius: 3px;
         }
         .footer ul.list-unstyled li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
+            position: relative;
+            z-index: 1;
         }
         .footer .contact-info p {
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: flex-start;
+            position: relative;
+            z-index: 1;
         }
         .footer .contact-info i {
             margin-right: 0.75rem;
             color: var(--accent);
             margin-top: 0.25rem;
-            min-width: 16px;
+            min-width: 20px;
+            font-size: 1.1rem;
         }
         .footer .social-links {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
         .footer .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
             color: #fff;
             margin-right: 0.75rem;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
         }
         .footer .social-links a:hover {
             background: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
         }
         .footer .copyright {
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.15);
             padding-top: 1.5rem;
             margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .footer p {
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
         }
 
         /* Gradient mix for brand icons */
@@ -5973,9 +7107,9 @@
             .icon-mix{
                 background-image: linear-gradient(
                         135deg,
-                        color-mix(in oklab, var(--four--primary) 22%, white),
+                        color-mix(in oklab, var(--primary) 22%, white),
                         var(--primary),
-                        color-mix(in oklab, var(--primary) 12%, black)
+                        color-mix(in oklab, var(--four--primary) 12%, black)
                 );
                 -webkit-background-clip: text;
                 background-clip: text;
@@ -5983,35 +7117,41 @@
             }
         }
 
-        /* Back to top button */
+        /* Back to top button - UPDATED: Removed circle, made it just an arrow */
         .back-to-top {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: none;
+            color: var(--primary);
             text-decoration: none;
-            box-shadow: var(--shadow-2);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1000;
+            font-size: 2.5rem;
+            border: none;
+            padding: 0;
+            width: auto;
+            height: auto;
+            border-radius: 0;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .back-to-top.show {
             opacity: 1;
             visibility: visible;
         }
         .back-to-top:hover {
-            background: var(--primary-600);
-            transform: translateY(-3px);
+            color: var(--primary-600);
+            transform: translateY(-5px);
         }
-
+        .back-to-top i {
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            font-size: 2.5rem;
+        }
         /* Animation utilities */
         .fade-in {
             animation: fadeIn 0.6s ease forwards;
@@ -6082,6 +7222,18 @@
             .footer .row.g-4 > div {
                 margin-bottom: 2rem;
             }
+            .footer::after {
+                display: none;
+            }
+            .back-to-top {
+                font-size: 2rem;
+                right: 1.5rem;
+                bottom: 1.5rem;
+            }
+            .back-to-top i {
+                font-size: 2rem;
+            }
+
         }
 
         @media (max-width: 576px){
@@ -6093,6 +7245,14 @@
             .btn-primary, .btn-outline-primary, .btn-secondary, .btn-accent {
                 padding: 0.6rem 1.2rem;
                 font-size: 0.9rem;
+            }
+            .back-to-top {
+                font-size: 1.8rem;
+                right: 1rem;
+                bottom: 1rem;
+            }
+            .back-to-top i {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -6107,8 +7267,8 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="#home">
-            <i class="fa-solid fa-dumbbell me-2 icon-mix"></i>GymNest
+        <a class="navbar-brand fw-bold d-inline-flex align-items-center" href="#home">
+            <i class="fa-solid fa-dumbbell me-2 text-warning brand-icon"></i>GymNest
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -6153,7 +7313,7 @@
                      fetchpriority="high"
                      decoding="async"
                      referrerpolicy="no-referrer"
-                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=60';">
+                     onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=60';">
                 <div class="container hero-content text-center">
                     <span class="letter-spaced text-uppercase fw-semibold text-accent d-inline-block mb-3">GymNest Fitness</span>
                     <h1 class="display-3 fw-bold mb-3">Stronger Than Yesterday</h1>
@@ -6174,7 +7334,7 @@
                      fetchpriority="high"
                      decoding="async"
                      referrerpolicy="no-referrer"
-                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1600&q=60';">
+                     onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=1600&q=60';">
                 <div class="container hero-content text-center">
                     <span class="letter-spaced text-uppercase fw-semibold text-accent d-inline-block mb-3">Strength & Conditioning</span>
                     <h1 class="display-3 fw-bold mb-3">Lift. Sweat. Recover.</h1>
@@ -6194,7 +7354,7 @@
                      loading="eager"
                      fetchpriority="high"
                      decoding="async"
-                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1526403222123-3817f35cbe5e?auto=format&fit=crop&w=1600&q=60';">
+                     onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.unsplash.com/photo-1526403222123-3817f35cbe5e?auto=format&fit=crop&w=1600&q=60';">
                 <div class="container hero-content text-center">
                     <span class="letter-spaced text-uppercase fw-semibold text-accent d-inline-block mb-3">Group Training</span>
                     <h1 class="display-3 fw-bold mb-3">Train Together. Get Results.</h1>
@@ -6223,7 +7383,7 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
                 <div class="ratio ratio-4x3 rounded-4 shadow-sm overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=1400&q=80" alt="Gym facility" class="w-100 h-100 object-fit-cover" loading="lazy" referrerpolicy="no-referrer">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=80" alt="Modern gym facility with equipment and people working out" class="w-100 h-100 object-fit-cover" loading="lazy" referrerpolicy="no-referrer">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -6280,7 +7440,7 @@
 <section id="classes" class="py-5 bg-light">
     <div class="container">
         <div class="row align-items-end mb-5">
-            <div class="lg-8">
+            <div class="col-lg-8">
                 <span class="badge badge-primary-subtle rounded-pill px-3 py-2 mb-2">Our Programs</span>
                 <h2 class="section-title fw-bold mb-2">Fitness <span>Classes</span></h2>
                 <p class="text-secondary mb-0">Choose from strength, cardio, and mind-body sessions. All classes are beginner-friendly with progressions.</p>
@@ -6375,34 +7535,36 @@
 
         <div class="row g-5">
             <div class="col-lg-6">
-                <form class="needs-validation" novalidate>
+                <form id="contactForm" class="needs-validation" novalidate>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">Name</label>
-                            <input class="form-control" required>
+                            <input name="name" class="form-control" required>
                             <div class="invalid-feedback">Your name?</div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" required>
+                            <input name="email" type="email" class="form-control" required>
                             <div class="invalid-feedback">Valid email?</div>
                         </div>
                         <div class="col-12">
                             <label class="form-label">Subject</label>
-                            <input type="text" class="form-control" required>
+                            <input name="subject" type="text" class="form-control" required>
                             <div class="invalid-feedback">Please enter a subject</div>
                         </div>
                         <div class="col-12">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" rows="5" required></textarea>
+                            <textarea name="message" class="form-control" rows="5" required></textarea>
                             <div class="invalid-feedback">Type a message</div>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary">Send Message</button>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
                         </div>
                     </div>
                 </form>
             </div>
+
+            <!-- Contact Info Card -->
             <div class="col-lg-6">
                 <div class="card p-4 h-100 card-lift">
                     <div class="card-body">
@@ -6460,7 +7622,9 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#classes">Classes</a></li>
                     <li><a href="#coaches">Coaches</a></li>
+                    <li><a href="#packages">Packages</a></li>
                     <li><a href="#locations">Locations</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -6477,11 +7641,38 @@
         </div>
     </div>
 </footer>
-
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+    (function() {
+        emailjs.init("tuZs6yfMi7gIr5Uzv");
+    })();
+
+    const contactForm = document.getElementById("contactForm");
+
+    contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        if (!contactForm.checkValidity()) {
+            contactForm.classList.add("was-validated");
+            return;
+        }
+
+        const serviceID = "service_cwumx1q";
+        const templateID = "template_artesfz";
+
+        emailjs.sendForm(serviceID, templateID, contactForm)
+            .then(() => {
+                alert("✅ Message sent successfully! Check your inbox.");
+                contactForm.reset();
+                contactForm.classList.remove("was-validated");
+            }, (err) => {
+                alert("❌ Failed to send message: " + JSON.stringify(err));
+            });
+    });
+
     // Footer year
     document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
 
@@ -6499,7 +7690,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Ensure the hero carousel auto-plays (explicit init)
+    // Initialize hero carousel once
     document.addEventListener('DOMContentLoaded', () => {
         const heroEl = document.getElementById('heroCarousel');
         if (heroEl) {
@@ -6513,14 +7704,17 @@
             heroCarousel.cycle();
         }
 
-        // Fallback: if any hero image fails, retry with a lighter version by tweaking query
+        // Fallback for hero images
         document.querySelectorAll('.hero-bg-img').forEach(img => {
             img.addEventListener('error', () => {
                 try {
                     const u = new URL(img.src, window.location.href);
-                    u.searchParams.set('q', '60'); // Unsplash quality param
+                    u.searchParams.set('q', '60');
                     img.src = u.toString();
-                } catch(e) {}
+                    img.classList.remove('img-loading');
+                } catch(e) {
+                    img.classList.remove('img-loading');
+                }
             }, { once: true });
         });
 
@@ -6536,7 +7730,6 @@
         function updateDropdownContent(isLoggedIn, userName) {
             userDropdown.innerHTML = "";
             if (isLoggedIn) {
-                // User is logged in
                 const userLink = document.createElement("a");
                 userLink.className = "nav-link dropdown-toggle";
                 userLink.href = "#";
@@ -6554,7 +7747,6 @@
                     <li><a class="dropdown-item" href="booking.html">Bookings</a></li>
                     <li><a class="dropdown-item" href="review.html">Reviews</a></li>
                     <li><a class="dropdown-item text-danger" id="logoutBtn">Log out</a></li>
-
                 `;
                 userDropdown.appendChild(dropdownMenu);
 
@@ -6566,7 +7758,6 @@
                     });
                 }
             } else {
-                // User is not logged in
                 const signInLink = document.createElement("a");
                 signInLink.className = "nav-link";
                 signInLink.href = "signin.html";
@@ -6579,7 +7770,6 @@
         function checkUserLogin() {
             const name = localStorage.getItem("name");
             const token = localStorage.getItem("token");
-
             if (name && token) {
                 updateDropdownContent(true, name);
             } else {
@@ -6593,8 +7783,6 @@
             localStorage.removeItem("token");
             localStorage.removeItem("email");
             localStorage.removeItem("role");
-
-            // Update dropdown to show guest state
             updateDropdownContent(false, "");
             window.location.href = "index.html";
         }
@@ -6609,113 +7797,108 @@
                 url: "http://localhost:8080/api/v1/class/getAll",
                 success: function (response) {
                     $('#classes-grid').empty();
-                    response.data.forEach(function (classData) {
-                        const iconMap = {
-                            'Spin & Sweat': 'bi-bicycle',
-                            'Core & Conditioning': 'bi-body-text',
-                            'Engine Builder': 'bi-speedometer2',
-                            'Yoga & Mobility': 'bi-flower3',
-                            'HIIT Combat': 'bi-hand-thumbs-up',
-                            'Strength & Powerlifting': 'bi-bar-chart-steps'
-                        };
-                        const iconClass = iconMap[classData.name] || 'bi-person';
-                        const categoryMap = {
-                            'Spin & Sweat': 'Cardio',
-                            'Core & Conditioning': 'Strength',
-                            'Engine Builder': 'Conditioning',
-                            'Yoga & Mobility': 'Mind-Body',
-                            'HIIT Combat': 'Cardio',
-                            'Strength & Powerlifting': 'Strength'
-                        };
-                        const category = categoryMap[classData.name] || 'N/A';
-                        const levelMap = {
-                            'Strength & Powerlifting': 'Intermediate',
-                            'Engine Builder': 'Intermediate'
-                        };
-                        const level = levelMap[classData.name] || 'All Levels';
-                        const intensityMap = {
-                            'Spin & Sweat': 'Medium-High',
-                            'Core & Conditioning': 'Medium',
-                            'Engine Builder': 'High',
-                            'Yoga & Mobility': 'Low-Medium',
-                            'HIIT Combat': 'High',
-                            'Strength & Powerlifting': 'Medium-High'
-                        };
-                        const intensity = intensityMap[classData.name] || 'N/A';
-                        const durationMap = {
-                            'Spin & Sweat': '45 min',
-                            'Core & Conditioning': '40 min',
-                            'Engine Builder': '45–50 min',
-                            'Yoga & Mobility': '50–60 min',
-                            'HIIT Combat': '35–45 min',
-                            'Strength & Powerlifting': '60 min'
-                        };
-                        const duration = durationMap[classData.name] || 'N/A';
 
-                        var classCard = `
-                            <div class="col-md-6 col-lg-4" data-category="${category.toLowerCase()}">
-                                <div class="card class-card h-100">
-                                    <img src="https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg" class="card-img-top" alt="${classData.name}" loading="lazy">
-                                    <div class="card-body p-4 d-flex flex-column">
-                                        <div class="d-flex align-items-center mb-3 gap-3">
-                                            <div class="class-icon"><i class="bi ${iconClass}"></i></div>
-                                            <div>
-                                                <h5 class="card-title mb-1">${classData.name}</h5>
-                                                <span class="badge badge-soft">${category}</span>
-                                            </div>
-                                        </div>
-                                        <p class="text-secondary mb-3">${classData.trainer ? `Led by ${classData.trainer}` : 'Trainer TBD'}</p>
-                                        <div class="meta small text-muted mb-3">
-                                            <i class="bi bi-clock me-1"></i> ${duration}
-                                            <span class="dot"></span>
-                                            <i class="bi bi-lightning-charge me-1"></i> Intensity: ${intensity}
-                                        </div>
-                                        <div class="mt-auto d-flex align-items-center justify-content-between">
-                                            <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> ${level}</div>
-                                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
-                                        </div>
+                    // Maps for icons, categories, levels, intensity, duration, and images
+                    const iconMap = {
+                        'Spin & Sweat': 'bi-bicycle',
+                        'Core & Conditioning': 'bi-body-text',
+                        'Engine Builder': 'bi-speedometer2',
+                        'Yoga & Mobility': 'bi-flower3',
+                        'HIIT Combat': 'bi-hand-thumbs-up',
+                        'Strength & Powerlifting': 'bi-bar-chart-steps'
+                    };
+
+                    const categoryMap = {
+                        'Spin & Sweat': 'Cardio',
+                        'Core & Conditioning': 'Strength',
+                        'Engine Builder': 'Conditioning',
+                        'Yoga & Mobility': 'Mind-Body',
+                        'HIIT Combat': 'Cardio',
+                        'Strength & Powerlifting': 'Strength'
+                    };
+
+                    const levelMap = {
+                        'Strength & Powerlifting': 'Intermediate',
+                        'Engine Builder': 'Intermediate'
+                    };
+
+                    const intensityMap = {
+                        'Spin & Sweat': 'Medium-High',
+                        'Core & Conditioning': 'Medium',
+                        'Engine Builder': 'High',
+                        'Yoga & Mobility': 'Low-Medium',
+                        'HIIT Combat': 'High',
+                        'Strength & Powerlifting': 'Medium-High'
+                    };
+
+                    const durationMap = {
+                        'Spin & Sweat': '45 min',
+                        'Core & Conditioning': '40 min',
+                        'Engine Builder': '45–50 min',
+                        'Yoga & Mobility': '50–60 min',
+                        'HIIT Combat': '35–45 min',
+                        'Strength & Powerlifting': '60 min'
+                    };
+
+                    const imageMap = {
+                        'Spin & Sweat': 'https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg',
+                        'Core & Conditioning': 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg',
+                        'Engine Builder': 'https://images.pexels.com/photos/414029/pexels-photo-414029.jpeg',
+                        'Yoga & Mobility': 'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg',
+                        'HIIT Combat': 'https://images.pexels.com/photos/404029/pexels-photo-404029.jpeg',
+                        'Strength & Powerlifting': 'https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg'
+                    };
+
+                    // Ensure response.data exists and is an array
+                    const classes = Array.isArray(response.data) ? response.data : [];
+
+                    classes.forEach(function (classData) {
+                        const name = classData.name || 'Unknown Class';
+                        const trainer = classData.trainer || 'Trainer TBD';
+                        const iconClass = iconMap[name] || 'bi-person';
+                        const category = categoryMap[name] || 'N/A';
+                        const level = levelMap[name] || 'All Levels';
+                        const intensity = intensityMap[name] || 'N/A';
+                        const duration = durationMap[name] || 'N/A';
+                        const imageUrl = imageMap[name] || 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';
+
+                        const classCard = `
+                    <div class="col-md-6 col-lg-4" data-category="${category.toLowerCase()}">
+                        <div class="card class-card h-100">
+                            <img src="${imageUrl}" class="card-img-top" alt="${name}" loading="lazy"
+                                onerror="this.onerror=null;this.src='https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <div class="d-flex align-items-center mb-3 gap-3">
+                                    <div class="class-icon"><i class="bi ${iconClass}"></i></div>
+                                    <div>
+                                        <h5 class="card-title mb-1">${name}</h5>
+                                        <span class="badge badge-soft">${category}</span>
                                     </div>
                                 </div>
+                                <p class="text-secondary mb-3">${trainer}</p>
+                                <div class="meta small text-muted mb-3">
+                                    <i class="bi bi-clock me-1"></i> ${duration}
+                                    <span class="dot"></span>
+                                    <i class="bi bi-lightning-charge me-1"></i> Intensity: ${intensity}
+                                </div>
+                                <div class="mt-auto d-flex align-items-center justify-content-between">
+                                    <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> ${level}</div>
+                                    <a href="#contact" class="btn btn-sm btn-primary cta-btn">Book</a>
+                                </div>
                             </div>
-                        `;
+                        </div>
+                    </div>
+                `;
                         $('#classes-grid').append(classCard);
-                    });
-                    if (typeof bootstrap !== 'undefined') {
-                        new bootstrap.Carousel(document.getElementById('heroCarousel'), {
-                            interval: 5000,
-                            pause: false,
-                            wrap: true,
-                            touch: true,
-                            keyboard: true
-                        });
-                    }
-                    const filterButtons = document.querySelectorAll('[data-filter]');
-                    const classCards = document.querySelectorAll('#classes-grid > div');
-                    filterButtons.forEach(button => {
-                        button.addEventListener('click', () => {
-                            filterButtons.forEach(btn => btn.classList.remove('active'));
-                            button.classList.add('active');
-                            const filterValue = button.getAttribute('data-filter');
-                            classCards.forEach(card => {
-                                if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
-                                    card.style.display = 'block';
-                                    setTimeout(() => {
-                                        card.classList.add('fade-in');
-                                    }, 10);
-                                } else {
-                                    card.classList.remove('fade-in');
-                                    card.style.display = 'none';
-                                }
-                            });
-                        });
                     });
                 },
                 error: function (xhr, status, error) {
-                    console.error("Error loading classes:", error);
-                    $('#classes-grid').html('<p class="text-center text-muted">Error loading classes. Please try again later.</p>');
+                    console.error("Failed to load classes:", status, error);
+                    $('#classes-grid').html('<p class="text-danger">Failed to load classes. Please try again later.</p>');
                 }
             });
         }
+
 
         // Function to load coaches dynamically
         function loadCoaches() {
@@ -6726,7 +7909,7 @@
                     $('#coaches-grid').empty();
                     response.data.forEach(function (guide) {
                         const img = guide.imageUrl
-                            ? `<img src="/Uploads/${guide.imageUrl}" class="card-img-top" alt="${guide.fullName || 'Unnamed Coach'}" loading="lazy">`
+                            ? `<img src="/Uploads/${guide.imageUrl}" class="card-img-top" alt="${guide.fullName || 'Unnamed Coach'}" loading="lazy" onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.pexels.com/photos/416717/pexels-photo-416717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';">`
                             : '<img src="https://images.pexels.com/photos/416717/pexels-photo-416717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Unnamed Coach" loading="lazy">';
                         const iconMap = {
                             'Strength & Powerlifting': 'bi-bar-chart-steps',
@@ -6750,10 +7933,7 @@
                                                 <span class="badge badge-soft">${guide.description || 'N/A'}</span>
                                             </div>
                                         </div>
-                                        <div class="meta small text-muted mb-3">
-                                            <i class="bi bi-clock me-1"></i> 5+ Years Experience
-                                            <span class="dot"></span>
-                                        </div>
+
                                         <div class="mt-auto d-flex align-items-center justify-content-between">
                                             <div class="level text-muted"><i class="bi bi-star-fill me-1"></i> ${level}</div>
                                             <div class="d-flex gap-2">
@@ -6767,15 +7947,6 @@
                         `;
                         $('#coaches-grid').append(coachCard);
                     });
-                    if (typeof bootstrap !== 'undefined') {
-                        new bootstrap.Carousel(document.getElementById('heroCarousel'), {
-                            interval: 5000,
-                            pause: false,
-                            wrap: true,
-                            touch: true,
-                            keyboard: true
-                        });
-                    }
                 },
                 error: function (xhr, status, error) {
                     console.error("Error loading coaches:", error);
@@ -6793,7 +7964,7 @@
                     $('#packages-grid').empty();
                     response.data.forEach(function (packageData) {
                         const img = packageData.imageUrl
-                            ? `<img src="/Uploads/${packageData.imageUrl}" class="card-img-top" alt="${packageData.name}" loading="lazy">`
+                            ? `<img src="/Uploads/${packageData.imageUrl}" class="card-img-top" alt="${packageData.name}" loading="lazy" onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';">`
                             : '<img src="https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg" class="card-img-top" alt="Default Package" loading="lazy">';
                         const classNames = packageData.classes ? packageData.classes.join(', ') : 'N/A';
                         var packageCard = `
@@ -6840,42 +8011,42 @@
                 type: "GET",
                 url: "http://localhost:8080/api/v1/location/getAll",
                 success: function (response) {
-                    console.log("Locations API Response:", response); // Log response for debugging
+                    console.log("Locations API Response:", response);
                     $('#locations-grid').empty();
                     if (!response.data || !Array.isArray(response.data)) {
                         $('#locations-grid').html('<p class="text-center text-muted">No locations available.</p>');
                         return;
                     }
                     response.data.forEach(function (locationData) {
-                        console.log("Location Image URL:", locationData.imageUrl); // Log image URL
+                        console.log("Location Image URL:", locationData.imageUrl);
                         const img = locationData.imageUrl
                             ? `<img src="${window.location.origin}/Uploads/${locationData.imageUrl}" class="card-img-top" alt="${locationData.name || 'Gym Branch'}" loading="lazy" onerror="this.onerror=null;this.classList.remove('img-loading');this.src='https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80';">`
-                            : '<img src="https://images.pexels.com/photos/707928/pexels-photo-707928.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Default Location" loading="lazy" onerror="this.onerror=null;this.classList.remove("img-loading");this.src=\'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80\';">';
+                            : '<img src="https://images.pexels.com/photos/707928/pexels-photo-707928.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Default Location" loading="lazy" onerror="this.onerror=null;this.classList.remove("img-loading");this.src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80';">";
                         var locationCard = `
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card class-card h-100">
-                            ${img}
-                            <div class="card-body p-4 d-flex flex-column">
-                                <div class="d-flex align-items-center mb-3 gap-3">
-                                    <div class="class-icon"><i class="bi bi-geo-alt"></i></div>
-                                    <div>
-                                        <h5 class="card-title mb-1">${locationData.name || 'Unnamed Location'}</h5>
-                                        <span class="badge badge-soft">Gym Branch</span>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card class-card h-100">
+                                    ${img}
+                                    <div class="card-body p-4 d-flex flex-column">
+                                        <div class="d-flex align-items-center mb-3 gap-3">
+                                            <div class="class-icon"><i class="bi bi-geo-alt"></i></div>
+                                            <div>
+                                                <h5 class="card-title mb-1">${locationData.name || 'Unnamed Location'}</h5>
+                                                <span class="badge badge-soft">Gym Branch</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-secondary mb-3">${locationData.description || 'Modern fitness facility'}</p>
+                                        <div class="meta small text-muted mb-3">
+                                            <i class="bi bi-geo-alt me-1"></i> ${locationData.address || 'N/A'}
+                                            <span class="dot"></span>
+                                            <i class="bi bi-clock me-1"></i> ${locationData.openHours || 'N/A'}
+                                        </div>
+                                        <div class="mt-auto d-flex align-items-center justify-content-between">
+                                            <a href="#contact" class="btn btn-sm btn-primary cta-btn">Visit Us</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <p class="text-secondary mb-3">${locationData.description || 'Modern fitness facility'}</p>
-                                <div class="meta small text-muted mb-3">
-                                    <i class="bi bi-geo-alt me-1"></i> ${locationData.address || 'N/A'}
-                                    <span class="dot"></span>
-                                    <i class="bi bi-clock me-1"></i> ${locationData.openHours || 'N/A'}
-                                </div>
-                                <div class="mt-auto d-flex align-items-center justify-content-between">
-                                    <a href="#contact" class="btn btn-sm btn-primary cta-btn">Visit Us</a>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                `;
+                        `;
                         $('#locations-grid').append(locationCard);
                     });
                 },
@@ -6934,25 +8105,7 @@
         loadLocations();
         loadReviews();
     });
-
-    // Simple form validation
-    (() => {
-        'use strict';
-        const forms = document.querySelectorAll('.needs-validation');
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    })();
 </script>
 </body>
 </html>
-
-
-
 

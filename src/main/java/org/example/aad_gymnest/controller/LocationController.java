@@ -26,10 +26,7 @@ public class LocationController {
     @Autowired
     private LocationService locationService;
 
-//    private static final String UPLOAD_DIR = "src/main/resources/templates/uploads/";
-
-    // In LocationController
-    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/templates/uploads/";
+    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
 
     @PostMapping("/save")
     public ResponseEntity<ResponseDTO> saveLocation(
@@ -143,14 +140,18 @@ public class LocationController {
         }
     }
 
-    private String saveFile(MultipartFile file) throws IOException {
-        File directory = new File(UPLOAD_DIR);
-        if (!directory.exists()) {
-            directory.mkdirs();
+private String saveFile(MultipartFile file) throws IOException {
+    File directory = new File(UPLOAD_DIR);
+    if (!directory.exists()) {
+        System.out.println("Creating directory: " + directory.getAbsolutePath());
+        if (!directory.mkdirs()) {
+            throw new IOException("Failed to create directory: " + directory.getAbsolutePath());
         }
-        String uniqueFileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        Path path = Paths.get(UPLOAD_DIR + uniqueFileName);
-        Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-        return uniqueFileName;
     }
+    String uniqueFileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+    Path path = Paths.get(UPLOAD_DIR + uniqueFileName);
+    System.out.println("Saving file to: " + path.toString());
+    Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+    return uniqueFileName;
+}
 }

@@ -18,14 +18,14 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
     // Find all bookings by user email
     List<BookingEntity> findByUser_Email(String email);
 
-    // Count bookings per day (for statistics / dashboard)
+    // Count bookings per day
     @Query(value = "SELECT booking_date AS date, COUNT(*) AS count FROM bookings GROUP BY booking_date", nativeQuery = true)
     List<Map<String, Object>> findBookingsPerDay();
 
-    // Total revenue per booking (useful for reports)
+    // Total revenue per booking
     @Query(value = "SELECT id AS bookingId, total_price AS total FROM bookings", nativeQuery = true)
     List<Map<String, Object>> findTotalPricePerBooking();
 
-    // Optional: Find active bookings
+    //  Find active bookings
     List<BookingEntity> findByStatus(String status);
 }

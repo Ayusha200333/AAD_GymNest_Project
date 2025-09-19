@@ -10,18 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-//    @Autowired
-//    private JavaMailSender mailSender;
-//
-//    @Async
-//    @Override
-//    public void sendGuideRegistrationEmail(String toEmail, String guideName) {
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setTo(toEmail);
-//        message.setSubject("Guide Registration Successful");
-//        message.setText("Dear " + guideName + ",\n\nYour registration as a guide is successful!\n\nBest Regards,\nGymNest Team");
-//        mailSender.send(message);
-//    }
 @Autowired
 private JavaMailSender mailSender;
 
@@ -38,7 +26,7 @@ private JavaMailSender mailSender;
             System.out.println("Email sent successfully to: " + toEmail);
         } catch (Exception e) {
             System.err.println("Failed to send email to " + toEmail + ": " + e.getMessage());
-            throw e; // Re-throw to maintain the original behavior for debugging
+            throw e;
         }
     }
 

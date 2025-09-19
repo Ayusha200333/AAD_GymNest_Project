@@ -18,36 +18,34 @@ public class BookingEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // === Relationships ===
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;   // Member who books
+    private UserEntity user;
 
     @ManyToOne
     @JoinColumn(name = "package_id", nullable = false)
-    private PackageEntity gymPackage;   // Membership Package
+    private PackageEntity gymPackage;
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private ClassEntity gymClass;   // Gym Class (Yoga, Cardio etc.)
+    private ClassEntity gymClass;
 
     @ManyToOne
     @JoinColumn(name = "coach_id", nullable = false)
-    private GuideEntity coach;   // Assigned Coach (GuideEntity acts as Coach)
+    private GuideEntity coach;
 
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
-    private LocationEntity location;   // Gym branch / Location
+    private LocationEntity location;
 
-    // === Booking Details ===
-    private LocalDate bookingDate;   // Start date
-    private LocalDate endDate;       // End date
+    private LocalDate bookingDate;
+    private LocalDate endDate;
 
-    private int numberOfSessions;    // Number of sessions booked
+    private int numberOfSessions;
 
-    private double packagePrice;     // Package price
-    private double coachFee;         // Extra fee for coach
-    private double totalPrice;       // packagePrice + coachFee
+    private double packagePrice;
+    private double coachFee;
+    private double totalPrice;
 
     @Column(nullable = false)
     private String status = "ACTIVE"; // ACTIVE / COMPLETED / CANCELLED

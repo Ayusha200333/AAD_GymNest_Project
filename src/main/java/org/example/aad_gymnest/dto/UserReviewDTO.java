@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @Data
 public class UserReviewDTO {
     private Integer reviewId;
-    private String userEmail; // Logged-in user email
+    private String userEmail;
     private String userName;
-    private int rating;  // 1-5
+    private int rating;
     private String comment;
     private LocalDateTime createdAt;
 }
