@@ -663,7 +663,38 @@
             });
         });
 
-        // Get complete user profile data
+        // // Get complete user profile data
+        // function getUserProfileData(email, token) {
+        //     $.ajax({
+        //         url: `${API_BASE}/user/getUserByEmail?email=${encodeURIComponent(email)}`,
+        //         method: 'GET',
+        //         contentType: 'application/json',
+        //         headers: {
+        //             'Authorization': 'Bearer ' + token
+        //         },
+        //         success: function (response) {
+        //             if (response.data) {
+        //                 localStorage.setItem("userId", response.data.id);
+        //                 localStorage.setItem("name", response.data.name);
+        //                 localStorage.setItem("email", response.data.email);
+        //                 localStorage.setItem("contact", response.data.contact);
+        //                 localStorage.setItem("role", response.data.role);
+        //
+        //                 console.log("User data retrieved successfully!");
+        //                 window.location.href = 'index.html'; // Redirect to index page
+        //             } else {
+        //                 showAlert(loginAlert, 'error', 'User not found.');
+        //                 $("#loginBtn").prop("disabled", false).text("Login");
+        //             }
+        //         },
+        //         error: function (error) {
+        //             console.error('Error:', error);
+        //             showAlert(loginAlert, 'error', error.responseJSON?.message || 'Failed to get user details.');
+        //             $("#loginBtn").prop("disabled", false).text("Login");
+        //         }
+        //     });
+        // }
+
         function getUserProfileData(email, token) {
             $.ajax({
                 url: `${API_BASE}/user/getUserByEmail?email=${encodeURIComponent(email)}`,
@@ -681,7 +712,14 @@
                         localStorage.setItem("role", response.data.role);
 
                         console.log("User data retrieved successfully!");
-                        window.location.href = 'index.html'; // Redirect to index page
+
+                        // ✅ Role එක අනුව redirect කරන්න
+                        if (response.data.role === "ADMIN") {
+                            window.location.href = 'admin-panel.html'; // Admin dashboard
+                        } else {
+                            window.location.href = 'index.html'; // Normal user index page
+                        }
+
                     } else {
                         showAlert(loginAlert, 'error', 'User not found.');
                         $("#loginBtn").prop("disabled", false).text("Login");
@@ -694,6 +732,7 @@
                 }
             });
         }
+
 
         // Helper function to show alerts
         function showAlert(element, type, message) {

@@ -4,43 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - GymNest</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
     <style>
+        :root {
+            --primary: #E63946;
+            --primary-600: #D32F2F;
+            --primary-rgb: 230, 57, 70;
+            --secondary: #457B9D;
+            --secondary-600: #3D6B8A;
+            --secondary-rgb: 69, 123, 157;
+            --accent: #FCA311;
+            --accent-rgb: 252, 163, 17;
+            --dark: #1D3557;
+            --light: #F1FAEE;
+            --ink: #121212;
+            --muted: #6c757d;
+            --card-bg: #ffffff;
+            --bg: #f8f9fa;
+            --section-pad: 5rem 0;
+            --border-radius: 12px;
+            --shadow-1: 0 10px 25px rgba(0,0,0,.08);
+            --shadow-2: 0 16px 40px rgba(0,0,0,.12);
+        }
+
         body {
-            background-color: #f8f9fa;
-            font-family: 'Poppins', sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
-        .navbar-brand {
-            font-weight: 700;
-        }
-
+        .section { padding: var(--section-pad); }
         .page-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 0;
-            margin-bottom: 2rem;
+            padding: 5rem 0 3rem;
+            background: linear-gradient(90deg, var(--dark) 0%, var(--secondary) 100%);
+            color: #fff;
+            text-align: center;
+            position: relative;
         }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80') center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        .page-header h1 { font-weight: 800; margin-bottom: 1rem; }
+        .page-subtitle { color: #cfd3da; font-size: 1.25rem; max-width: 600px; margin: 0 auto; }
 
-        .page-subtitle {
-            opacity: 0.9;
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        .navbar-brand { font-weight: 800; }
+        .navbar-brand i { color: var(--primary); }
+        .navbar-nav .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.15s ease;
+        }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--primary);
         }
 
         .card {
             border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-2);
         }
 
         .btn-brand {
-            background: linear-gradient(to right, #7c3aed, #10b981);
+            background: linear-gradient(to right, var(--primary), var(--primary-600));
             border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 0.5rem 1.5rem;
+        }
+        .btn-brand:hover {
+            background: linear-gradient(to right, var(--primary-600), var(--primary));
+            color: white;
+            transform: translateY(-2px);
         }
 
-        .btn-brand:hover {
-            background: linear-gradient(to right, #6d28d9, #0da271);
-            transform: translateY(-2px);
+        .btn-outline-brand {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 0.5rem 1.5rem;
+        }
+        .btn-outline-brand:hover {
+            background: var(--primary);
+            color: white;
         }
 
         .btn-danger {
@@ -49,8 +118,19 @@
         }
 
         .footer {
-            background-color: #1f2937;
-            color: white;
+            background: var(--dark);
+            color: #cfd3da;
+            padding: 4rem 0 2rem;
+        }
+        .footer a { color: #cfd3da; text-decoration: none; }
+        .footer a:hover { color: #fff; }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .alert {
@@ -60,12 +140,16 @@
             right: 20px;
             z-index: 1050;
             max-width: 400px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-2);
         }
 
         .profile-image {
             width: 96px;
             height: 96px;
             object-fit: cover;
+            border: 4px solid white;
+            box-shadow: var(--shadow-1);
         }
 
         .account-actions {
@@ -76,6 +160,21 @@
             font-size: 0.875rem;
             margin-top: 0.25rem;
         }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(var(--primary-rgb), 0.25);
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 3rem 0; }
+        }
     </style>
 </head>
 <body>
@@ -85,24 +184,26 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="index.html"><i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest</a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+        <a class="navbar-brand" href="index.html"><i class="fa-solid fa-dumbbell me-2"></i>GymNest</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="nav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="user-profile.html">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="user-bookings.html">Bookings</a></li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link logout-btn">Logout</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="booking.html">Book</a></li>
+                <li class="nav-item"><a class="nav-link active" href="user-profile.html">My Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="user-booking.html">My Bookings</a></li>
+                <li class="nav-item dropdown d-none d-lg-inline-flex ms-lg-3" id="userDropdown"></li>
             </ul>
         </div>
     </div>
 </nav>
 
+<!-- Page Header -->
 <header class="page-header">
     <div class="container">
         <h1>My Profile</h1>
@@ -117,7 +218,7 @@
                 <div class="card p-3 text-center">
                     <img src="https://randomuser.me/api/portraits/women/28.jpg" class="rounded-circle mx-auto profile-image" alt="Profile" id="profileImage">
                     <h5 class="mt-2" id="profileName">Ayu Wijerathna</h5>
-                    <a href="#" class="btn btn-outline-primary btn-sm logout-btn">Logout</a>
+                    <a href="#" class="btn btn-outline-primary btn-sm logout-btn mt-2">Logout</a>
                 </div>
 
                 <div class="card mt-3 p-3">
@@ -134,7 +235,7 @@
             </div>
 
             <div class="col-md-8">
-                <div class="card p-3">
+                <div class="card p-4">
                     <h5>Profile Details</h5>
                     <form class="row g-3" id="profileForm">
                         <div class="col-md-6">
@@ -159,7 +260,7 @@
                             <textarea class="form-control" id="address" rows="2">galle</textarea>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-brand text-white">
+                            <button type="submit" class="btn btn-brand">
                                 <span id="saveButtonText">Save Changes</span>
                                 <span id="saveSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
                             </button>
@@ -167,7 +268,7 @@
                     </form>
                 </div>
 
-                <div class="card mt-3 p-3">
+                <div class="card mt-3 p-4">
                     <h5>Change Password</h5>
                     <form id="passwordForm">
                         <div class="row g-3">
@@ -197,7 +298,7 @@
                     </form>
                 </div>
 
-                <div class="card mt-3 p-3">
+                <div class="card mt-3 p-4">
                     <h5 class="text-danger">Danger Zone</h5>
                     <p class="text-muted">Once you delete your account, there is no going back. Please be certain.</p>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
@@ -236,84 +337,137 @@
     </div>
 </div>
 
+<!-- Footer -->
 <footer class="footer mt-5 pt-5 pb-4">
     <div class="container">
-        <div class="d-flex justify-content-between">
-            <span>© <span class="year">2023</span> GymNest</span>
-            <a href="index.html">Home</a>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="brand mb-2"><i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest</div>
+                <p>Stronger every day — with expert coaching and a community that has your back.</p>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-white">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#classes">Classes</a></li>
+                    <li><a href="index.html#coaches">Coaches</a></li>
+                    <li><a href="index.html#locations">Locations</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-white">Contact</h6>
+                <p><i class="fa-solid fa-location-dot me-2"></i> 45 King Street, Colombo</p>
+                <p><i class="fa-solid fa-phone me-2"></i> +94 77 123 4567</p>
+                <p><i class="fa-solid fa-envelope me-2"></i> hello@gymnest.fit</p>
+            </div>
+        </div>
+        <div class="copyright mt-4 pt-3 text-center">
+            <span>© <span class="year"></span> GymNest</span>
         </div>
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // Initialize footer year
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+
+    // Get Data from Local Storage with Expiration Check
+    function getFromLocalStorage(key) {
+        const data = localStorage.getItem(key);
+        if (!data) return null;
+
+        try {
+            // Check if it's a simple string value (not JSON)
+            if (!data.startsWith('{')) {
+                return data;
+            }
+
+            const parsedData = JSON.parse(data);
+            const now = new Date().getTime();
+
+            if (now > parsedData.expiry) {
+                localStorage.removeItem(key);
+                return null;
+            }
+            return parsedData.value;
+        } catch (e) {
+            // If parsing fails, return the raw value
+            return data;
+        }
+    }
+
+    // User Dropdown Functionality
+    const userDropdown = document.getElementById("userDropdown");
+    function updateDropdownContent(isLoggedIn, userName) {
+        userDropdown.innerHTML = "";
+        if (isLoggedIn) {
+            userDropdown.classList.remove("d-none");
+            const userLink = document.createElement("a");
+            userLink.className = "nav-link dropdown-toggle";
+            userLink.href = "#";
+            userLink.id = "userDropdownLink";
+            userLink.setAttribute("data-bs-toggle", "dropdown");
+            userLink.setAttribute("aria-expanded", "false");
+            userLink.textContent = `Hi, ${userName}`;
+            userDropdown.appendChild(userLink);
+
+            const dropdownMenu = document.createElement("ul");
+            dropdownMenu.className = "dropdown-menu";
+            dropdownMenu.setAttribute("aria-labelledby", "userDropdownLink");
+            dropdownMenu.innerHTML = `
+        <li><a class="dropdown-item" href="user-profile.html">User Profile</a></li>
+        <li><a class="dropdown-item" href="user-booking.html">Bookings</a></li>
+        <li><a class="dropdown-item text-danger" id="logoutBtn">Log out</a></li>
+      `;
+            userDropdown.appendChild(dropdownMenu);
+
+            document.getElementById("logoutBtn").addEventListener("click", function (event) {
+                event.preventDefault();
+                localStorage.removeItem("name");
+                localStorage.removeItem("token");
+                localStorage.removeItem("email");
+                localStorage.removeItem("role");
+                updateDropdownContent(false, "");
+                window.location.href = "signin.html";
+            });
+        } else {
+            userDropdown.classList.remove("d-none");
+            const signInLink = document.createElement("a");
+            signInLink.className = "nav-link";
+            signInLink.href = "signin.html";
+            signInLink.textContent = "Sign in/up";
+            userDropdown.appendChild(signInLink);
+        }
+    }
+
+    // Check User Login
+    function checkUserLogin() {
+        const name = localStorage.getItem("name") || getFromLocalStorage("name");
+        const token = localStorage.getItem("token") || getFromLocalStorage("token");
+        const email = localStorage.getItem("email") || getFromLocalStorage("email");
+
+        if (name && token && email) {
+            updateDropdownContent(true, name);
+            fetchUserProfile(email, token);
+        } else {
+            updateDropdownContent(false, "");
+            window.location.href = "signin.html";
+        }
+    }
+
+    // API Configuration
     const API_BASE = "http://localhost:8080/api/v1";
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check if user is logged in
-        const token = localStorage.getItem('token');
-        if (!token) {
-            window.location.href = 'login.html';
-            return;
-        }
-
-        // Fetch user data from API
-        fetchUserProfile();
-
-        // Set current year in footer
-        document.querySelector('.year').textContent = new Date().getFullYear();
-
-        // Handle profile form submission
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            updateUserProfile();
-        });
-
-        // Handle password form submission
-        document.getElementById('passwordForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            updatePassword();
-        });
-
-        // Handle account deletion
-        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
-            deleteAccount();
-        });
-
-        // Handle logout
-        const logoutButtons = document.querySelectorAll('.logout-btn');
-        logoutButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                logoutUser();
-            });
-        });
-
-        // Password validation
-        const newPassword = document.getElementById('newPassword');
-        const confirmPassword = document.getElementById('confirmPassword');
-
-        confirmPassword.addEventListener('input', function() {
-            if (newPassword.value !== confirmPassword.value) {
-                confirmPassword.setCustomValidity("Passwords don't match");
-                document.getElementById('confirmPasswordFeedback').textContent = "Passwords don't match";
-                confirmPassword.classList.add('is-invalid');
-            } else {
-                confirmPassword.setCustomValidity('');
-                confirmPassword.classList.remove('is-invalid');
-            }
-        });
-    });
-
     // Fetch user profile from API
-    function fetchUserProfile() {
-        const token = localStorage.getItem('token');
-        const userEmail = localStorage.getItem('userEmail');
-
-        if (!token || !userEmail) {
+    function fetchUserProfile(userEmail, authToken) {
+        if (!authToken || !userEmail) {
             showAlert('Please login again', 'error');
-            setTimeout(() => window.location.href = 'login.html', 2000);
+            setTimeout(() => window.location.href = 'signin.html', 2000);
             return;
         }
 
@@ -321,7 +475,7 @@
             url: `${API_BASE}/user/getUserByEmail?email=${encodeURIComponent(userEmail)}`,
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + authToken
             },
             success: function(response) {
                 if (response.data) {
@@ -379,8 +533,8 @@
 
     // Update user profile via API
     function updateUserProfile() {
-        const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
+        const token = localStorage.getItem("token") || getFromLocalStorage("token");
+        const userId = localStorage.getItem("userId");
 
         if (!token || !userId) {
             showAlert('Please login again', 'error');
@@ -428,8 +582,8 @@
 
     // Update password function
     function updatePassword() {
-        const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
+        const token = localStorage.getItem("token") || getFromLocalStorage("token");
+        const userId = localStorage.getItem("userId");
 
         const currentPassword = document.getElementById('currentPassword').value;
         const newPassword = document.getElementById('newPassword').value;
@@ -503,8 +657,8 @@
 
     // Delete account function
     function deleteAccount() {
-        const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
+        const token = localStorage.getItem("token") || getFromLocalStorage("token");
+        const userId = localStorage.getItem("userId");
         const password = document.getElementById('deletePassword').value;
 
         // Reset validation
@@ -568,7 +722,7 @@
         localStorage.removeItem('userEmail');
 
         // Redirect to login page
-        window.location.href = 'login.html';
+        window.location.href = 'signin.html';
     }
 
     // Show alert message
@@ -585,6 +739,667 @@
             alertDiv.style.display = 'none';
         }, 5000);
     }
+
+    // Initialize
+    $(document).ready(function() {
+        checkUserLogin();
+
+        // Handle profile form submission
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            updateUserProfile();
+        });
+
+        // Handle password form submission
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            updatePassword();
+        });
+
+        // Handle account deletion
+        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+            deleteAccount();
+        });
+
+        // Handle logout
+        const logoutButtons = document.querySelectorAll('.logout-btn');
+        logoutButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutUser();
+            });
+        });
+
+        // Password validation
+        const newPassword = document.getElementById('newPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+
+        confirmPassword.addEventListener('input', function() {
+            if (newPassword.value !== confirmPassword.value) {
+                confirmPassword.setCustomValidity("Passwords don't match");
+                document.getElementById('confirmPasswordFeedback').textContent = "Passwords don't match";
+                confirmPassword.classList.add('is-invalid');
+            } else {
+                confirmPassword.setCustomValidity('');
+                confirmPassword.classList.remove('is-invalid');
+            }
+        });
+    });
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>My Profile - GymNest</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-color: #f8f9fa;-->
+<!--            font-family: 'Poppins', sans-serif;-->
+<!--        }-->
+
+<!--        .navbar-brand {-->
+<!--            font-weight: 700;-->
+<!--        }-->
+
+<!--        .page-header {-->
+<!--            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);-->
+<!--            color: white;-->
+<!--            padding: 3rem 0;-->
+<!--            margin-bottom: 2rem;-->
+<!--        }-->
+
+<!--        .page-subtitle {-->
+<!--            opacity: 0.9;-->
+<!--        }-->
+
+<!--        .card {-->
+<!--            border: none;-->
+<!--            border-radius: 12px;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+
+<!--        .btn-brand {-->
+<!--            background: linear-gradient(to right, #7c3aed, #10b981);-->
+<!--            border: none;-->
+<!--        }-->
+
+<!--        .btn-brand:hover {-->
+<!--            background: linear-gradient(to right, #6d28d9, #0da271);-->
+<!--            transform: translateY(-2px);-->
+<!--        }-->
+
+<!--        .btn-danger {-->
+<!--            background: linear-gradient(to right, #ef4444, #dc2626);-->
+<!--            border: none;-->
+<!--        }-->
+
+<!--        .footer {-->
+<!--            background-color: #1f2937;-->
+<!--            color: white;-->
+<!--        }-->
+
+<!--        .alert {-->
+<!--            display: none;-->
+<!--            position: fixed;-->
+<!--            top: 20px;-->
+<!--            right: 20px;-->
+<!--            z-index: 1050;-->
+<!--            max-width: 400px;-->
+<!--        }-->
+
+<!--        .profile-image {-->
+<!--            width: 96px;-->
+<!--            height: 96px;-->
+<!--            object-fit: cover;-->
+<!--        }-->
+
+<!--        .account-actions {-->
+<!--            margin-top: 2rem;-->
+<!--        }-->
+
+<!--        .password-feedback {-->
+<!--            font-size: 0.875rem;-->
+<!--            margin-top: 0.25rem;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; Alert for notifications &ndash;&gt;-->
+<!--<div id="profileAlert" class="alert alert-dismissible fade show" role="alert">-->
+<!--    <span id="alertMessage"></span>-->
+<!--    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--</div>-->
+
+<!--<nav class="navbar navbar-expand-lg sticky-top shadow-sm">-->
+<!--    <div class="container">-->
+<!--        <a class="navbar-brand" href="index.html"><i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest</a>-->
+<!--        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="nav">-->
+<!--            <ul class="navbar-nav ms-auto">-->
+<!--                <li class="nav-item"><a class="nav-link active" href="user-profile.html">Profile</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="user-bookings.html">Bookings</a></li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a href="#" class="nav-link logout-btn">Logout</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<header class="page-header">-->
+<!--    <div class="container">-->
+<!--        <h1>My Profile</h1>-->
+<!--        <p class="page-subtitle">Manage your details and preferences.</p>-->
+<!--    </div>-->
+<!--</header>-->
+
+<!--<section class="section">-->
+<!--    <div class="container">-->
+<!--        <div class="row g-4">-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="card p-3 text-center">-->
+<!--                    <img src="https://randomuser.me/api/portraits/women/28.jpg" class="rounded-circle mx-auto profile-image" alt="Profile" id="profileImage">-->
+<!--                    <h5 class="mt-2" id="profileName">Ayu Wijerathna</h5>-->
+<!--                    <a href="#" class="btn btn-outline-primary btn-sm logout-btn">Logout</a>-->
+<!--                </div>-->
+
+<!--                <div class="card mt-3 p-3">-->
+<!--                    <h6>Account Information</h6>-->
+<!--                    <div class="d-flex justify-content-between mb-2">-->
+<!--                        <span>Member Since:</span>-->
+<!--                        <span id="memberSince">2023</span>-->
+<!--                    </div>-->
+<!--                    <div class="d-flex justify-content-between">-->
+<!--                        <span>Status:</span>-->
+<!--                        <span class="badge bg-success" id="accountStatus">Active</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col-md-8">-->
+<!--                <div class="card p-3">-->
+<!--                    <h5>Profile Details</h5>-->
+<!--                    <form class="row g-3" id="profileForm">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label class="form-label">Full Name *</label>-->
+<!--                            <input type="text" class="form-control" id="fullName" value="Ayu Wijerathna" required>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label class="form-label">Email Address</label>-->
+<!--                            <input type="email" class="form-control" id="email" value="ayu@gmail.com" readonly>-->
+<!--                            <div class="form-text">Email cannot be changed</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label class="form-label">Phone Number</label>-->
+<!--                            <input type="tel" class="form-control" id="phone" value="+94777654389">-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label class="form-label">Date of Birth</label>-->
+<!--                            <input type="date" class="form-control" id="dob" value="1995-05-15">-->
+<!--                        </div>-->
+<!--                        <div class="col-12">-->
+<!--                            <label class="form-label">Address</label>-->
+<!--                            <textarea class="form-control" id="address" rows="2">galle</textarea>-->
+<!--                        </div>-->
+<!--                        <div class="col-12">-->
+<!--                            <button type="submit" class="btn btn-brand text-white">-->
+<!--                                <span id="saveButtonText">Save Changes</span>-->
+<!--                                <span id="saveSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+
+<!--                <div class="card mt-3 p-3">-->
+<!--                    <h5>Change Password</h5>-->
+<!--                    <form id="passwordForm">-->
+<!--                        <div class="row g-3">-->
+<!--                            <div class="col-12">-->
+<!--                                <label class="form-label">Current Password</label>-->
+<!--                                <input type="password" class="form-control" id="currentPassword" required>-->
+<!--                                <div class="invalid-feedback" id="currentPasswordFeedback"></div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label class="form-label">New Password</label>-->
+<!--                                <input type="password" class="form-control" id="newPassword" required minlength="6">-->
+<!--                                <div class="password-feedback text-muted">Must be at least 6 characters</div>-->
+<!--                                <div class="invalid-feedback" id="newPasswordFeedback"></div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label class="form-label">Confirm New Password</label>-->
+<!--                                <input type="password" class="form-control" id="confirmPassword" required minlength="6">-->
+<!--                                <div class="invalid-feedback" id="confirmPasswordFeedback"></div>-->
+<!--                            </div>-->
+<!--                            <div class="col-12">-->
+<!--                                <button type="submit" class="btn btn-outline-brand">-->
+<!--                                    <span id="passwordButtonText">Update Password</span>-->
+<!--                                    <span id="passwordSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+
+<!--                <div class="card mt-3 p-3">-->
+<!--                    <h5 class="text-danger">Danger Zone</h5>-->
+<!--                    <p class="text-muted">Once you delete your account, there is no going back. Please be certain.</p>-->
+<!--                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">-->
+<!--                        Delete Account-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Delete Account Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title">Delete Account</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <p>Are you sure you want to delete your account? This action cannot be undone.</p>-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="deletePassword" class="form-label">Enter your password to confirm:</label>-->
+<!--                    <input type="password" class="form-control" id="deletePassword" required>-->
+<!--                    <div class="invalid-feedback" id="deletePasswordFeedback"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>-->
+<!--                <button type="button" id="confirmDeleteBtn" class="btn btn-danger">-->
+<!--                    <span id="deleteButtonText">Delete Account</span>-->
+<!--                    <span id="deleteSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<footer class="footer mt-5 pt-5 pb-4">-->
+<!--    <div class="container">-->
+<!--        <div class="d-flex justify-content-between">-->
+<!--            <span>© <span class="year">2023</span> GymNest</span>-->
+<!--            <a href="index.html">Home</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<!--<script>-->
+<!--    const API_BASE = "http://localhost:8080/api/v1";-->
+
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        // Check if user is logged in-->
+<!--        const token = localStorage.getItem('token');-->
+<!--        if (!token) {-->
+<!--            window.location.href = 'login.html';-->
+<!--            return;-->
+<!--        }-->
+
+<!--        // Fetch user data from API-->
+<!--        fetchUserProfile();-->
+
+<!--        // Set current year in footer-->
+<!--        document.querySelector('.year').textContent = new Date().getFullYear();-->
+
+<!--        // Handle profile form submission-->
+<!--        document.getElementById('profileForm').addEventListener('submit', function(e) {-->
+<!--            e.preventDefault();-->
+<!--            updateUserProfile();-->
+<!--        });-->
+
+<!--        // Handle password form submission-->
+<!--        document.getElementById('passwordForm').addEventListener('submit', function(e) {-->
+<!--            e.preventDefault();-->
+<!--            updatePassword();-->
+<!--        });-->
+
+<!--        // Handle account deletion-->
+<!--        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {-->
+<!--            deleteAccount();-->
+<!--        });-->
+
+<!--        // Handle logout-->
+<!--        const logoutButtons = document.querySelectorAll('.logout-btn');-->
+<!--        logoutButtons.forEach(button => {-->
+<!--            button.addEventListener('click', function(e) {-->
+<!--                e.preventDefault();-->
+<!--                logoutUser();-->
+<!--            });-->
+<!--        });-->
+
+<!--        // Password validation-->
+<!--        const newPassword = document.getElementById('newPassword');-->
+<!--        const confirmPassword = document.getElementById('confirmPassword');-->
+
+<!--        confirmPassword.addEventListener('input', function() {-->
+<!--            if (newPassword.value !== confirmPassword.value) {-->
+<!--                confirmPassword.setCustomValidity("Passwords don't match");-->
+<!--                document.getElementById('confirmPasswordFeedback').textContent = "Passwords don't match";-->
+<!--                confirmPassword.classList.add('is-invalid');-->
+<!--            } else {-->
+<!--                confirmPassword.setCustomValidity('');-->
+<!--                confirmPassword.classList.remove('is-invalid');-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    // Fetch user profile from API-->
+<!--    function fetchUserProfile() {-->
+<!--        const token = localStorage.getItem('token');-->
+<!--        const userEmail = localStorage.getItem('userEmail');-->
+
+<!--        if (!token || !userEmail) {-->
+<!--            showAlert('Please login again', 'error');-->
+<!--            setTimeout(() => window.location.href = 'login.html', 2000);-->
+<!--            return;-->
+<!--        }-->
+
+<!--        $.ajax({-->
+<!--            url: `${API_BASE}/user/getUserByEmail?email=${encodeURIComponent(userEmail)}`,-->
+<!--            method: 'GET',-->
+<!--            headers: {-->
+<!--                'Authorization': 'Bearer ' + token-->
+<!--            },-->
+<!--            success: function(response) {-->
+<!--                if (response.data) {-->
+<!--                    populateProfileForm(response.data);-->
+<!--                } else {-->
+<!--                    showAlert('User data not found', 'error');-->
+<!--                }-->
+<!--            },-->
+<!--            error: function(error) {-->
+<!--                console.error('Error fetching user profile:', error);-->
+<!--                showAlert('Failed to load profile data', 'error');-->
+
+<!--                // Fallback to localStorage data if API fails-->
+<!--                const userName = localStorage.getItem('name');-->
+<!--                const userEmail = localStorage.getItem('email');-->
+<!--                const userContact = localStorage.getItem('contact');-->
+
+<!--                if (userName) {-->
+<!--                    document.getElementById('profileName').textContent = userName;-->
+<!--                    document.getElementById('fullName').value = userName;-->
+<!--                }-->
+<!--                if (userEmail) document.getElementById('email').value = userEmail;-->
+<!--                if (userContact) document.getElementById('phone').value = userContact;-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Populate form with user data-->
+<!--    function populateProfileForm(userData) {-->
+<!--        document.getElementById('profileName').textContent = userData.name || 'User';-->
+<!--        document.getElementById('fullName').value = userData.name || '';-->
+<!--        document.getElementById('email').value = userData.email || '';-->
+<!--        document.getElementById('phone').value = userData.contact || '';-->
+
+<!--        // Set additional fields if available in your API response-->
+<!--        if (userData.dob) {-->
+<!--            // Format the date properly for the input field-->
+<!--            const dobDate = new Date(userData.dob);-->
+<!--            const formattedDob = dobDate.toISOString().split('T')[0];-->
+<!--            document.getElementById('dob').value = formattedDob;-->
+<!--        }-->
+<!--        if (userData.address) document.getElementById('address').value = userData.address;-->
+
+<!--        // Set member since if available-->
+<!--        if (userData.createdAt) {-->
+<!--            const createdDate = new Date(userData.createdAt);-->
+<!--            document.getElementById('memberSince').textContent = createdDate.getFullYear();-->
+<!--        }-->
+
+<!--        // Update localStorage with fresh data-->
+<!--        localStorage.setItem('name', userData.name || '');-->
+<!--        localStorage.setItem('email', userData.email || '');-->
+<!--        localStorage.setItem('contact', userData.contact || '');-->
+<!--    }-->
+
+<!--    // Update user profile via API-->
+<!--    function updateUserProfile() {-->
+<!--        const token = localStorage.getItem('token');-->
+<!--        const userId = localStorage.getItem('userId');-->
+
+<!--        if (!token || !userId) {-->
+<!--            showAlert('Please login again', 'error');-->
+<!--            return;-->
+<!--        }-->
+
+<!--        const updatedData = {-->
+<!--            name: document.getElementById('fullName').value,-->
+<!--            contact: document.getElementById('phone').value,-->
+<!--            dob: document.getElementById('dob').value,-->
+<!--            address: document.getElementById('address').value-->
+<!--        };-->
+
+<!--        // Show loading state-->
+<!--        document.getElementById('saveButtonText').textContent = 'Saving...';-->
+<!--        document.getElementById('saveSpinner').classList.remove('d-none');-->
+
+<!--        $.ajax({-->
+<!--            url: `${API_BASE}/user/update/${userId}`,-->
+<!--            method: 'PUT',-->
+<!--            contentType: 'application/json',-->
+<!--            headers: {-->
+<!--                'Authorization': 'Bearer ' + token-->
+<!--            },-->
+<!--            data: JSON.stringify(updatedData),-->
+<!--            success: function(response) {-->
+<!--                showAlert('Profile updated successfully!', 'success');-->
+<!--                document.getElementById('profileName').textContent = updatedData.name;-->
+
+<!--                // Update localStorage-->
+<!--                localStorage.setItem('name', updatedData.name);-->
+<!--                localStorage.setItem('contact', updatedData.contact);-->
+<!--            },-->
+<!--            error: function(error) {-->
+<!--                console.error('Error updating profile:', error);-->
+<!--                showAlert('Failed to update profile: ' + (error.responseJSON?.message || 'Please try again'), 'error');-->
+<!--            },-->
+<!--            complete: function() {-->
+<!--                // Reset button state-->
+<!--                document.getElementById('saveButtonText').textContent = 'Save Changes';-->
+<!--                document.getElementById('saveSpinner').classList.add('d-none');-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Update password function-->
+<!--    function updatePassword() {-->
+<!--        const token = localStorage.getItem('token');-->
+<!--        const userId = localStorage.getItem('userId');-->
+
+<!--        const currentPassword = document.getElementById('currentPassword').value;-->
+<!--        const newPassword = document.getElementById('newPassword').value;-->
+<!--        const confirmPassword = document.getElementById('confirmPassword').value;-->
+
+<!--        // Reset validation states-->
+<!--        document.getElementById('currentPassword').classList.remove('is-invalid');-->
+<!--        document.getElementById('newPassword').classList.remove('is-invalid');-->
+<!--        document.getElementById('confirmPassword').classList.remove('is-invalid');-->
+
+<!--        // Validation-->
+<!--        if (!currentPassword) {-->
+<!--            document.getElementById('currentPassword').classList.add('is-invalid');-->
+<!--            document.getElementById('currentPasswordFeedback').textContent = 'Current password is required';-->
+<!--            return;-->
+<!--        }-->
+
+<!--        if (!newPassword || newPassword.length < 6) {-->
+<!--            document.getElementById('newPassword').classList.add('is-invalid');-->
+<!--            document.getElementById('newPasswordFeedback').textContent = 'New password must be at least 6 characters';-->
+<!--            return;-->
+<!--        }-->
+
+<!--        if (newPassword !== confirmPassword) {-->
+<!--            document.getElementById('confirmPassword').classList.add('is-invalid');-->
+<!--            document.getElementById('confirmPasswordFeedback').textContent = 'Passwords do not match';-->
+<!--            return;-->
+<!--        }-->
+
+<!--        // Show loading state-->
+<!--        document.getElementById('passwordButtonText').textContent = 'Updating...';-->
+<!--        document.getElementById('passwordSpinner').classList.remove('d-none');-->
+
+<!--        $.ajax({-->
+<!--            url: `${API_BASE}/user/change-password`,-->
+<!--            method: 'POST',-->
+<!--            contentType: 'application/json',-->
+<!--            headers: {-->
+<!--                'Authorization': 'Bearer ' + token-->
+<!--            },-->
+<!--            data: JSON.stringify({-->
+<!--                userId: userId,-->
+<!--                currentPassword: currentPassword,-->
+<!--                newPassword: newPassword-->
+<!--            }),-->
+<!--            success: function(response) {-->
+<!--                showAlert('Password updated successfully!', 'success');-->
+<!--                // Clear password fields-->
+<!--                document.getElementById('currentPassword').value = '';-->
+<!--                document.getElementById('newPassword').value = '';-->
+<!--                document.getElementById('confirmPassword').value = '';-->
+<!--            },-->
+<!--            error: function(error) {-->
+<!--                console.error('Error updating password:', error);-->
+<!--                const errorMsg = error.responseJSON?.message || 'Please check your current password';-->
+<!--                showAlert('Failed to update password: ' + errorMsg, 'error');-->
+
+<!--                // Highlight the current password field if it's incorrect-->
+<!--                if (errorMsg.toLowerCase().includes('current password')) {-->
+<!--                    document.getElementById('currentPassword').classList.add('is-invalid');-->
+<!--                    document.getElementById('currentPasswordFeedback').textContent = 'Incorrect current password';-->
+<!--                }-->
+<!--            },-->
+<!--            complete: function() {-->
+<!--                // Reset button state-->
+<!--                document.getElementById('passwordButtonText').textContent = 'Update Password';-->
+<!--                document.getElementById('passwordSpinner').classList.add('d-none');-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Delete account function-->
+<!--    function deleteAccount() {-->
+<!--        const token = localStorage.getItem('token');-->
+<!--        const userId = localStorage.getItem('userId');-->
+<!--        const password = document.getElementById('deletePassword').value;-->
+
+<!--        // Reset validation-->
+<!--        document.getElementById('deletePassword').classList.remove('is-invalid');-->
+
+<!--        if (!password) {-->
+<!--            document.getElementById('deletePassword').classList.add('is-invalid');-->
+<!--            document.getElementById('deletePasswordFeedback').textContent = 'Password is required to confirm deletion';-->
+<!--            return;-->
+<!--        }-->
+
+<!--        // Show loading state-->
+<!--        document.getElementById('deleteButtonText').textContent = 'Deleting...';-->
+<!--        document.getElementById('deleteSpinner').classList.remove('d-none');-->
+
+<!--        $.ajax({-->
+<!--            url: `${API_BASE}/user/delete/${userId}`,-->
+<!--            method: 'DELETE',-->
+<!--            contentType: 'application/json',-->
+<!--            headers: {-->
+<!--                'Authorization': 'Bearer ' + token-->
+<!--            },-->
+<!--            data: JSON.stringify({-->
+<!--                password: password-->
+<!--            }),-->
+<!--            success: function(response) {-->
+<!--                showAlert('Account deleted successfully', 'success');-->
+<!--                // Logout and redirect after successful deletion-->
+<!--                setTimeout(() => {-->
+<!--                    logoutUser();-->
+<!--                }, 2000);-->
+<!--            },-->
+<!--            error: function(error) {-->
+<!--                console.error('Error deleting account:', error);-->
+<!--                const errorMsg = error.responseJSON?.message || 'Please check your password and try again';-->
+<!--                showAlert('Failed to delete account: ' + errorMsg, 'error');-->
+
+<!--                // Highlight password field if incorrect-->
+<!--                if (errorMsg.toLowerCase().includes('password')) {-->
+<!--                    document.getElementById('deletePassword').classList.add('is-invalid');-->
+<!--                    document.getElementById('deletePasswordFeedback').textContent = 'Incorrect password';-->
+<!--                }-->
+<!--            },-->
+<!--            complete: function() {-->
+<!--                // Reset button state-->
+<!--                document.getElementById('deleteButtonText').textContent = 'Delete Account';-->
+<!--                document.getElementById('deleteSpinner').classList.add('d-none');-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Logout function-->
+<!--    function logoutUser() {-->
+<!--        // Clear all stored data-->
+<!--        localStorage.removeItem('token');-->
+<!--        localStorage.removeItem('userId');-->
+<!--        localStorage.removeItem('name');-->
+<!--        localStorage.removeItem('email');-->
+<!--        localStorage.removeItem('contact');-->
+<!--        localStorage.removeItem('role');-->
+<!--        localStorage.removeItem('userEmail');-->
+
+<!--        // Redirect to login page-->
+<!--        window.location.href = 'login.html';-->
+<!--    }-->
+
+<!--    // Show alert message-->
+<!--    function showAlert(message, type) {-->
+<!--        const alertDiv = document.getElementById('profileAlert');-->
+<!--        const alertMessage = document.getElementById('alertMessage');-->
+
+<!--        alertMessage.textContent = message;-->
+<!--        alertDiv.className = `alert alert-${type === 'error' ? 'danger' : 'success'} alert-dismissible fade show`;-->
+<!--        alertDiv.style.display = 'block';-->
+
+<!--        // Auto hide after 5 seconds-->
+<!--        setTimeout(() => {-->
+<!--            alertDiv.style.display = 'none';-->
+<!--        }, 5000);-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
