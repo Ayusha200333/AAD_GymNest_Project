@@ -114,7 +114,7 @@ Developed by Ayusha Wijerathna– Advanced Application Development Project (AAD)
 
  
 Youtube Demo Vedio 
-[(https://youtu.be/qeo4imLjGyo)]
+https://youtu.be/qeo4imLjGyo
 
 
 
