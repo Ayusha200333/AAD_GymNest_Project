@@ -1,812 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Book a Session - GymNest</title>-->
-<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
-<!--    &lt;!&ndash; Font Awesome &ndash;&gt;-->
-<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">-->
-<!--    &lt;!&ndash; Custom Styles (reusing styles from index.html) &ndash;&gt;-->
-<!--    <style>-->
-<!--        :root {-->
-<!--            &#45;&#45;primary: #E63946;-->
-<!--            &#45;&#45;primary-600: #D32F2F;-->
-<!--            &#45;&#45;primary-rgb: 230, 57, 70;-->
-<!--            &#45;&#45;secondary: #457B9D;-->
-<!--            &#45;&#45;secondary-600: #3D6B8A;-->
-<!--            &#45;&#45;secondary-rgb: 69, 123, 157;-->
-<!--            &#45;&#45;accent: #FCA311;-->
-<!--            &#45;&#45;accent-rgb: 252, 163, 17;-->
-<!--            &#45;&#45;dark: #1D3557;-->
-<!--            &#45;&#45;light: #F1FAEE;-->
-<!--            &#45;&#45;ink: #121212;-->
-<!--            &#45;&#45;muted: #6c757d;-->
-<!--            &#45;&#45;card-bg: #ffffff;-->
-<!--            &#45;&#45;bg: #f8f9fa;-->
-<!--            &#45;&#45;section-pad: 5rem 0;-->
-<!--            &#45;&#45;border-radius: 12px;-->
-<!--            &#45;&#45;shadow-1: 0 10px 25px rgba(0,0,0,.08);-->
-<!--            &#45;&#45;shadow-2: 0 16px 40px rgba(0,0,0,.12);-->
-<!--        }-->
-
-<!--        body {-->
-<!--            color: var(&#45;&#45;ink);-->
-<!--            background: var(&#45;&#45;bg);-->
-<!--            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;-->
-<!--        }-->
-
-<!--        .section { padding: var(&#45;&#45;section-pad); }-->
-<!--        .page-header {-->
-<!--            padding: 5rem 0 3rem;-->
-<!--            background: linear-gradient(90deg, var(&#45;&#45;dark) 0%, var(&#45;&#45;secondary) 100%);-->
-<!--            color: #fff;-->
-<!--            text-align: center;-->
-<!--            position: relative;-->
-<!--        }-->
-<!--        .page-header::before {-->
-<!--            content: '';-->
-<!--            position: absolute;-->
-<!--            top: 0;-->
-<!--            left: 0;-->
-<!--            right: 0;-->
-<!--            bottom: 0;-->
-<!--            background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80') center/cover;-->
-<!--            opacity: 0.1;-->
-<!--            z-index: -1;-->
-<!--        }-->
-<!--        .page-header h1 { font-weight: 800; margin-bottom: 1rem; }-->
-<!--        .page-subtitle { color: #cfd3da; font-size: 1.25rem; max-width: 600px; margin: 0 auto; }-->
-
-<!--        .card-option {-->
-<!--            border: 2px solid transparent;-->
-<!--            transition: all 0.3s ease;-->
-<!--            cursor: pointer;-->
-<!--            border-radius: var(&#45;&#45;border-radius);-->
-<!--            box-shadow: var(&#45;&#45;shadow-1);-->
-<!--        }-->
-<!--        .card-option:hover {-->
-<!--            border-color: var(&#45;&#45;primary);-->
-<!--            background-color: var(&#45;&#45;light);-->
-<!--            transform: translateY(-4px);-->
-<!--        }-->
-<!--        .card-option.selected {-->
-<!--            border-color: var(&#45;&#45;primary);-->
-<!--            background-color: rgba(var(&#45;&#45;primary-rgb), 0.05);-->
-<!--        }-->
-<!--        .card-img-top {-->
-<!--            height: 180px;-->
-<!--            object-fit: cover;-->
-<!--        }-->
-<!--        .btn-primary {-->
-<!--            &#45;&#45;bs-btn-bg: var(&#45;&#45;primary);-->
-<!--            &#45;&#45;bs-btn-border-color: var(&#45;&#45;primary);-->
-<!--            &#45;&#45;bs-btn-hover-bg: var(&#45;&#45;primary-600);-->
-<!--            &#45;&#45;bs-btn-hover-border-color: var(&#45;&#45;primary-600);-->
-<!--            font-weight: 600;-->
-<!--            border-radius: 8px;-->
-<!--            padding: 0.75rem 1.5rem;-->
-<!--        }-->
-<!--        .btn-outline-primary {-->
-<!--            &#45;&#45;bs-btn-color: var(&#45;&#45;primary);-->
-<!--            &#45;&#45;bs-btn-border-color: var(&#45;&#45;primary);-->
-<!--            &#45;&#45;bs-btn-hover-bg: var(&#45;&#45;primary);-->
-<!--            &#45;&#45;bs-btn-hover-color: #fff;-->
-<!--            font-weight: 600;-->
-<!--            border-radius: 8px;-->
-<!--        }-->
-<!--        .form-control:focus, .form-select:focus {-->
-<!--            border-color: rgba(var(&#45;&#45;primary-rgb), 0.5);-->
-<!--            box-shadow: 0 0 0 0.2rem rgba(var(&#45;&#45;primary-rgb), 0.25);-->
-<!--        }-->
-<!--        .navbar {-->
-<!--            background: rgba(255, 255, 255, 0.95) !important;-->
-<!--            backdrop-filter: blur(10px);-->
-<!--            box-shadow: 0 2px 15px rgba(0,0,0,0.1);-->
-<!--        }-->
-<!--        .navbar-brand { font-weight: 800; }-->
-<!--        .navbar-brand i { color: var(&#45;&#45;primary); }-->
-<!--        .navbar-nav .nav-link {-->
-<!--            color: var(&#45;&#45;dark);-->
-<!--            font-weight: 500;-->
-<!--            transition: color 0.15s ease;-->
-<!--        }-->
-<!--        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {-->
-<!--            color: var(&#45;&#45;primary);-->
-<!--        }-->
-<!--        .footer {-->
-<!--            background: var(&#45;&#45;dark);-->
-<!--            color: #cfd3da;-->
-<!--            padding: 4rem 0 2rem;-->
-<!--        }-->
-<!--        .footer .brand i { color: var(&#45;&#45;accent); }-->
-<!--        .footer a { color: #cfd3da; text-decoration: none; }-->
-<!--        .footer a:hover { color: #fff; }-->
-<!--        .icon-wrap {-->
-<!--            width: 48px;-->
-<!--            height: 48px;-->
-<!--            display: grid;-->
-<!--            place-items: center;-->
-<!--            border-radius: 12px;-->
-<!--            background: linear-gradient(135deg, var(&#45;&#45;primary), var(&#45;&#45;accent));-->
-<!--            color: #fff;-->
-<!--            font-size: 20px;-->
-<!--        }-->
-<!--        .fade-in {-->
-<!--            animation: fadeIn 0.6s ease forwards;-->
-<!--        }-->
-<!--        @keyframes fadeIn {-->
-<!--            from { opacity: 0; transform: translateY(20px); }-->
-<!--            to { opacity: 1; transform: translateY(0); }-->
-<!--        }-->
-<!--        @media (max-width: 768px) {-->
-<!--            .section { padding: 3rem 0; }-->
-<!--            .card-img-top { height: 150px; }-->
-<!--            .btn-primary { padding: 0.6rem 1.2rem; font-size: 0.9rem; }-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-<!--<body>-->
-<!--&lt;!&ndash; Navbar &ndash;&gt;-->
-<!--<nav class="navbar navbar-expand-lg sticky-top shadow-sm">-->
-<!--    <div class="container">-->
-<!--        <a class="navbar-brand" href="index.html"><i class="fa-solid fa-dumbbell me-2"></i>GymNest</a>-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="nav">-->
-<!--            <ul class="navbar-nav ms-auto">-->
-<!--                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>-->
-<!--                <li class="nav-item"><a class="nav-link active" href="booking.html">Book</a></li>-->
-<!--                <li class="nav-item"><a class="nav-link" href="user-bookings.html">My Bookings</a></li>-->
-<!--                <li class="nav-item dropdown d-none d-lg-inline-flex ms-lg-3" id="userDropdown"></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-
-<!--&lt;!&ndash; Page Header &ndash;&gt;-->
-<!--<header class="page-header">-->
-<!--    <div class="container">-->
-<!--        <h1>Book a Session</h1>-->
-<!--        <p class="page-subtitle">Choose your package, class, coach, and schedule your session.</p>-->
-<!--    </div>-->
-<!--</header>-->
-
-<!--&lt;!&ndash; Booking Section &ndash;&gt;-->
-<!--<section class="section">-->
-<!--    <div class="container">-->
-<!--        <div class="card shadow-lg p-4">-->
-<!--            <h2 class="mb-4 text-center">Create a New Booking</h2>-->
-<!--            <div class="row g-4">-->
-<!--                &lt;!&ndash; Left Panel: Booking Form &ndash;&gt;-->
-<!--                <div class="col-lg-7">-->
-<!--                    <div class="card p-4 shadow-sm rounded-4">-->
-<!--                        &lt;!&ndash; User Email (Readonly, from localStorage) &ndash;&gt;-->
-<!--                        <div class="mb-3">-->
-<!--                            <label for="userEmail" class="form-label">Your Email</label>-->
-<!--                            <input type="email" id="userEmail" class="form-control" readonly>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Booking Date &ndash;&gt;-->
-<!--                        <div class="mb-3">-->
-<!--                            <label for="bookingDate" class="form-label">Booking Start Date</label>-->
-<!--                            <input type="date" id="bookingDate" class="form-control" required>-->
-<!--                            <div class="invalid-feedback">Please select a start date.</div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Number of Sessions &ndash;&gt;-->
-<!--                        <div class="mb-3">-->
-<!--                            <label for="numSessions" class="form-label">Number of Sessions</label>-->
-<!--                            <input type="number" id="numSessions" class="form-control" value="1" min="1" required>-->
-<!--                            <div class="invalid-feedback">Please enter the number of sessions.</div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Package Selection &ndash;&gt;-->
-<!--                        <div class="mb-3">-->
-<!--                            <label class="form-label">Select Package</label>-->
-<!--                            <div id="packageCards" class="row g-3"></div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Class Selection &ndash;&gt;-->
-<!--                        <div class="mb-3">-->
-<!--                            <label class="form-label">Select Class</label>-->
-<!--                            <div id="classCards" class="row g-3"></div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Coach Selection &ndash;&gt;-->
-<!--                        <div class="mb-3">-->
-<!--                            <label class="form-label">Select Coach</label>-->
-<!--                            <div id="coachCards" class="row g-3"></div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Location Selection &ndash;&gt;-->
-<!--                        <div class="mb-3">-->
-<!--                            <label class="form-label">Select Location</label>-->
-<!--                            <div id="locationCards" class="row g-3"></div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; Right Panel: Booking Summary &ndash;&gt;-->
-<!--                <div class="col-lg-5">-->
-<!--                    <div class="card shadow-sm rounded-4 p-4 bg-light">-->
-<!--                        <h4 class="mb-3 text-center">Booking Summary</h4>-->
-<!--                        <ul class="list-group list-group-flush">-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>User Email:</strong> <span id="summaryUserEmail">&#45;&#45;</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Booking Date:</strong> <span id="summaryBookingDate">&#45;&#45;</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>End Date:</strong> <span id="summaryEndDate">&#45;&#45;</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Sessions:</strong> <span id="summarySessions">1</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Package:</strong> <span id="summaryPackage">&#45;&#45;</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Class:</strong> <span id="summaryClass">&#45;&#45;</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Coach:</strong> <span id="summaryCoach">&#45;&#45;</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Location:</strong> <span id="summaryLocation">&#45;&#45;</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Package Price:</strong> <span id="summaryPackagePrice">LKR 0.00</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Coach Fee:</strong> <span id="summaryCoachFee">LKR 0.00</span>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item">-->
-<!--                                <strong>Total Price:</strong> <span id="summaryTotal" class="text-success fw-bold">LKR 0.00</span>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                        <div class="d-grid mt-4">-->
-<!--                            <button class="btn btn-primary btn-lg" id="confirmBookingBtn">Confirm Booking</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-
-<!--&lt;!&ndash; Payment Modal &ndash;&gt;-->
-<!--<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-dialog-centered">-->
-<!--        <div class="modal-content p-4">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="paymentModalLabel">Complete Your Payment</h5>-->
-<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <p><strong>Email:</strong> <span id="paymentEmail"></span></p>-->
-<!--                <p><strong>Total Amount:</strong> <span class="text-success fw-bold" id="paymentTotal">LKR 0.00</span></p>-->
-<!--                <form id="paymentForm" class="needs-validation" novalidate>-->
-<!--                    <div class="mb-3">-->
-<!--                        <label for="cardNumber" class="form-label">Card Number</label>-->
-<!--                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>-->
-<!--                        <div class="invalid-feedback">Please enter a valid card number.</div>-->
-<!--                    </div>-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-6 mb-3">-->
-<!--                            <label for="expiryDate" class="form-label">Expiry Date</label>-->
-<!--                            <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>-->
-<!--                            <div class="invalid-feedback">Please enter the expiry date.</div>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6 mb-3">-->
-<!--                            <label for="cvv" class="form-label">CVV</label>-->
-<!--                            <input type="password" class="form-control" id="cvv" placeholder="123" required>-->
-<!--                            <div class="invalid-feedback">Please enter the CVV.</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3">-->
-<!--                        <label for="cardHolderName" class="form-label">Card Holder Name</label>-->
-<!--                        <input type="text" class="form-control" id="cardHolderName" placeholder="John Doe" required>-->
-<!--                        <div class="invalid-feedback">Please enter the cardholder's name.</div>-->
-<!--                    </div>-->
-<!--                    <button type="submit" class="btn btn-success w-100 mt-3">Pay Now</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; Footer &ndash;&gt;-->
-<!--<footer class="footer mt-5 pt-5 pb-4">-->
-<!--    <div class="container">-->
-<!--        <div class="row g-4">-->
-<!--            <div class="col-md-4">-->
-<!--                <div class="brand mb-2"><i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest</div>-->
-<!--                <p>Stronger every day — with expert coaching and a community that has your back.</p>-->
-<!--            </div>-->
-<!--            <div class="col-md-4">-->
-<!--                <h6 class="text-white">Quick Links</h6>-->
-<!--                <ul class="list-unstyled">-->
-<!--                    <li><a href="index.html">Home</a></li>-->
-<!--                    <li><a href="index.html#about">About</a></li>-->
-<!--                    <li><a href="index.html#classes">Classes</a></li>-->
-<!--                    <li><a href="index.html#coaches">Coaches</a></li>-->
-<!--                    <li><a href="index.html#locations">Locations</a></li>-->
-<!--                    <li><a href="index.html#contact">Contact</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--            <div class="col-md-4">-->
-<!--                <h6 class="text-white">Contact</h6>-->
-<!--                <p><i class="fa-solid fa-location-dot me-2"></i> 45 King Street, Colombo</p>-->
-<!--                <p><i class="fa-solid fa-phone me-2"></i> +94 77 123 4567</p>-->
-<!--                <p><i class="fa-solid fa-envelope me-2"></i> hello@gymnest.fit</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="copyright mt-4 pt-3">-->
-<!--            <span>© <span class="year"></span> GymNest</span>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</footer>-->
-
-<!--&lt;!&ndash; Scripts &ndash;&gt;-->
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
-<!--<script>-->
-<!--    // Initialize footer year-->
-<!--    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());-->
-
-<!--    // User Dropdown Functionality-->
-<!--    const userDropdown = document.getElementById("userDropdown");-->
-<!--    function updateDropdownContent(isLoggedIn, userName) {-->
-<!--        userDropdown.innerHTML = "";-->
-<!--        if (isLoggedIn) {-->
-<!--            userDropdown.classList.remove("d-none");-->
-<!--            const userLink = document.createElement("a");-->
-<!--            userLink.className = "nav-link dropdown-toggle";-->
-<!--            userLink.href = "#";-->
-<!--            userLink.id = "userDropdownLink";-->
-<!--            userLink.setAttribute("data-bs-toggle", "dropdown");-->
-<!--            userLink.setAttribute("aria-expanded", "false");-->
-<!--            userLink.textContent = `Hi, ${userName}`;-->
-<!--            userDropdown.appendChild(userLink);-->
-
-<!--            const dropdownMenu = document.createElement("ul");-->
-<!--            dropdownMenu.className = "dropdown-menu";-->
-<!--            dropdownMenu.setAttribute("aria-labelledby", "userDropdownLink");-->
-<!--            dropdownMenu.innerHTML = `-->
-<!--                    <li><a class="dropdown-item" href="user-profile.html">User Profile</a></li>-->
-<!--                    <li><a class="dropdown-item" href="user-bookings.html">Bookings</a></li>-->
-<!--                    <li><a class="dropdown-item text-danger" id="logoutBtn">Log out</a></li>-->
-<!--                `;-->
-<!--            userDropdown.appendChild(dropdownMenu);-->
-
-<!--            document.getElementById("logoutBtn").addEventListener("click", function (event) {-->
-<!--                event.preventDefault();-->
-<!--                localStorage.removeItem("name");-->
-<!--                localStorage.removeItem("token");-->
-<!--                localStorage.removeItem("email");-->
-<!--                localStorage.removeItem("role");-->
-<!--                updateDropdownContent(false, "");-->
-<!--                window.location.href = "index.html";-->
-<!--            });-->
-<!--        } else {-->
-<!--            userDropdown.classList.remove("d-none");-->
-<!--            const signInLink = document.createElement("a");-->
-<!--            signInLink.className = "nav-link";-->
-<!--            signInLink.href = "signin.html";-->
-<!--            signInLink.textContent = "Sign in/up";-->
-<!--            userDropdown.appendChild(signInLink);-->
-<!--        }-->
-<!--    }-->
-
-<!--    function checkUserLogin() {-->
-<!--        const name = localStorage.getItem("name");-->
-<!--        const token = localStorage.getItem("token");-->
-<!--        const email = localStorage.getItem("email");-->
-<!--        if (name && token && email) {-->
-<!--            document.getElementById("userEmail").value = email;-->
-<!--            document.getElementById("summaryUserEmail").textContent = email;-->
-<!--            updateDropdownContent(true, name);-->
-<!--        } else {-->
-<!--            updateDropdownContent(false, "");-->
-<!--            window.location.href = "signin.html"; // Redirect to login if not authenticated-->
-<!--        }-->
-<!--    }-->
-
-<!--    // Form validation-->
-<!--    (function () {-->
-<!--        'use strict';-->
-<!--        const forms = document.querySelectorAll('.needs-validation');-->
-<!--        Array.from(forms).forEach(form => {-->
-<!--            form.addEventListener('submit', event => {-->
-<!--                if (!form.checkValidity()) {-->
-<!--                    event.preventDefault();-->
-<!--                    event.stopPropagation();-->
-<!--                }-->
-<!--                form.classList.add('was-validated');-->
-<!--            }, false);-->
-<!--        });-->
-<!--    })();-->
-
-<!--    // Booking Data-->
-<!--    let bookingData = null;-->
-<!--    let packagePrice = 0;-->
-<!--    let coachFee = 0;-->
-<!--    let numberOfSessions = 1;-->
-
-<!--    // Load Packages-->
-<!--    function loadPackages() {-->
-<!--        $.ajax({-->
-<!--            url: "http://localhost:8080/api/v1/package/getAll",-->
-<!--            method: "GET",-->
-<!--            success: function (response) {-->
-<!--                if (response.data && Array.isArray(response.data)) {-->
-<!--                    let html = "";-->
-<!--                    response.data.forEach(pkg => {-->
-<!--                        const imageUrl = pkg.imageUrl ? `${window.location.origin}/Uploads/${pkg.imageUrl}` : 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';-->
-<!--                        html += `-->
-<!--                                <div class="col-md-6">-->
-<!--                                    <div class="card card-option h-100">-->
-<!--                                        <img src="${imageUrl}" class="card-img-top" alt="${pkg.name}" loading="lazy">-->
-<!--                                        <div class="card-body p-3">-->
-<!--                                            <h6 class="card-title text-center">${pkg.name}</h6>-->
-<!--                                            <p class="text-muted small text-center">Price: LKR ${pkg.price.toFixed(2)}</p>-->
-<!--                                            <p class="text-muted small text-center">${pkg.description}</p>-->
-<!--                                            <button class="btn btn-outline-primary btn-sm w-100"-->
-<!--                                                data-name="${pkg.name}"-->
-<!--                                                data-price="${pkg.price}">Select</button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            `;-->
-<!--                    });-->
-<!--                    $("#packageCards").html(html);-->
-
-<!--                    $('#packageCards .card-option button').on('click', function () {-->
-<!--                        $('#packageCards .card-option').removeClass('selected');-->
-<!--                        const card = $(this).closest('.card-option');-->
-<!--                        card.addClass('selected');-->
-<!--                        const name = $(this).data('name');-->
-<!--                        packagePrice = parseFloat($(this).data('price'));-->
-<!--                        $('#summaryPackage').text(name);-->
-<!--                        $('#summaryPackagePrice').text(`LKR ${packagePrice.toFixed(2)}`);-->
-<!--                        updateTotalPrice();-->
-<!--                    });-->
-<!--                } else {-->
-<!--                    $("#packageCards").html('<p class="text-danger text-center">No packages available.</p>');-->
-<!--                }-->
-<!--            },-->
-<!--            error: function (xhr, status, error) {-->
-<!--                console.error("Error loading packages:", error);-->
-<!--                $("#packageCards").html('<p class="text-danger text-center">Error loading packages.</p>');-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
-
-<!--    // Load Classes-->
-<!--    function loadClasses() {-->
-<!--        $.ajax({-->
-<!--            url: "http://localhost:8080/api/v1/class/getAll",-->
-<!--            method: "GET",-->
-<!--            success: function (response) {-->
-<!--                if (response.data && Array.isArray(response.data)) {-->
-<!--                    let html = "";-->
-<!--                    response.data.forEach(cls => {-->
-<!--                        const imageUrl = 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';-->
-<!--                        html += `-->
-<!--                                <div class="col-md-6">-->
-<!--                                    <div class="card card-option h-100">-->
-<!--                                        <img src="${imageUrl}" class="card-img-top" alt="${cls.name}" loading="lazy">-->
-<!--                                        <div class="card-body p-3">-->
-<!--                                            <h6 class="card-title text-center">${cls.name}</h6>-->
-<!--                                            <p class="text-muted small text-center">Trainer: ${cls.trainer || 'TBD'}</p>-->
-<!--                                            <button class="btn btn-outline-primary btn-sm w-100"-->
-<!--                                                data-name="${cls.name}">Select</button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            `;-->
-<!--                    });-->
-<!--                    $("#classCards").html(html);-->
-
-<!--                    $('#classCards .card-option button').on('click', function () {-->
-<!--                        $('#classCards .card-option').removeClass('selected');-->
-<!--                        const card = $(this).closest('.card-option');-->
-<!--                        card.addClass('selected');-->
-<!--                        const name = $(this).data('name');-->
-<!--                        $('#summaryClass').text(name);-->
-<!--                    });-->
-<!--                } else {-->
-<!--                    $("#classCards").html('<p class="text-danger text-center">No classes available.</p>');-->
-<!--                }-->
-<!--            },-->
-<!--            error: function (xhr, status, error) {-->
-<!--                console.error("Error loading classes:", error);-->
-<!--                $("#classCards").html('<p class="text-danger text-center">Error loading classes.</p>');-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
-
-<!--    // Load Coaches-->
-<!--    function loadCoaches() {-->
-<!--        $.ajax({-->
-<!--            url: "http://localhost:8080/api/v1/guide/getAll",-->
-<!--            method: "GET",-->
-<!--            success: function (response) {-->
-<!--                if (response.data && Array.isArray(response.data)) {-->
-<!--                    let html = "";-->
-<!--                    response.data.forEach(coach => {-->
-<!--                        const imageUrl = coach.imageUrl ? `${window.location.origin}/Uploads/${coach.imageUrl}` : 'https://images.pexels.com/photos/416717/pexels-photo-416717.jpeg';-->
-<!--                        // Assuming coachFee is fixed or retrieved from backend; here we use a placeholder-->
-<!--                        const coachFeePerSession = 500; // Adjust based on backend data if available-->
-<!--                        html += `-->
-<!--                                <div class="col-md-6">-->
-<!--                                    <div class="card card-option h-100">-->
-<!--                                        <img src="${imageUrl}" class="card-img-top" alt="${coach.fullName}" loading="lazy">-->
-<!--                                        <div class="card-body p-3">-->
-<!--                                            <h6 class="card-title text-center">${coach.fullName}</h6>-->
-<!--                                            <p class="text-muted small text-center">${coach.description || 'N/A'}</p>-->
-<!--                                            <p class="text-muted small text-center">Fee per Session: LKR ${coachFeePerSession.toFixed(2)}</p>-->
-<!--                                            <button class="btn btn-outline-primary btn-sm w-100"-->
-<!--                                                data-email="${coach.email}"-->
-<!--                                                data-name="${coach.fullName}"-->
-<!--                                                data-fee="${coachFeePerSession}">Select</button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            `;-->
-<!--                    });-->
-<!--                    $("#coachCards").html(html);-->
-
-<!--                    $('#coachCards .card-option button').on('click', function () {-->
-<!--                        $('#coachCards .card-option').removeClass('selected');-->
-<!--                        const card = $(this).closest('.card-option');-->
-<!--                        card.addClass('selected');-->
-<!--                        const name = $(this).data('name');-->
-<!--                        coachFee = parseFloat($(this).data('fee')) * numberOfSessions;-->
-<!--                        $('#summaryCoach').text(name);-->
-<!--                        $('#summaryCoachFee').text(`LKR ${coachFee.toFixed(2)}`);-->
-<!--                        updateTotalPrice();-->
-<!--                    });-->
-<!--                } else {-->
-<!--                    $("#coachCards").html('<p class="text-danger text-center">No coaches available.</p>');-->
-<!--                }-->
-<!--            },-->
-<!--            error: function (xhr, status, error) {-->
-<!--                console.error("Error loading coaches:", error);-->
-<!--                $("#coachCards").html('<p class="text-danger text-center">Error loading coaches.</p>');-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
-
-<!--    // Load Locations-->
-<!--    function loadLocations() {-->
-<!--        $.ajax({-->
-<!--            url: "http://localhost:8080/api/v1/location/getAll",-->
-<!--            method: "GET",-->
-<!--            success: function (response) {-->
-<!--                if (response.data && Array.isArray(response.data)) {-->
-<!--                    let html = "";-->
-<!--                    response.data.forEach(location => {-->
-<!--                        const imageUrl = location.imageUrl ? `${window.location.origin}/Uploads/${location.imageUrl}` : 'https://images.pexels.com/photos/707928/pexels-photo-707928.jpeg';-->
-<!--                        html += `-->
-<!--                                <div class="col-md-6">-->
-<!--                                    <div class="card card-option h-100">-->
-<!--                                        <img src="${imageUrl}" class="card-img-top" alt="${location.name}" loading="lazy">-->
-<!--                                        <div class="card-body p-3">-->
-<!--                                            <h6 class="card-title text-center">${location.name}</h6>-->
-<!--                                            <p class="text-muted small text-center">${location.address || 'N/A'}</p>-->
-<!--                                            <button class="btn btn-outline-primary btn-sm w-100"-->
-<!--                                                data-name="${location.name}">Select</button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            `;-->
-<!--                    });-->
-<!--                    $("#locationCards").html(html);-->
-
-<!--                    $('#locationCards .card-option button').on('click', function () {-->
-<!--                        $('#locationCards .card-option').removeClass('selected');-->
-<!--                        const card = $(this).closest('.card-option');-->
-<!--                        card.addClass('selected');-->
-<!--                        const name = $(this).data('name');-->
-<!--                        $('#summaryLocation').text(name);-->
-<!--                    });-->
-<!--                } else {-->
-<!--                    $("#locationCards").html('<p class="text-danger text-center">No locations available.</p>');-->
-<!--                }-->
-<!--            },-->
-<!--            error: function (xhr, status, error) {-->
-<!--                console.error("Error loading locations:", error);-->
-<!--                $("#locationCards").html('<p class="text-danger text-center">Error loading locations.</p>');-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
-
-<!--    // Update Total Price-->
-<!--    function updateTotalPrice() {-->
-<!--        const totalPrice = packagePrice + coachFee;-->
-<!--        $('#summaryTotal').text(`LKR ${totalPrice.toFixed(2)}`);-->
-<!--    }-->
-
-<!--    // Update End Date-->
-<!--    function updateEndDate() {-->
-<!--        const bookingDate = $("#bookingDate").val();-->
-<!--        const sessions = parseInt($("#numSessions").val()) || 1;-->
-<!--        numberOfSessions = sessions;-->
-<!--        $('#summarySessions').text(sessions);-->
-<!--        $('#summaryBookingDate').text(bookingDate);-->
-<!--        if (bookingDate) {-->
-<!--            const date = new Date(bookingDate);-->
-<!--            // Assuming each session is on a separate day for simplicity-->
-<!--            date.setDate(date.getDate() + sessions - 1);-->
-<!--            const endDate = date.toISOString().split("T")[0];-->
-<!--            $('#summaryEndDate').text(endDate);-->
-<!--        }-->
-<!--        // Recalculate coach fee based on number of sessions-->
-<!--        const selectedCoachButton = $('#coachCards .card-option.selected button');-->
-<!--        if (selectedCoachButton.length) {-->
-<!--            const coachFeePerSession = parseFloat(selectedCoachButton.data('fee'));-->
-<!--            coachFee = coachFeePerSession * sessions;-->
-<!--            $('#summaryCoachFee').text(`LKR ${coachFee.toFixed(2)}`);-->
-<!--            updateTotalPrice();-->
-<!--        }-->
-<!--    }-->
-
-<!--    // Confirm Booking-->
-<!--    $("#confirmBookingBtn").click(function (e) {-->
-<!--        e.preventDefault();-->
-<!--        const userEmail = $("#userEmail").val();-->
-<!--        const bookingDate = $("#bookingDate").val();-->
-<!--        const packageName = $("#summaryPackage").text();-->
-<!--        const className = $("#summaryClass").text();-->
-<!--        const coachEmail = $('#coachCards .card-option.selected button').data('email') || '';-->
-<!--        const locationName = $("#summaryLocation").text();-->
-<!--        const endDate = $("#summaryEndDate").text();-->
-<!--        const numberOfSessions = parseInt($("#summarySessions").text());-->
-<!--        const packagePriceVal = parseFloat($("#summaryPackagePrice").text().replace("LKR", "").trim());-->
-<!--        const coachFeeVal = parseFloat($("#summaryCoachFee").text().replace("LKR", "").trim());-->
-<!--        const totalPrice = parseFloat($("#summaryTotal").text().replace("LKR", "").trim());-->
-
-<!--        if (!userEmail || !bookingDate || !packageName || !className || !coachEmail || !locationName || !numberOfSessions) {-->
-<!--            alert("Please complete all selections before confirming.");-->
-<!--            return;-->
-<!--        }-->
-
-<!--        bookingData = {-->
-<!--            userEmail: userEmail,-->
-<!--            packageName: packageName,-->
-<!--            className: className,-->
-<!--            coachEmail: coachEmail,-->
-<!--            locationName: locationName,-->
-<!--            bookingDate: bookingDate,-->
-<!--            endDate: endDate,-->
-<!--            numberOfSessions: numberOfSessions,-->
-<!--            packagePrice: packagePriceVal,-->
-<!--            coachFee: coachFeeVal,-->
-<!--            totalPrice: totalPrice,-->
-<!--            status: "ACTIVE"-->
-<!--        };-->
-
-<!--        $("#paymentEmail").text(userEmail);-->
-<!--        $("#paymentTotal").text(`LKR ${totalPrice.toFixed(2)}`);-->
-<!--        $("#paymentModal").modal("show");-->
-<!--    });-->
-
-<!--    // Handle Payment-->
-<!--    $("#paymentForm").submit(function (e) {-->
-<!--        e.preventDefault();-->
-<!--        if (!this.checkValidity()) {-->
-<!--            this.classList.add('was-validated');-->
-<!--            return;-->
-<!--        }-->
-<!--        if (!bookingData) {-->
-<!--            alert("No booking data available.");-->
-<!--            return;-->
-<!--        }-->
-
-<!--        const cardHolderName = $("#cardHolderName").val().trim();-->
-<!--        const cardNumber = $("#cardNumber").val().trim();-->
-<!--        const expiryDate = $("#expiryDate").val().trim();-->
-<!--        const cvv = $("#cvv").val().trim();-->
-
-<!--        if (!cardHolderName || !cardNumber || !expiryDate || !cvv) {-->
-<!--            alert("Please fill in all payment details.");-->
-<!--            return;-->
-<!--        }-->
-
-<!--        // Save Booking-->
-<!--        $.ajax({-->
-<!--            url: "http://localhost:8080/api/v1/bookings/save",-->
-<!--            type: "POST",-->
-<!--            contentType: "application/json",-->
-<!--            data: JSON.stringify(bookingData),-->
-<!--            success: function (response) {-->
-<!--                if (response.code === 201) {-->
-<!--                    const booking = response.data;-->
-<!--                    const paymentDTO = {-->
-<!--                        userEmail: bookingData.userEmail,-->
-<!--                        amount: bookingData.totalPrice,-->
-<!--                        cardHolderName: cardHolderName,-->
-<!--                        cardNumber: cardNumber,-->
-<!--                        expiryDate: expiryDate,-->
-<!--                        cvv: cvv,-->
-<!--                        paymentDate: new Date().toISOString()-->
-<!--                    };-->
-
-<!--                    // Save Payment-->
-<!--                    $.ajax({-->
-<!--                        url: "http://localhost:8080/api/v1/payment/save",-->
-<!--                        type: "POST",-->
-<!--                        contentType: "application/json",-->
-<!--                        data: JSON.stringify(paymentDTO),-->
-<!--                        success: function () {-->
-<!--                            alert("Booking and Payment Successful!");-->
-<!--                            $("#paymentModal").modal("hide");-->
-<!--                            clearAllFields();-->
-<!--                        },-->
-<!--                        error: function (xhr, status, error) {-->
-<!--                            console.error("Payment error:", error);-->
-<!--                            alert("Booking saved, but payment failed. Please contact support.");-->
-<!--                        }-->
-<!--                    });-->
-<!--                } else {-->
-<!--                    alert("Booking failed: " + response.message);-->
-<!--                }-->
-<!--            },-->
-<!--            error: function (xhr, status, error) {-->
-<!--                console.error("Booking error:", error);-->
-<!--                alert("Booking failed: " + (xhr.responseJSON?.message || "Unknown error"));-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-
-<!--    // Clear Fields-->
-<!--    function clearAllFields() {-->
-<!--        bookingData = null;-->
-<!--        packagePrice = 0;-->
-<!--        coachFee = 0;-->
-<!--        numberOfSessions = 1;-->
-<!--        $("#userEmail").val('');-->
-<!--        $("#bookingDate").val('');-->
-<!--        $("#numSessions").val('1');-->
-<!--        $("#summaryUserEmail").text('&#45;&#45;');-->
-<!--        $("#summaryBookingDate").text('&#45;&#45;');-->
-<!--        $("#summaryEndDate").text('&#45;&#45;');-->
-<!--        $("#summarySessions").text('1');-->
-<!--        $("#summaryPackage").text('&#45;&#45;');-->
-<!--        $("#summaryClass").text('&#45;&#45;');-->
-<!--        $("#summaryCoach").text('&#45;&#45;');-->
-<!--        $("#summaryLocation").text('&#45;&#45;');-->
-<!--        $("#summaryPackagePrice").text('LKR 0.00');-->
-<!--        $("#summaryCoachFee").text('LKR 0.00');-->
-<!--        $("#summaryTotal").text('LKR 0.00');-->
-<!--        $("#cardHolderName").val('');-->
-<!--        $("#cardNumber").val('');-->
-<!--        $("#expiryDate").val('');-->
-<!--        $("#cvv").val('');-->
-<!--        $("#packageCards").empty();-->
-<!--        $("#classCards").empty();-->
-<!--        $("#coachCards").empty();-->
-<!--        $("#locationCards").empty();-->
-<!--        loadPackages();-->
-<!--        loadClasses();-->
-<!--        loadCoaches();-->
-<!--        loadLocations();-->
-<!--    }-->
-
-<!--    // Initialize-->
-<!--    $(document).ready(function () {-->
-<!--        checkUserLogin();-->
-<!--        loadPackages();-->
-<!--        loadClasses();-->
-<!--        loadCoaches();-->
-<!--        loadLocations();-->
-<!--        $("#bookingDate").on('change', updateEndDate);-->
-<!--        $("#numSessions").on('input', updateEndDate);-->
-<!--    });-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1760,3 +951,837 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Book a Session - GymNest</title>-->
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    &lt;!&ndash; Font Awesome &ndash;&gt;-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">-->
+<!--    &lt;!&ndash; Custom Styles (reusing styles from index.html) &ndash;&gt;-->
+<!--    <style>-->
+<!--        :root {-->
+<!--            &#45;&#45;primary: #E63946;-->
+<!--            &#45;&#45;primary-600: #D32F2F;-->
+<!--            &#45;&#45;primary-rgb: 230, 57, 70;-->
+<!--            &#45;&#45;secondary: #457B9D;-->
+<!--            &#45;&#45;secondary-600: #3D6B8A;-->
+<!--            &#45;&#45;secondary-rgb: 69, 123, 157;-->
+<!--            &#45;&#45;accent: #FCA311;-->
+<!--            &#45;&#45;accent-rgb: 252, 163, 17;-->
+<!--            &#45;&#45;dark: #1D3557;-->
+<!--            &#45;&#45;light: #F1FAEE;-->
+<!--            &#45;&#45;ink: #121212;-->
+<!--            &#45;&#45;muted: #6c757d;-->
+<!--            &#45;&#45;card-bg: #ffffff;-->
+<!--            &#45;&#45;bg: #f8f9fa;-->
+<!--            &#45;&#45;section-pad: 5rem 0;-->
+<!--            &#45;&#45;border-radius: 12px;-->
+<!--            &#45;&#45;shadow-1: 0 10px 25px rgba(0,0,0,.08);-->
+<!--            &#45;&#45;shadow-2: 0 16px 40px rgba(0,0,0,.12);-->
+<!--        }-->
+
+<!--        body {-->
+<!--            color: var(&#45;&#45;ink);-->
+<!--            background: var(&#45;&#45;bg);-->
+<!--            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;-->
+<!--        }-->
+
+<!--        .section { padding: var(&#45;&#45;section-pad); }-->
+<!--        .page-header {-->
+<!--            padding: 5rem 0 3rem;-->
+<!--            background: linear-gradient(90deg, var(&#45;&#45;dark) 0%, var(&#45;&#45;secondary) 100%);-->
+<!--            color: #fff;-->
+<!--            text-align: center;-->
+<!--            position: relative;-->
+<!--        }-->
+<!--        .page-header::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+<!--            right: 0;-->
+<!--            bottom: 0;-->
+<!--            background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80') center/cover;-->
+<!--            opacity: 0.1;-->
+<!--            z-index: -1;-->
+<!--        }-->
+<!--        .page-header h1 { font-weight: 800; margin-bottom: 1rem; }-->
+<!--        .page-subtitle { color: #cfd3da; font-size: 1.25rem; max-width: 600px; margin: 0 auto; }-->
+
+<!--        .card-option {-->
+<!--            border: 2px solid transparent;-->
+<!--            transition: all 0.3s ease;-->
+<!--            cursor: pointer;-->
+<!--            border-radius: var(&#45;&#45;border-radius);-->
+<!--            box-shadow: var(&#45;&#45;shadow-1);-->
+<!--        }-->
+<!--        .card-option:hover {-->
+<!--            border-color: var(&#45;&#45;primary);-->
+<!--            background-color: var(&#45;&#45;light);-->
+<!--            transform: translateY(-4px);-->
+<!--        }-->
+<!--        .card-option.selected {-->
+<!--            border-color: var(&#45;&#45;primary);-->
+<!--            background-color: rgba(var(&#45;&#45;primary-rgb), 0.05);-->
+<!--        }-->
+<!--        .card-img-top {-->
+<!--            height: 180px;-->
+<!--            object-fit: cover;-->
+<!--        }-->
+<!--        .btn-primary {-->
+<!--            &#45;&#45;bs-btn-bg: var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-border-color: var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-hover-bg: var(&#45;&#45;primary-600);-->
+<!--            &#45;&#45;bs-btn-hover-border-color: var(&#45;&#45;primary-600);-->
+<!--            font-weight: 600;-->
+<!--            border-radius: 8px;-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--        }-->
+<!--        .btn-outline-primary {-->
+<!--            &#45;&#45;bs-btn-color: var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-border-color: var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-hover-bg: var(&#45;&#45;primary);-->
+<!--            &#45;&#45;bs-btn-hover-color: #fff;-->
+<!--            font-weight: 600;-->
+<!--            border-radius: 8px;-->
+<!--        }-->
+<!--        .form-control:focus, .form-select:focus {-->
+<!--            border-color: rgba(var(&#45;&#45;primary-rgb), 0.5);-->
+<!--            box-shadow: 0 0 0 0.2rem rgba(var(&#45;&#45;primary-rgb), 0.25);-->
+<!--        }-->
+<!--        .navbar {-->
+<!--            background: rgba(255, 255, 255, 0.95) !important;-->
+<!--            backdrop-filter: blur(10px);-->
+<!--            box-shadow: 0 2px 15px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .navbar-brand { font-weight: 800; }-->
+<!--        .navbar-brand i { color: var(&#45;&#45;primary); }-->
+<!--        .navbar-nav .nav-link {-->
+<!--            color: var(&#45;&#45;dark);-->
+<!--            font-weight: 500;-->
+<!--            transition: color 0.15s ease;-->
+<!--        }-->
+<!--        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {-->
+<!--            color: var(&#45;&#45;primary);-->
+<!--        }-->
+<!--        .footer {-->
+<!--            background: var(&#45;&#45;dark);-->
+<!--            color: #cfd3da;-->
+<!--            padding: 4rem 0 2rem;-->
+<!--        }-->
+<!--        .footer .brand i { color: var(&#45;&#45;accent); }-->
+<!--        .footer a { color: #cfd3da; text-decoration: none; }-->
+<!--        .footer a:hover { color: #fff; }-->
+<!--        .icon-wrap {-->
+<!--            width: 48px;-->
+<!--            height: 48px;-->
+<!--            display: grid;-->
+<!--            place-items: center;-->
+<!--            border-radius: 12px;-->
+<!--            background: linear-gradient(135deg, var(&#45;&#45;primary), var(&#45;&#45;accent));-->
+<!--            color: #fff;-->
+<!--            font-size: 20px;-->
+<!--        }-->
+<!--        .fade-in {-->
+<!--            animation: fadeIn 0.6s ease forwards;-->
+<!--        }-->
+<!--        @keyframes fadeIn {-->
+<!--            from { opacity: 0; transform: translateY(20px); }-->
+<!--            to { opacity: 1; transform: translateY(0); }-->
+<!--        }-->
+<!--        @media (max-width: 768px) {-->
+<!--            .section { padding: 3rem 0; }-->
+<!--            .card-img-top { height: 150px; }-->
+<!--            .btn-primary { padding: 0.6rem 1.2rem; font-size: 0.9rem; }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; Navbar &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand-lg sticky-top shadow-sm">-->
+<!--    <div class="container">-->
+<!--        <a class="navbar-brand" href="index.html"><i class="fa-solid fa-dumbbell me-2"></i>GymNest</a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="nav">-->
+<!--            <ul class="navbar-nav ms-auto">-->
+<!--                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link active" href="booking.html">Book</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="user-bookings.html">My Bookings</a></li>-->
+<!--                <li class="nav-item dropdown d-none d-lg-inline-flex ms-lg-3" id="userDropdown"></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash; Page Header &ndash;&gt;-->
+<!--<header class="page-header">-->
+<!--    <div class="container">-->
+<!--        <h1>Book a Session</h1>-->
+<!--        <p class="page-subtitle">Choose your package, class, coach, and schedule your session.</p>-->
+<!--    </div>-->
+<!--</header>-->
+
+<!--&lt;!&ndash; Booking Section &ndash;&gt;-->
+<!--<section class="section">-->
+<!--    <div class="container">-->
+<!--        <div class="card shadow-lg p-4">-->
+<!--            <h2 class="mb-4 text-center">Create a New Booking</h2>-->
+<!--            <div class="row g-4">-->
+<!--                &lt;!&ndash; Left Panel: Booking Form &ndash;&gt;-->
+<!--                <div class="col-lg-7">-->
+<!--                    <div class="card p-4 shadow-sm rounded-4">-->
+<!--                        &lt;!&ndash; User Email (Readonly, from localStorage) &ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="userEmail" class="form-label">Your Email</label>-->
+<!--                            <input type="email" id="userEmail" class="form-control" readonly>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Booking Date &ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="bookingDate" class="form-label">Booking Start Date</label>-->
+<!--                            <input type="date" id="bookingDate" class="form-control" required>-->
+<!--                            <div class="invalid-feedback">Please select a start date.</div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Number of Sessions &ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="numSessions" class="form-label">Number of Sessions</label>-->
+<!--                            <input type="number" id="numSessions" class="form-control" value="1" min="1" required>-->
+<!--                            <div class="invalid-feedback">Please enter the number of sessions.</div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Package Selection &ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label class="form-label">Select Package</label>-->
+<!--                            <div id="packageCards" class="row g-3"></div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Class Selection &ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label class="form-label">Select Class</label>-->
+<!--                            <div id="classCards" class="row g-3"></div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Coach Selection &ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label class="form-label">Select Coach</label>-->
+<!--                            <div id="coachCards" class="row g-3"></div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Location Selection &ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label class="form-label">Select Location</label>-->
+<!--                            <div id="locationCards" class="row g-3"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                &lt;!&ndash; Right Panel: Booking Summary &ndash;&gt;-->
+<!--                <div class="col-lg-5">-->
+<!--                    <div class="card shadow-sm rounded-4 p-4 bg-light">-->
+<!--                        <h4 class="mb-3 text-center">Booking Summary</h4>-->
+<!--                        <ul class="list-group list-group-flush">-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>User Email:</strong> <span id="summaryUserEmail">&#45;&#45;</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Booking Date:</strong> <span id="summaryBookingDate">&#45;&#45;</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>End Date:</strong> <span id="summaryEndDate">&#45;&#45;</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Sessions:</strong> <span id="summarySessions">1</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Package:</strong> <span id="summaryPackage">&#45;&#45;</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Class:</strong> <span id="summaryClass">&#45;&#45;</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Coach:</strong> <span id="summaryCoach">&#45;&#45;</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Location:</strong> <span id="summaryLocation">&#45;&#45;</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Package Price:</strong> <span id="summaryPackagePrice">LKR 0.00</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Coach Fee:</strong> <span id="summaryCoachFee">LKR 0.00</span>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <strong>Total Price:</strong> <span id="summaryTotal" class="text-success fw-bold">LKR 0.00</span>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                        <div class="d-grid mt-4">-->
+<!--                            <button class="btn btn-primary btn-lg" id="confirmBookingBtn">Confirm Booking</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Payment Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content p-4">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="paymentModalLabel">Complete Your Payment</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <p><strong>Email:</strong> <span id="paymentEmail"></span></p>-->
+<!--                <p><strong>Total Amount:</strong> <span class="text-success fw-bold" id="paymentTotal">LKR 0.00</span></p>-->
+<!--                <form id="paymentForm" class="needs-validation" novalidate>-->
+<!--                    <div class="mb-3">-->
+<!--                        <label for="cardNumber" class="form-label">Card Number</label>-->
+<!--                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>-->
+<!--                        <div class="invalid-feedback">Please enter a valid card number.</div>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-6 mb-3">-->
+<!--                            <label for="expiryDate" class="form-label">Expiry Date</label>-->
+<!--                            <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>-->
+<!--                            <div class="invalid-feedback">Please enter the expiry date.</div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6 mb-3">-->
+<!--                            <label for="cvv" class="form-label">CVV</label>-->
+<!--                            <input type="password" class="form-control" id="cvv" placeholder="123" required>-->
+<!--                            <div class="invalid-feedback">Please enter the CVV.</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="mb-3">-->
+<!--                        <label for="cardHolderName" class="form-label">Card Holder Name</label>-->
+<!--                        <input type="text" class="form-control" id="cardHolderName" placeholder="John Doe" required>-->
+<!--                        <div class="invalid-feedback">Please enter the cardholder's name.</div>-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="btn btn-success w-100 mt-3">Pay Now</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Footer &ndash;&gt;-->
+<!--<footer class="footer mt-5 pt-5 pb-4">-->
+<!--    <div class="container">-->
+<!--        <div class="row g-4">-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="brand mb-2"><i class="fa-solid fa-dumbbell me-2 text-warning"></i>GymNest</div>-->
+<!--                <p>Stronger every day — with expert coaching and a community that has your back.</p>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <h6 class="text-white">Quick Links</h6>-->
+<!--                <ul class="list-unstyled">-->
+<!--                    <li><a href="index.html">Home</a></li>-->
+<!--                    <li><a href="index.html#about">About</a></li>-->
+<!--                    <li><a href="index.html#classes">Classes</a></li>-->
+<!--                    <li><a href="index.html#coaches">Coaches</a></li>-->
+<!--                    <li><a href="index.html#locations">Locations</a></li>-->
+<!--                    <li><a href="index.html#contact">Contact</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <h6 class="text-white">Contact</h6>-->
+<!--                <p><i class="fa-solid fa-location-dot me-2"></i> 45 King Street, Colombo</p>-->
+<!--                <p><i class="fa-solid fa-phone me-2"></i> +94 77 123 4567</p>-->
+<!--                <p><i class="fa-solid fa-envelope me-2"></i> hello@gymnest.fit</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="copyright mt-4 pt-3">-->
+<!--            <span>© <span class="year"></span> GymNest</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+
+<!--&lt;!&ndash; Scripts &ndash;&gt;-->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script>-->
+<!--    // Initialize footer year-->
+<!--    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());-->
+
+<!--    // User Dropdown Functionality-->
+<!--    const userDropdown = document.getElementById("userDropdown");-->
+<!--    function updateDropdownContent(isLoggedIn, userName) {-->
+<!--        userDropdown.innerHTML = "";-->
+<!--        if (isLoggedIn) {-->
+<!--            userDropdown.classList.remove("d-none");-->
+<!--            const userLink = document.createElement("a");-->
+<!--            userLink.className = "nav-link dropdown-toggle";-->
+<!--            userLink.href = "#";-->
+<!--            userLink.id = "userDropdownLink";-->
+<!--            userLink.setAttribute("data-bs-toggle", "dropdown");-->
+<!--            userLink.setAttribute("aria-expanded", "false");-->
+<!--            userLink.textContent = `Hi, ${userName}`;-->
+<!--            userDropdown.appendChild(userLink);-->
+
+<!--            const dropdownMenu = document.createElement("ul");-->
+<!--            dropdownMenu.className = "dropdown-menu";-->
+<!--            dropdownMenu.setAttribute("aria-labelledby", "userDropdownLink");-->
+<!--            dropdownMenu.innerHTML = `-->
+<!--                    <li><a class="dropdown-item" href="user-profile.html">User Profile</a></li>-->
+<!--                    <li><a class="dropdown-item" href="user-bookings.html">Bookings</a></li>-->
+<!--                    <li><a class="dropdown-item text-danger" id="logoutBtn">Log out</a></li>-->
+<!--                `;-->
+<!--            userDropdown.appendChild(dropdownMenu);-->
+
+<!--            document.getElementById("logoutBtn").addEventListener("click", function (event) {-->
+<!--                event.preventDefault();-->
+<!--                localStorage.removeItem("name");-->
+<!--                localStorage.removeItem("token");-->
+<!--                localStorage.removeItem("email");-->
+<!--                localStorage.removeItem("role");-->
+<!--                updateDropdownContent(false, "");-->
+<!--                window.location.href = "index.html";-->
+<!--            });-->
+<!--        } else {-->
+<!--            userDropdown.classList.remove("d-none");-->
+<!--            const signInLink = document.createElement("a");-->
+<!--            signInLink.className = "nav-link";-->
+<!--            signInLink.href = "signin.html";-->
+<!--            signInLink.textContent = "Sign in/up";-->
+<!--            userDropdown.appendChild(signInLink);-->
+<!--        }-->
+<!--    }-->
+
+<!--    function checkUserLogin() {-->
+<!--        const name = localStorage.getItem("name");-->
+<!--        const token = localStorage.getItem("token");-->
+<!--        const email = localStorage.getItem("email");-->
+<!--        if (name && token && email) {-->
+<!--            document.getElementById("userEmail").value = email;-->
+<!--            document.getElementById("summaryUserEmail").textContent = email;-->
+<!--            updateDropdownContent(true, name);-->
+<!--        } else {-->
+<!--            updateDropdownContent(false, "");-->
+<!--            window.location.href = "signin.html"; // Redirect to login if not authenticated-->
+<!--        }-->
+<!--    }-->
+
+<!--    // Form validation-->
+<!--    (function () {-->
+<!--        'use strict';-->
+<!--        const forms = document.querySelectorAll('.needs-validation');-->
+<!--        Array.from(forms).forEach(form => {-->
+<!--            form.addEventListener('submit', event => {-->
+<!--                if (!form.checkValidity()) {-->
+<!--                    event.preventDefault();-->
+<!--                    event.stopPropagation();-->
+<!--                }-->
+<!--                form.classList.add('was-validated');-->
+<!--            }, false);-->
+<!--        });-->
+<!--    })();-->
+
+<!--    // Booking Data-->
+<!--    let bookingData = null;-->
+<!--    let packagePrice = 0;-->
+<!--    let coachFee = 0;-->
+<!--    let numberOfSessions = 1;-->
+
+<!--    // Load Packages-->
+<!--    function loadPackages() {-->
+<!--        $.ajax({-->
+<!--            url: "http://localhost:8080/api/v1/package/getAll",-->
+<!--            method: "GET",-->
+<!--            success: function (response) {-->
+<!--                if (response.data && Array.isArray(response.data)) {-->
+<!--                    let html = "";-->
+<!--                    response.data.forEach(pkg => {-->
+<!--                        const imageUrl = pkg.imageUrl ? `${window.location.origin}/Uploads/${pkg.imageUrl}` : 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';-->
+<!--                        html += `-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="card card-option h-100">-->
+<!--                                        <img src="${imageUrl}" class="card-img-top" alt="${pkg.name}" loading="lazy">-->
+<!--                                        <div class="card-body p-3">-->
+<!--                                            <h6 class="card-title text-center">${pkg.name}</h6>-->
+<!--                                            <p class="text-muted small text-center">Price: LKR ${pkg.price.toFixed(2)}</p>-->
+<!--                                            <p class="text-muted small text-center">${pkg.description}</p>-->
+<!--                                            <button class="btn btn-outline-primary btn-sm w-100"-->
+<!--                                                data-name="${pkg.name}"-->
+<!--                                                data-price="${pkg.price}">Select</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            `;-->
+<!--                    });-->
+<!--                    $("#packageCards").html(html);-->
+
+<!--                    $('#packageCards .card-option button').on('click', function () {-->
+<!--                        $('#packageCards .card-option').removeClass('selected');-->
+<!--                        const card = $(this).closest('.card-option');-->
+<!--                        card.addClass('selected');-->
+<!--                        const name = $(this).data('name');-->
+<!--                        packagePrice = parseFloat($(this).data('price'));-->
+<!--                        $('#summaryPackage').text(name);-->
+<!--                        $('#summaryPackagePrice').text(`LKR ${packagePrice.toFixed(2)}`);-->
+<!--                        updateTotalPrice();-->
+<!--                    });-->
+<!--                } else {-->
+<!--                    $("#packageCards").html('<p class="text-danger text-center">No packages available.</p>');-->
+<!--                }-->
+<!--            },-->
+<!--            error: function (xhr, status, error) {-->
+<!--                console.error("Error loading packages:", error);-->
+<!--                $("#packageCards").html('<p class="text-danger text-center">Error loading packages.</p>');-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Load Classes-->
+<!--    function loadClasses() {-->
+<!--        $.ajax({-->
+<!--            url: "http://localhost:8080/api/v1/class/getAll",-->
+<!--            method: "GET",-->
+<!--            success: function (response) {-->
+<!--                if (response.data && Array.isArray(response.data)) {-->
+<!--                    let html = "";-->
+<!--                    response.data.forEach(cls => {-->
+<!--                        const imageUrl = 'https://images.pexels.com/photos/3757375/pexels-photo-3757375.jpeg';-->
+<!--                        html += `-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="card card-option h-100">-->
+<!--                                        <img src="${imageUrl}" class="card-img-top" alt="${cls.name}" loading="lazy">-->
+<!--                                        <div class="card-body p-3">-->
+<!--                                            <h6 class="card-title text-center">${cls.name}</h6>-->
+<!--                                            <p class="text-muted small text-center">Trainer: ${cls.trainer || 'TBD'}</p>-->
+<!--                                            <button class="btn btn-outline-primary btn-sm w-100"-->
+<!--                                                data-name="${cls.name}">Select</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            `;-->
+<!--                    });-->
+<!--                    $("#classCards").html(html);-->
+
+<!--                    $('#classCards .card-option button').on('click', function () {-->
+<!--                        $('#classCards .card-option').removeClass('selected');-->
+<!--                        const card = $(this).closest('.card-option');-->
+<!--                        card.addClass('selected');-->
+<!--                        const name = $(this).data('name');-->
+<!--                        $('#summaryClass').text(name);-->
+<!--                    });-->
+<!--                } else {-->
+<!--                    $("#classCards").html('<p class="text-danger text-center">No classes available.</p>');-->
+<!--                }-->
+<!--            },-->
+<!--            error: function (xhr, status, error) {-->
+<!--                console.error("Error loading classes:", error);-->
+<!--                $("#classCards").html('<p class="text-danger text-center">Error loading classes.</p>');-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Load Coaches-->
+<!--    function loadCoaches() {-->
+<!--        $.ajax({-->
+<!--            url: "http://localhost:8080/api/v1/guide/getAll",-->
+<!--            method: "GET",-->
+<!--            success: function (response) {-->
+<!--                if (response.data && Array.isArray(response.data)) {-->
+<!--                    let html = "";-->
+<!--                    response.data.forEach(coach => {-->
+<!--                        const imageUrl = coach.imageUrl ? `${window.location.origin}/Uploads/${coach.imageUrl}` : 'https://images.pexels.com/photos/416717/pexels-photo-416717.jpeg';-->
+<!--                        // Assuming coachFee is fixed or retrieved from backend; here we use a placeholder-->
+<!--                        const coachFeePerSession = 500; // Adjust based on backend data if available-->
+<!--                        html += `-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="card card-option h-100">-->
+<!--                                        <img src="${imageUrl}" class="card-img-top" alt="${coach.fullName}" loading="lazy">-->
+<!--                                        <div class="card-body p-3">-->
+<!--                                            <h6 class="card-title text-center">${coach.fullName}</h6>-->
+<!--                                            <p class="text-muted small text-center">${coach.description || 'N/A'}</p>-->
+<!--                                            <p class="text-muted small text-center">Fee per Session: LKR ${coachFeePerSession.toFixed(2)}</p>-->
+<!--                                            <button class="btn btn-outline-primary btn-sm w-100"-->
+<!--                                                data-email="${coach.email}"-->
+<!--                                                data-name="${coach.fullName}"-->
+<!--                                                data-fee="${coachFeePerSession}">Select</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            `;-->
+<!--                    });-->
+<!--                    $("#coachCards").html(html);-->
+
+<!--                    $('#coachCards .card-option button').on('click', function () {-->
+<!--                        $('#coachCards .card-option').removeClass('selected');-->
+<!--                        const card = $(this).closest('.card-option');-->
+<!--                        card.addClass('selected');-->
+<!--                        const name = $(this).data('name');-->
+<!--                        coachFee = parseFloat($(this).data('fee')) * numberOfSessions;-->
+<!--                        $('#summaryCoach').text(name);-->
+<!--                        $('#summaryCoachFee').text(`LKR ${coachFee.toFixed(2)}`);-->
+<!--                        updateTotalPrice();-->
+<!--                    });-->
+<!--                } else {-->
+<!--                    $("#coachCards").html('<p class="text-danger text-center">No coaches available.</p>');-->
+<!--                }-->
+<!--            },-->
+<!--            error: function (xhr, status, error) {-->
+<!--                console.error("Error loading coaches:", error);-->
+<!--                $("#coachCards").html('<p class="text-danger text-center">Error loading coaches.</p>');-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Load Locations-->
+<!--    function loadLocations() {-->
+<!--        $.ajax({-->
+<!--            url: "http://localhost:8080/api/v1/location/getAll",-->
+<!--            method: "GET",-->
+<!--            success: function (response) {-->
+<!--                if (response.data && Array.isArray(response.data)) {-->
+<!--                    let html = "";-->
+<!--                    response.data.forEach(location => {-->
+<!--                        const imageUrl = location.imageUrl ? `${window.location.origin}/Uploads/${location.imageUrl}` : 'https://images.pexels.com/photos/707928/pexels-photo-707928.jpeg';-->
+<!--                        html += `-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="card card-option h-100">-->
+<!--                                        <img src="${imageUrl}" class="card-img-top" alt="${location.name}" loading="lazy">-->
+<!--                                        <div class="card-body p-3">-->
+<!--                                            <h6 class="card-title text-center">${location.name}</h6>-->
+<!--                                            <p class="text-muted small text-center">${location.address || 'N/A'}</p>-->
+<!--                                            <button class="btn btn-outline-primary btn-sm w-100"-->
+<!--                                                data-name="${location.name}">Select</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            `;-->
+<!--                    });-->
+<!--                    $("#locationCards").html(html);-->
+
+<!--                    $('#locationCards .card-option button').on('click', function () {-->
+<!--                        $('#locationCards .card-option').removeClass('selected');-->
+<!--                        const card = $(this).closest('.card-option');-->
+<!--                        card.addClass('selected');-->
+<!--                        const name = $(this).data('name');-->
+<!--                        $('#summaryLocation').text(name);-->
+<!--                    });-->
+<!--                } else {-->
+<!--                    $("#locationCards").html('<p class="text-danger text-center">No locations available.</p>');-->
+<!--                }-->
+<!--            },-->
+<!--            error: function (xhr, status, error) {-->
+<!--                console.error("Error loading locations:", error);-->
+<!--                $("#locationCards").html('<p class="text-danger text-center">Error loading locations.</p>');-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Update Total Price-->
+<!--    function updateTotalPrice() {-->
+<!--        const totalPrice = packagePrice + coachFee;-->
+<!--        $('#summaryTotal').text(`LKR ${totalPrice.toFixed(2)}`);-->
+<!--    }-->
+
+<!--    // Update End Date-->
+<!--    function updateEndDate() {-->
+<!--        const bookingDate = $("#bookingDate").val();-->
+<!--        const sessions = parseInt($("#numSessions").val()) || 1;-->
+<!--        numberOfSessions = sessions;-->
+<!--        $('#summarySessions').text(sessions);-->
+<!--        $('#summaryBookingDate').text(bookingDate);-->
+<!--        if (bookingDate) {-->
+<!--            const date = new Date(bookingDate);-->
+<!--            // Assuming each session is on a separate day for simplicity-->
+<!--            date.setDate(date.getDate() + sessions - 1);-->
+<!--            const endDate = date.toISOString().split("T")[0];-->
+<!--            $('#summaryEndDate').text(endDate);-->
+<!--        }-->
+<!--        // Recalculate coach fee based on number of sessions-->
+<!--        const selectedCoachButton = $('#coachCards .card-option.selected button');-->
+<!--        if (selectedCoachButton.length) {-->
+<!--            const coachFeePerSession = parseFloat(selectedCoachButton.data('fee'));-->
+<!--            coachFee = coachFeePerSession * sessions;-->
+<!--            $('#summaryCoachFee').text(`LKR ${coachFee.toFixed(2)}`);-->
+<!--            updateTotalPrice();-->
+<!--        }-->
+<!--    }-->
+
+<!--    // Confirm Booking-->
+<!--    $("#confirmBookingBtn").click(function (e) {-->
+<!--        e.preventDefault();-->
+<!--        const userEmail = $("#userEmail").val();-->
+<!--        const bookingDate = $("#bookingDate").val();-->
+<!--        const packageName = $("#summaryPackage").text();-->
+<!--        const className = $("#summaryClass").text();-->
+<!--        const coachEmail = $('#coachCards .card-option.selected button').data('email') || '';-->
+<!--        const locationName = $("#summaryLocation").text();-->
+<!--        const endDate = $("#summaryEndDate").text();-->
+<!--        const numberOfSessions = parseInt($("#summarySessions").text());-->
+<!--        const packagePriceVal = parseFloat($("#summaryPackagePrice").text().replace("LKR", "").trim());-->
+<!--        const coachFeeVal = parseFloat($("#summaryCoachFee").text().replace("LKR", "").trim());-->
+<!--        const totalPrice = parseFloat($("#summaryTotal").text().replace("LKR", "").trim());-->
+
+<!--        if (!userEmail || !bookingDate || !packageName || !className || !coachEmail || !locationName || !numberOfSessions) {-->
+<!--            alert("Please complete all selections before confirming.");-->
+<!--            return;-->
+<!--        }-->
+
+<!--        bookingData = {-->
+<!--            userEmail: userEmail,-->
+<!--            packageName: packageName,-->
+<!--            className: className,-->
+<!--            coachEmail: coachEmail,-->
+<!--            locationName: locationName,-->
+<!--            bookingDate: bookingDate,-->
+<!--            endDate: endDate,-->
+<!--            numberOfSessions: numberOfSessions,-->
+<!--            packagePrice: packagePriceVal,-->
+<!--            coachFee: coachFeeVal,-->
+<!--            totalPrice: totalPrice,-->
+<!--            status: "ACTIVE"-->
+<!--        };-->
+
+<!--        $("#paymentEmail").text(userEmail);-->
+<!--        $("#paymentTotal").text(`LKR ${totalPrice.toFixed(2)}`);-->
+<!--        $("#paymentModal").modal("show");-->
+<!--    });-->
+
+<!--    // Handle Payment-->
+<!--    $("#paymentForm").submit(function (e) {-->
+<!--        e.preventDefault();-->
+<!--        if (!this.checkValidity()) {-->
+<!--            this.classList.add('was-validated');-->
+<!--            return;-->
+<!--        }-->
+<!--        if (!bookingData) {-->
+<!--            alert("No booking data available.");-->
+<!--            return;-->
+<!--        }-->
+
+<!--        const cardHolderName = $("#cardHolderName").val().trim();-->
+<!--        const cardNumber = $("#cardNumber").val().trim();-->
+<!--        const expiryDate = $("#expiryDate").val().trim();-->
+<!--        const cvv = $("#cvv").val().trim();-->
+
+<!--        if (!cardHolderName || !cardNumber || !expiryDate || !cvv) {-->
+<!--            alert("Please fill in all payment details.");-->
+<!--            return;-->
+<!--        }-->
+
+<!--        // Save Booking-->
+<!--        $.ajax({-->
+<!--            url: "http://localhost:8080/api/v1/bookings/save",-->
+<!--            type: "POST",-->
+<!--            contentType: "application/json",-->
+<!--            data: JSON.stringify(bookingData),-->
+<!--            success: function (response) {-->
+<!--                if (response.code === 201) {-->
+<!--                    const booking = response.data;-->
+<!--                    const paymentDTO = {-->
+<!--                        userEmail: bookingData.userEmail,-->
+<!--                        amount: bookingData.totalPrice,-->
+<!--                        cardHolderName: cardHolderName,-->
+<!--                        cardNumber: cardNumber,-->
+<!--                        expiryDate: expiryDate,-->
+<!--                        cvv: cvv,-->
+<!--                        paymentDate: new Date().toISOString()-->
+<!--                    };-->
+
+<!--                    // Save Payment-->
+<!--                    $.ajax({-->
+<!--                        url: "http://localhost:8080/api/v1/payment/save",-->
+<!--                        type: "POST",-->
+<!--                        contentType: "application/json",-->
+<!--                        data: JSON.stringify(paymentDTO),-->
+<!--                        success: function () {-->
+<!--                            alert("Booking and Payment Successful!");-->
+<!--                            $("#paymentModal").modal("hide");-->
+<!--                            clearAllFields();-->
+<!--                        },-->
+<!--                        error: function (xhr, status, error) {-->
+<!--                            console.error("Payment error:", error);-->
+<!--                            alert("Booking saved, but payment failed. Please contact support.");-->
+<!--                        }-->
+<!--                    });-->
+<!--                } else {-->
+<!--                    alert("Booking failed: " + response.message);-->
+<!--                }-->
+<!--            },-->
+<!--            error: function (xhr, status, error) {-->
+<!--                console.error("Booking error:", error);-->
+<!--                alert("Booking failed: " + (xhr.responseJSON?.message || "Unknown error"));-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    // Clear Fields-->
+<!--    function clearAllFields() {-->
+<!--        bookingData = null;-->
+<!--        packagePrice = 0;-->
+<!--        coachFee = 0;-->
+<!--        numberOfSessions = 1;-->
+<!--        $("#userEmail").val('');-->
+<!--        $("#bookingDate").val('');-->
+<!--        $("#numSessions").val('1');-->
+<!--        $("#summaryUserEmail").text('&#45;&#45;');-->
+<!--        $("#summaryBookingDate").text('&#45;&#45;');-->
+<!--        $("#summaryEndDate").text('&#45;&#45;');-->
+<!--        $("#summarySessions").text('1');-->
+<!--        $("#summaryPackage").text('&#45;&#45;');-->
+<!--        $("#summaryClass").text('&#45;&#45;');-->
+<!--        $("#summaryCoach").text('&#45;&#45;');-->
+<!--        $("#summaryLocation").text('&#45;&#45;');-->
+<!--        $("#summaryPackagePrice").text('LKR 0.00');-->
+<!--        $("#summaryCoachFee").text('LKR 0.00');-->
+<!--        $("#summaryTotal").text('LKR 0.00');-->
+<!--        $("#cardHolderName").val('');-->
+<!--        $("#cardNumber").val('');-->
+<!--        $("#expiryDate").val('');-->
+<!--        $("#cvv").val('');-->
+<!--        $("#packageCards").empty();-->
+<!--        $("#classCards").empty();-->
+<!--        $("#coachCards").empty();-->
+<!--        $("#locationCards").empty();-->
+<!--        loadPackages();-->
+<!--        loadClasses();-->
+<!--        loadCoaches();-->
+<!--        loadLocations();-->
+<!--    }-->
+
+<!--    // Initialize-->
+<!--    $(document).ready(function () {-->
+<!--        checkUserLogin();-->
+<!--        loadPackages();-->
+<!--        loadClasses();-->
+<!--        loadCoaches();-->
+<!--        loadLocations();-->
+<!--        $("#bookingDate").on('change', updateEndDate);-->
+<!--        $("#numSessions").on('input', updateEndDate);-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

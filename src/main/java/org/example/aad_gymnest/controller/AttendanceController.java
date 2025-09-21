@@ -23,7 +23,7 @@ public class AttendanceController {
         this.attendanceService = attendanceService;
     }
 
-    // ✅ Only ADMIN can mark attendance
+
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/mark")
     public ResponseEntity<ResponseDTO> markAttendance(@RequestBody AttendanceRequest request) {
