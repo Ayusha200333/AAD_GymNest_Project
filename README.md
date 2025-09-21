@@ -113,8 +113,10 @@ Authorization: Bearer <token>
 Developed by Ayusha Wijerathna– Advanced Application Development Project (AAD).
 
  
-Youtube Demo Vedio 
-[Watch the demo on YouTube](https://youtu.be/qeo4imLjGyo)
+## YouTube Demo Video
+
+click here to watch directly: [Watch the demo on YouTube](https://youtu.be/qeo4imLjGyo)
+
 
 
 
