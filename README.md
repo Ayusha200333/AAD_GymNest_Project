@@ -114,7 +114,8 @@ Developed by Ayusha Wijerathna– Advanced Application Development Project (AAD)
 
  
 ## Demo Video
-Click here to watch the GymNest demo: [Watch on YouTube](https://youtu.be/qeo4imLjGyo)
+[YouTube Vedio](https://youtu.be/qeo4imLjGyo)
+
 
 
 
