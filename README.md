@@ -113,9 +113,8 @@ Authorization: Bearer <token>
 Developed by Ayusha Wijerathna– Advanced Application Development Project (AAD).
 
  
-## YouTube Demo Video
-
-click here to watch directly: [Watch the demo on YouTube(https://youtu.be/qeo4imLjGyo)]
+## Demo Video
+Click here to watch the GymNest demo: [Watch on YouTube](https://youtu.be/qeo4imLjGyo)
 
 
 
